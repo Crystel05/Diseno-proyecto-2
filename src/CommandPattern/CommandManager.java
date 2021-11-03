@@ -18,7 +18,7 @@ public class CommandManager {
     }
 
     public void registrarCommand(CommandsE comando, ICommand comandClass){
-        
+
     }
 
 }
