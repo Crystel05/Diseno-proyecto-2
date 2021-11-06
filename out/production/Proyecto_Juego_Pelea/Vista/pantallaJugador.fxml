@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
@@ -7,11 +9,11 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1279.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1279.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.PantallaJugador">
    <children>
       <Pane layoutX="5.0" layoutY="5.0" prefHeight="186.0" prefWidth="217.0" style="-fx-background-color: BLACK;">
          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="180.0" layoutX="2.0" layoutY="3.0" stroke="#016de8" strokeType="INSIDE" width="211.0" />
             <Text fill="#028894" layoutX="72.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ranking">
                <font>
                   <Font name="Bauhaus 93" size="20.0" />
@@ -121,11 +123,20 @@
       </Pane>
       <Pane layoutX="5.0" layoutY="489.0" prefHeight="186.0" prefWidth="675.0" style="-fx-background-color: BLACK;">
          <children>
-            <TextFlow fx:id="comandos" layoutX="3.0" layoutY="3.0" prefHeight="180.0" prefWidth="669.0" />
+            <TextFlow fx:id="comandosMostrar" layoutX="2.0" layoutY="2.0" prefHeight="182.0" prefWidth="669.0" />
+            <TextArea fx:id="comandos" layoutX="2.0" layoutY="2.0" prefHeight="182.0" prefWidth="669.0">
+               <font>
+                  <Font name="Eras Demi ITC" size="15.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </TextArea>
          </children>
       </Pane>
       <Pane layoutX="227.0" layoutY="5.0" prefHeight="237.0" prefWidth="454.0" style="-fx-background-color: BLACK;">
          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="232.0" layoutX="3.0" layoutY="2.0" stroke="#016de8" strokeType="INSIDE" width="448.0" />
             <ImageView fx:id="guerreroAtacó" fitHeight="237.0" fitWidth="454.0" pickOnBounds="true" preserveRatio="true" />
             <Text fill="WHITE" layoutX="14.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Atacado por">
                <font>
@@ -191,6 +202,7 @@
       </Pane>
       <Pane layoutX="227.0" layoutY="247.0" prefHeight="237.0" prefWidth="454.0" style="-fx-background-color: BLACK;">
          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="232.0" layoutX="3.0" layoutY="3.0" stroke="#016de8" strokeType="INSIDE" width="448.0" />
             <ImageView fx:id="guerroQueAtaca" fitHeight="237.0" fitWidth="454.0" pickOnBounds="true" preserveRatio="true" />
             <Text fill="WHITE" layoutX="14.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Atacaste con">
                <font>
@@ -222,7 +234,7 @@
                   <Font name="Cooper Black" size="23.0" />
                </font>
             </Text>
-            <Text fx:id="porcentajeDanoInfrinjido" fill="WHITE" layoutX="86.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10">
+            <Text fx:id="porcentajeDanoInfringido" fill="WHITE" layoutX="86.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10">
                <font>
                   <Font name="Colonna MT" size="96.0" />
                </font>
@@ -231,6 +243,7 @@
       </Pane>
       <Pane layoutX="686.0" layoutY="5.0" prefHeight="670.0" prefWidth="588.0" style="-fx-background-color: BLACK;">
          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="666.0" layoutX="2.0" layoutY="2.0" stroke="#016de8" strokeType="INSIDE" width="584.0" />
             <Text fill="#0037ff" layoutX="206.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TU EQUIPO">
                <font>
                   <Font name="Eras Demi ITC" size="32.0" />
@@ -583,6 +596,7 @@
       </Pane>
       <Pane layoutX="5.0" layoutY="196.0" prefHeight="288.0" prefWidth="217.0" style="-fx-background-color: BLACK;">
          <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="282.0" layoutX="2.0" layoutY="3.0" stroke="#016de8" strokeType="INSIDE" width="211.0" />
             <Text fill="#028894" layoutX="7.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CONTRINCANTE">
                <font>
                   <Font name="Bauhaus 93" size="20.0" />

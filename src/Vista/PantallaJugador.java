@@ -1,11 +1,22 @@
 package Vista;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
-public class PantallaJugador {
+import javax.swing.event.ChangeEvent;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class PantallaJugador implements Initializable {
 
     @FXML
     private Text arma1At1;
@@ -185,7 +196,10 @@ public class PantallaJugador {
     private Text ataquesMio;
 
     @FXML
-    private TextFlow comandos;
+    private TextArea comandos;
+
+    @FXML
+    private TextFlow comandosMostrar;
 
     @FXML
     private Text danoG1;
@@ -307,4 +321,18 @@ public class PantallaJugador {
     @FXML
     private Text tipoGuerreroAtaca;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        Text tI = new Text(">>");
+        tI.setFont(new Font(15));
+        tI.setFill(Color.GREEN);
+        comandosMostrar.getChildren().add(tI);
+        comandos.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+
+            }
+        });
+
+    }
 }

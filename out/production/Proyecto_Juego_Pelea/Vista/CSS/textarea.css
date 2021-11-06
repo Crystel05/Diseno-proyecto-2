@@ -1,0 +1,11 @@
+
+.text-area {
+    text-area-background: black;
+    -fx-text-fill: black;
+}
+
+.text-area .content {
+    -fx-background-color: text-area-background ;
+}
+
+
