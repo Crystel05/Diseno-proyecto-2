@@ -1,11 +1,16 @@
-
 .text-area {
-    text-area-background: black;
-    -fx-text-fill: black;
+    -fx-background-color: rgba(0,0,0,0.4);
+    -fx-text-fill: transparent;
 }
 
-.text-area .content {
-    -fx-background-color: text-area-background ;
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
 }
 
+.text-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
 
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}
