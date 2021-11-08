@@ -1,5 +1,7 @@
 package CommandPattern;
 
+import java.util.ArrayList;
+
 public class SelectPlayer extends BaseCommand {
 
     public SelectPlayer() {
@@ -11,7 +13,7 @@ public class SelectPlayer extends BaseCommand {
     }
 
     @Override
-    public void execute() {
+    public void execute(ArrayList<Object> params) {
 
     }
 }

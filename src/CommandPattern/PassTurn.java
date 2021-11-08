@@ -1,5 +1,7 @@
 package CommandPattern;
 
+import java.util.ArrayList;
+
 public class PassTurn extends BaseCommand{
 
     public PassTurn() {
@@ -11,7 +13,7 @@ public class PassTurn extends BaseCommand{
     }
 
     @Override
-    public void execute() {
+    public void execute(ArrayList<Object> params) {
 
     }
 }

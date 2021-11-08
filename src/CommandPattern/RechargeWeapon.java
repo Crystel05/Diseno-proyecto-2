@@ -1,5 +1,7 @@
 package CommandPattern;
 
+import java.util.ArrayList;
+
 public class RechargeWeapon extends BaseCommand{
 
 
@@ -12,7 +14,7 @@ public class RechargeWeapon extends BaseCommand{
     }
 
     @Override
-    public void execute() {
+    public void execute(ArrayList<Object> params) {
 
     }
 }

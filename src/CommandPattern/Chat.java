@@ -1,5 +1,7 @@
 package CommandPattern;
 
+import java.util.ArrayList;
+
 public class Chat extends BaseCommand{
 
     public Chat() {
@@ -11,7 +13,7 @@ public class Chat extends BaseCommand{
     }
 
     @Override
-    public void execute() {
+    public void execute(ArrayList<Object> params) {
 
     }
 }

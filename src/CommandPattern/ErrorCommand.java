@@ -1,5 +1,7 @@
 package CommandPattern;
 
+import java.util.ArrayList;
+
 public class ErrorCommand extends BaseCommand{
 
 
@@ -13,7 +15,7 @@ public class ErrorCommand extends BaseCommand{
     }
 
     @Override
-    public void execute() {
+    public void execute(ArrayList<Object> params) {
 
     }
 }

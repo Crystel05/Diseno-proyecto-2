@@ -30,4 +30,8 @@ public class Equipo {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+    public void giveUp(){
+        //Modificar el historial
+    }
 }

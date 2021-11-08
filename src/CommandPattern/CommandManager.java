@@ -1,5 +1,6 @@
 package CommandPattern;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CommandManager {
@@ -14,11 +15,15 @@ public class CommandManager {
     }
 
     public ICommand getCommand(CommandsE comando){
-        return null; //retornar comando?
+        return comandos.get(comando);
     }
 
     public void registrarCommand(CommandsE comando, ICommand comandClass){
+        //
+    }
 
+    public void executeCommand(ArrayList<Object> params, ICommand command) {
+        command.execute(params);
     }
 
 }

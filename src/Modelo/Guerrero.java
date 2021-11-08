@@ -20,4 +20,8 @@ public class Guerrero {
     public void setArmas(ArrayList<Arma> armas) {
         this.armas = armas;
     }
+
+    public void rechargeWeapon(){
+        // Recargar armas.
+    }
 }
