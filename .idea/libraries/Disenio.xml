@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Disenio">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/ExternalLibs/Disenio.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

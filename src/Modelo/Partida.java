@@ -54,7 +54,7 @@ public class Partida {
         return "";
     }
 
-    private String doubleAttack(Guerrero guerrero, Arma weapon1, Guerrero guerrero2, Arma weapon2){
+    private String doubleAttack(Character guerrero, Weapon weapon1, Character guerrero2, Weapon weapon2){
         String msg = "";
         Attack attack = new Attack(guerrero,weapon1);
         Attack attack2 = new Attack(guerrero2,weapon2);
@@ -73,7 +73,7 @@ public class Partida {
         return  msg;
     }
 
-    private String doubleWeapon(Guerrero guerrero, Arma weapon1, Arma weapon2){
+    private String doubleWeapon(Character guerrero, Weapon weapon1, Weapon weapon2){
         String msg = "";
         Attack attack = new Attack(guerrero,weapon1);
         Attack attack2 = new Attack(guerrero,weapon2);
@@ -95,14 +95,14 @@ public class Partida {
         return  equipo == equipoInTurn;
     }
 
-    private boolean weaponEnabled(Arma weapon){
+    private boolean weaponEnabled(Weapon weapon){
         return weapon.isActive();
     }
 
 
-    public String rechargeWeapon(Guerrero guerrero){
+    public String rechargeWeapon(Character guerrero){
         boolean canReload = true;
-        for (Arma arma: guerrero.getArmas()){
+        for (Weapon arma: guerrero.getWeapons()){
             if(arma.isActive())
                 canReload = false;
         }
