@@ -25,7 +25,7 @@ public class ControladorPantalla {
     //Desde pantalla se le pasan los parametros como una lista.
     //Desde pantalla se le pasan uno a uno los paramentros.
     public void attackCommand(String[] params) throws IOException, ClassNotFoundException {
-        client.request(new CommandRequest(CommandsE.ATACK,params));
+        client.request(new CommandRequest(CommandsE.ATACK,params,client.getClientId()));
     }
 
 }

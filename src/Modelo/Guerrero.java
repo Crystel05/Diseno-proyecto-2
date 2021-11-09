@@ -39,4 +39,18 @@ public class Guerrero {
         if(health <= 0)
             //Logger.addToLog("and died");
     }
+
+    public void reload() {
+        for (Arma arma:armas) {
+            arma.setActive(true);
+        }
+    }
+
+    public Arma getArma(String armaString) {
+        for (Arma arma:armas){
+            if(arma.name.equals(armaString))
+                return arma;
+        }
+        return null;
+    }
 }
