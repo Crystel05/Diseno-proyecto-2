@@ -21,11 +21,16 @@ public class Guerrero {
         this.armas = armas;
     }
 
-    public void rechargeWeapon(){
-        // Recargar armas.
+    public boolean canReload(){
+        for (Arma arma: armas){
+            if(arma.isActive())
+                return false;
+        }
+        return true;
     }
 
     public TiposE getType() {
+        return type;
     }
 
     public void recieveDamage(int dano) {

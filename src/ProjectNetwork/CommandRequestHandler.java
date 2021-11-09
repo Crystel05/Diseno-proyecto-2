@@ -15,7 +15,7 @@ public class CommandRequestHandler implements IHandleRequest {
     @Override
     public void parseRequest(IRequest request, ServerRequestHandler server) throws IOException, ClassNotFoundException {
         CommandsE commandName = (CommandsE) request.getType();//En nuestro caso tiene un enumarable que se llama tipo
-        ArrayList<Object> commandArgs = ((CommandRequest) request).getParams();//Devuelve el otro resto
+        String[] commandArgs = ((CommandRequest) request).getParams();//Devuelve el otro resto
         ICommand command = CommandManager.getCommand(commandName);//Con este le pide al manager
         command.execute(commandArgs);//Aca se hace el execute y pasa al Game
     }

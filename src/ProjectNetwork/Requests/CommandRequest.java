@@ -7,15 +7,15 @@ import java.util.ArrayList;
 
 public class CommandRequest extends BaseRequest {
 
-    ArrayList<Object> params;
+    String[] params;
     CommandsE type;
 
-    public CommandRequest(CommandsE type, ArrayList<Object> params){
+    public CommandRequest(CommandsE type, String[] params){
         this.params = params;
         this.type = type;
     }
 
-    public ArrayList<Object> getParams() {
+    public String[] getParams() {
         return params;
     }
 }

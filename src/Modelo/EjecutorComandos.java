@@ -4,11 +4,11 @@ public class EjecutorComandos {
 
     //Las validaciones se hacen en pantalla
 
-    private void doubleAttack(Guerrero guerrero, Arma weapon1, Guerrero guerrero2, Arma weapon2){
+    private void doubleAttack(Equipo objetivo, Guerrero guerrero, Arma weapon1, Guerrero guerrero2, Arma weapon2){
         //Logger.addToLog("Ataque Doble");
         //validateData();
-        attack(equipoEnemigo(),guerrero,weapon1);
-        attack(equipoEnemigo(),guerrero,weapon2);
+        attack(objetivo,guerrero,weapon1);
+        attack(objetivo,guerrero,weapon2);
     }
 
     private void doubleWeapon(Guerrero guerrero, Arma weapon1, Arma weapon2){
@@ -17,13 +17,8 @@ public class EjecutorComandos {
         attack(guerrero,weapon2);
     }
 
-    public void rechargeWeapon(Guerrero guerrero){
+    public void rechargeWeapon(Guerrero guerrero,boolean canReload){
         //Logger.addToLog("Realoding arma");
-        boolean canReload = true;
-        for (Arma arma: guerrero.getArmas()){
-            if(arma.isActive())
-                canReload = false;
-        }
         if (canReload) {
             guerrero.rechargeWeapon();
             sendToClients("reloaded weapons");
@@ -55,10 +50,12 @@ public class EjecutorComandos {
         sendToClients(equipoInTurn.getUsuario().getNombre() + " passed turn");
     }
 
-    public void attack(Guerrero guerrero,Arma arma){
+    public void attack(Equipo objetivo,Arma arma){
         //Logger.addToLog("Attack")//Asociado al jugador actual
         //Logger.addToLog(characterName + " atacked with "+weaponName)
-        dealDamage(arma);
+        for (Guerrero guerrero : objetivo.getGuerreros()) {
+            guerrero.recieveDamage(arma.getDano(guerrero.getType()));
+        }
         nextTurn();
     }
 

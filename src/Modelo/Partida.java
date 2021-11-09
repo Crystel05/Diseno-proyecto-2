@@ -84,11 +84,5 @@ public class Partida {
     }
 
 
-    private void dealDamage(Arma arma) {
-        //Logger.addToLog("Deal Damage")//Asociado al jugador actual
-        Equipo enemy = equipoEnemigo();
-        for (Guerrero guerrero : enemy.getGuerreros()) {
-            guerrero.recieveDamage(arma.getDano(guerrero.getType()));
-        }
-    }
+
 }
