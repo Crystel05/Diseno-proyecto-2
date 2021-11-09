@@ -24,4 +24,14 @@ public class Guerrero {
     public void rechargeWeapon(){
         // Recargar armas.
     }
+
+    public TiposE getType() {
+    }
+
+    public void recieveDamage(int dano) {
+        //Logger.addToLog(name+" recieved " +dano+"% damage");
+        this.health = this.health-damage;
+        if(health <= 0)
+            //Logger.addToLog("and died");
+    }
 }

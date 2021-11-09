@@ -1,9 +1,11 @@
 package CommandPattern;
 
+import CommandPattern.Enumerable.CommandsE;
+
 import java.util.ArrayList;
 
 public interface ICommand {
 
-    String getCommandName();
-    void execute(ArrayList<Object> params); //poner parámetros
+    CommandsE getType();
+    void execute(String[] params); //poner parámetros
 }

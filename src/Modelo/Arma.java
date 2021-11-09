@@ -40,4 +40,7 @@ public class Arma {
     public void setDaños(ArrayList<Integer> daños) {
         this.daños = daños;
     }
+
+    public int getDano(TiposE tipo) {
+    }
 }

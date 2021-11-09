@@ -8,11 +8,6 @@ public class SelectPlayer extends BaseCommand {
     }
 
     @Override
-    public String getCommandName() {
-        return null;
-    }
-
-    @Override
     public void execute(ArrayList<Object> params) {
 
     }

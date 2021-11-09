@@ -1,4 +1,4 @@
-package CommandPattern;
+package CommandPattern.Enumerable;
 
 public enum CommandsE {
 
