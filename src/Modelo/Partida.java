@@ -141,6 +141,9 @@ public class Partida extends Server{
         return null;
     }
 
+
+
+    //Responses enviados por el servidor
     public void updateUsuarios() throws IOException {
         int i = 0;
         for (BasicServerClient client:getClientes()){
