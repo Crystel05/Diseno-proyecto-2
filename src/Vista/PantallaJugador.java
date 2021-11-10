@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-
 public class PantallaJugador implements Initializable {
 
     private Boolean borrando = false;
@@ -31,7 +30,6 @@ public class PantallaJugador implements Initializable {
     private String lineaComando = "";
     private ArrayList<Text> errores = new ArrayList<>();
     private ArrayList<Text> inicios = new ArrayList<>();
-
 
     @FXML
     private Text arma1At1;

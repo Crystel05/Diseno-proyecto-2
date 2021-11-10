@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class Equipo {
 
-    private ArrayList<Character> guerreros;
+    private ArrayList<Guerrero> guerreros;
     private  Usuario usuario;
 
-    public Equipo(ArrayList<Character> guerreros, Usuario usuario) {
+    public Equipo(ArrayList<Guerrero> guerreros, Usuario usuario) {
         this.guerreros = guerreros;
         this.usuario = usuario;
     }
@@ -15,11 +15,11 @@ public class Equipo {
     public Equipo() {
     }
 
-    public ArrayList<Character> getGuerreros() {
+    public ArrayList<Guerrero> getGuerreros() {
         return guerreros;
     }
 
-    public void setGuerreros(ArrayList<Character> guerreros) {
+    public void setGuerreros(ArrayList<Guerrero> guerreros) {
         this.guerreros = guerreros;
     }
 

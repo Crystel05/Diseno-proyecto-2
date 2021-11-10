@@ -1,16 +1,17 @@
 package CommandPattern;
 
-import Modelo.Weapon;
-import Modelo.Character;
+import Modelo.Arma;
+import Modelo.Guerrero;
+import Modelo.Usuario;
 
 import java.util.ArrayList;
 
 public class Attack extends BaseCommand {
 
-    private Character atacante;
-    private Weapon arma;
+    private Guerrero atacante;
+    private Arma arma;
 
-    public Attack(Character atacante, Weapon arma) {
+    public Attack(Guerrero atacante, Arma arma) {
         this.atacante = atacante;
         this.arma = arma;
     }
@@ -23,14 +24,14 @@ public class Attack extends BaseCommand {
     @Override
     public void execute(ArrayList<Object> params) { // PENDIENTE
         if(params.size() == 3){ // doble arma
-            Character guerrero = (Character) params.get(0);
-            Weapon arma1 = (Weapon) params.get(1);
-            Weapon arma2 = (Weapon) params.get(2);
+            Guerrero guerrero = (Guerrero) params.get(0);
+            Arma arma1 = (Arma) params.get(1);
+            Arma arma2 = (Arma) params.get(2);
         }else {
-            Character guerrero1 = (Character) params.get(0);
-            Weapon arma1 = (Weapon) params.get(1);
-            Character guerrero2 = (Character) params.get(2);
-            Weapon arma2 = (Weapon) params.get(3);
+            Guerrero guerrero1 = (Guerrero) params.get(0);
+            Arma arma1 = (Arma) params.get(1);
+            Guerrero guerrero2 = (Guerrero) params.get(2);
+            Arma arma2 = (Arma) params.get(3);
         }
     }
 }
