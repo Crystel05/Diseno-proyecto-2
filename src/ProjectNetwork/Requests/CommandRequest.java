@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 public class CommandRequest extends BaseRequest {
 
-    String[] params;
-    CommandsE commandType;
+    public String[] params;
+    public CommandsE commandType;
 
     public CommandRequest(CommandsE commandType, String[] params,int clientId){
         this.params = params;

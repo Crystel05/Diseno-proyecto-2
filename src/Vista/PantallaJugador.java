@@ -1,5 +1,6 @@
 package Vista;
 
+import Controller.ControladorPantalla;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
@@ -30,6 +31,7 @@ public class PantallaJugador implements Initializable {
     private String lineaComando = "";
     private ArrayList<Text> errores = new ArrayList<>();
     private ArrayList<Text> inicios = new ArrayList<>();
+    private ControladorPantalla controladorPantalla = ControladorPantalla.getInstance();
 
     @FXML
     private Text arma1At1;
@@ -423,6 +425,14 @@ public class PantallaJugador implements Initializable {
                 });
             }
         });
+
+    }
+
+    public void conexionAlServidor(){
+
+    }
+
+    public void requestCommand(){
 
     }
 }

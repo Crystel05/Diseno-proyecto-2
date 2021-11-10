@@ -1,14 +1,11 @@
-package ClientTypes;
+package ProjectNetwork.ClientTypes;
 
-import CommandPattern.Enumerable.CommandsE;
 import Modelo.Equipo;
-import Modelo.Usuario;
 import Network.Client.Client;
 import Network.Response.IHandleResponse;
 import ProjectNetwork.Requests.CommandRequest;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class CommandGameClient  extends Client {
 
@@ -22,6 +19,14 @@ public class CommandGameClient  extends Client {
     //Vienen los request desde el controlador
     public void request(CommandRequest commandRequest) throws IOException {
         requestSender.sendRequest(commandRequest);
+    }
+
+    public void setEquipo(Equipo equipo){
+        this.equipo = equipo;
+    }
+
+    public Equipo getEquipo(){
+        return equipo;
     }
 
 }

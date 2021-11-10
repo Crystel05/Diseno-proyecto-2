@@ -5,8 +5,8 @@ import ProjectNetwork.Responses.Enumerable.GameResponsesType;
 
 public class ConnectResponse extends BaseResponse {
 
-    String content = "Conexion exitosa";
-    int clientId;
+    public String content = "Conexion exitosa";
+    public int clientId;
 
     public ConnectResponse(int clientId){
         this.clientId = clientId;

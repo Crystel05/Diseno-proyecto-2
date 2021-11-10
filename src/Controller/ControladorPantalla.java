@@ -1,15 +1,23 @@
 package Controller;
 
+import Modelo.Guerrero;
+import ProjectNetwork.ClientTypes.CommandGameClient;
 import CommandPattern.Enumerable.CommandsE;
-import Network.Client.Client;
+import ProjectNetwork.Requests.AvaliableWariorsRequest;
 import ProjectNetwork.Requests.CommandRequest;
+import ProjectNetwork.Requests.ConnectRequest;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class ControladorPantalla {
     //Tiene el cliente y la pantalla
-    Client client;
+    CommandGameClient client;
+    static ControladorPantalla controladorPantalla;
+    Guerrero[] guerreros;
+
+    public static ControladorPantalla getInstance() {
+        return controladorPantalla==null?new ControladorPantalla():controladorPantalla;
+    }
 
     //Escribe los comandos desde pantalla.
     //Los comandos strings.
@@ -24,8 +32,20 @@ public class ControladorPantalla {
 
     //Desde pantalla se le pasan los parametros como una lista.
     //Desde pantalla se le pasan uno a uno los paramentros.
-    public void attackCommand(String[] params) throws IOException, ClassNotFoundException {
-        client.request(new CommandRequest(CommandsE.ATACK,params,client.getClientId()));
+
+
+    public void requestCommand(String key,String[] params) throws IOException, ClassNotFoundException {
+        CommandsE commandKey = CommandsE.valueOf(key.toUpperCase());
+        client.request(new CommandRequest(commandKey,params,client.getClientId()));
     }
 
+    public void connectionRequest() throws IOException, ClassNotFoundException {
+        client.request(new ConnectRequest());//Asegurarme que el response de esta conexion me de todos los datos que necesito para la pantalla.
+        client.request(new AvaliableWariorsRequest());
+    }
+
+
+    public void setAvaliableWariors(Guerrero[] guerreros) {
+        this.guerreros = guerreros;
+    }
 }
