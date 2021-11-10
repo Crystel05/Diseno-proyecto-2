@@ -6,7 +6,8 @@ import ProjectNetwork.CommandRequestHandler;
 import ProjectNetwork.CommandServerSideClient;
 import ProjectNetwork.Responses.AvaliableWariorsResponse;
 import ProjectNetwork.Responses.MessageResponse;
-
+import CommandPattern.Attack;
+import Model.Weapon;
 import java.io.IOException;
 
 public class Partida extends Server{
@@ -61,6 +62,7 @@ public class Partida extends Server{
         return  equipo == equipoInTurn;
     }
 
+
     private boolean weaponEnabled(Arma weapon){
         return weapon.isActive();
     }
@@ -72,6 +74,7 @@ public class Partida extends Server{
         }
         return  null;
     }
+
 
     public void endGame() throws IOException {
         ejecutarComandos.setCanExecute(false);
@@ -93,13 +96,16 @@ public class Partida extends Server{
             //Ya termino el juego...
         }
 
+
     }
+
 
     public void useWildCard(String[] params){
 
         //convierte los parametros en los objetos
         //valida los objetos
         //luego se los envia al ejecutor de comandos
+
     }
 
     public void giveUpCommand(String[] params){
@@ -107,6 +113,7 @@ public class Partida extends Server{
         //convierte los parametros en los objetos
         //valida los objetos
         //luego se los envia al ejecutor de comandos
+
     }
     public void mutualExitCommand(String[] params){
 
