@@ -6,8 +6,6 @@ import ProjectNetwork.CommandRequestHandler;
 import ProjectNetwork.CommandServerSideClient;
 import ProjectNetwork.Responses.AvaliableWariorsResponse;
 import ProjectNetwork.Responses.MessageResponse;
-import CommandPattern.Attack;
-import Model.Weapon;
 import java.io.IOException;
 
 public class Partida extends Server{
@@ -20,7 +18,7 @@ public class Partida extends Server{
     public Equipo[] equipos = new Equipo[2];
     private Equipo equipoInTurn;
     //Referencia al prototypeManager de la libreria de proyecto 1
-    private Guerrero[] guerreros;//Esto es temporal mientras se implementa el proyecto1
+    //private Guerrero[] guerreros;//Esto es temporal mientras se implementa el proyecto1
 
 
     private Partida(int port,CommandRequestHandler requestHandler) throws IOException, ClassNotFoundException {
@@ -87,9 +85,9 @@ public class Partida extends Server{
     public void attackCommand(String guerreroString,String armaString) throws IOException {
         //No olvidar las validaciones.
         if (ejecutarComandos.canExecute()){
-            Guerrero guerrero = getGuerreroEquipoEnTurno(guerreroString);
-            Arma arma = guerrero.getArma(armaString);
-            ejecutarComandos.attack(equipoEnemigo(),guerrero,arma);
+            //Guerrero guerrero = getGuerreroEquipoEnTurno(guerreroString);
+            //Arma arma = guerrero.getArma(armaString);
+           // ejecutarComandos.attack(equipoEnemigo(),guerrero,arma);
             updateUsuarios();
         }
         else {
@@ -140,13 +138,13 @@ public class Partida extends Server{
     }
 
 
-    private Guerrero getGuerreroEquipoEnTurno(String guerreroString) {
-        for (Guerrero guerrero:equipoInTurn.getGuerreros()) {
-            if(guerrero.name.equals(guerreroString));
-                return guerrero;
-        }
-        return null;
-    }
+//    private Guerrero getGuerreroEquipoEnTurno(String guerreroString) {
+//        for (Guerrero guerrero:equipoInTurn.getGuerreros()) {
+//            if(guerrero.name.equals(guerreroString));
+//                return guerrero;
+//        }
+//        return null;
+//    }
 
 
 
@@ -158,9 +156,9 @@ public class Partida extends Server{
         }
     }
 
-    public void enviarPersonajesDisponibles(int clientId) throws IOException {
-        ((CommandServerSideClient)getClientes().get(clientId)).sendResponse(new AvaliableWariorsResponse(guerreros));
-    }
+//    public void enviarPersonajesDisponibles(int clientId) throws IOException {
+//        ((CommandServerSideClient)getClientes().get(clientId)).sendResponse(new AvaliableWariorsResponse(guerreros));
+//    }
 
     public void sendToClients(String string) throws IOException {
         int i = 0;

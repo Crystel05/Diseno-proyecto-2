@@ -10,7 +10,7 @@ public class ErrorCommand extends BaseCommand{
     }
 
     @Override
-    public void execute(ArrayList<Object> params) {
+    public void execute(String[] params) {
         //Partida.getInstace().errorCommand((String)params.get(0));
     }
 }

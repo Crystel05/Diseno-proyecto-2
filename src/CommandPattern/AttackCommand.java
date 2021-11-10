@@ -1,13 +1,9 @@
 package CommandPattern;
 
 import CommandPattern.Enumerable.CommandsE;
-import Modelo.Arma;
-import Modelo.Guerrero;
 import Modelo.Partida;
-import Modelo.Usuario;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class AttackCommand extends BaseCommand {
 

@@ -10,7 +10,7 @@ public class MutualExit extends BaseCommand{
 
 
     @Override
-    public void execute(ArrayList<Object> params) {
+    public void execute(String[] params) {
 
     }
 }

@@ -30,7 +30,7 @@ public class CommandClientResponseHandler implements IHandleResponse {
                 break;
             case SENDWARIORS:
                 AvaliableWariorsResponse avaliableWariorsRequest = (AvaliableWariorsResponse) request;
-                ControladorPantalla.getInstance().setAvaliableWariors(avaliableWariorsRequest.guerreros);
+               // ControladorPantalla.getInstance().setAvaliableWariors(avaliableWariorsRequest.guerreros);
                 break;
             default:
                 break;

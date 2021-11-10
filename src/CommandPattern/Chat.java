@@ -8,7 +8,7 @@ public class Chat extends BaseCommand{
     }
 
     @Override
-    public void execute(ArrayList<Object> params) {
+    public void execute(String[] params) {
 //        if(args.length<=0) return;
 //
 //        try {

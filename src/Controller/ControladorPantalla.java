@@ -1,6 +1,5 @@
 package Controller;
 
-import Modelo.Guerrero;
 import ProjectNetwork.ClientTypes.CommandGameClient;
 import CommandPattern.Enumerable.CommandsE;
 import ProjectNetwork.Requests.AvaliableWariorsRequest;
@@ -13,7 +12,7 @@ public class ControladorPantalla {
     //Tiene el cliente y la pantalla
     CommandGameClient client;
     static ControladorPantalla controladorPantalla;
-    Guerrero[] guerreros;
+    //Guerrero[] guerreros;
 
     public static ControladorPantalla getInstance() {
         return controladorPantalla==null?new ControladorPantalla():controladorPantalla;
@@ -45,7 +44,7 @@ public class ControladorPantalla {
     }
 
 
-    public void setAvaliableWariors(Guerrero[] guerreros) {
-        this.guerreros = guerreros;
-    }
+//    public void setAvaliableWariors(Guerrero[] guerreros) {
+//        this.guerreros = guerreros;
+//    }
 }
