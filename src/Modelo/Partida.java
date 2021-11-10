@@ -1,6 +1,7 @@
 package Modelo;
 
 import CommandPattern.Attack;
+import Model.Weapon;
 
 import java.util.ArrayList;
 
@@ -54,40 +55,40 @@ public class Partida {
         return "";
     }
 
-    private String doubleAttack(Character guerrero, Weapon weapon1, Character guerrero2, Weapon weapon2){
+    private String doubleAttack(Personaje guerrero, Arma arma1, Personaje guerrero2, Arma arma2){
         String msg = "";
-        Attack attack = new Attack(guerrero,weapon1);
-        Attack attack2 = new Attack(guerrero2,weapon2);
+        Attack attack = new Attack(guerrero, arma1);
+        Attack attack2 = new Attack(guerrero2, arma2);
 
         ArrayList<Object> objects = new ArrayList<>();
         objects.add(guerrero);
-        objects.add(weapon1);
+        objects.add(arma1);
         objects.add(guerrero2);
-        objects.add(weapon2);
+        objects.add(arma2);
         attack.execute(objects);
         attack2.execute(objects);
-//        msg+= attack(equipo,weapon1);//Cuidado aca porque si no existe la segunda arma ya se va a haber realizado el primer ataque
+//        msg+= attack(equipo,arma1);//Cuidado aca porque si no existe la segunda arma ya se va a haber realizado el primer ataque
 //        msg += "\n";
-//        msg+= attack(equipo2,weapon2);
+//        msg+= attack(equipo2,arma2);
 
         return  msg;
     }
 
-    private String doubleWeapon(Character guerrero, Weapon weapon1, Weapon weapon2){
+    private String doubleWeapon(Personaje guerrero, Arma arma1, Arma arma2){
         String msg = "";
-        Attack attack = new Attack(guerrero,weapon1);
-        Attack attack2 = new Attack(guerrero,weapon2);
+        Attack attack = new Attack(guerrero, arma1);
+        Attack attack2 = new Attack(guerrero, arma2);
 
         ArrayList<Object> objects = new ArrayList<>();
         objects.add(guerrero);
-        objects.add(weapon1);
-        objects.add(weapon2);
+        objects.add(arma1);
+        objects.add(arma2);
 
         attack.execute(objects);
         attack2.execute(objects);
-//        msg+= attack(character,weapon1);
+//        msg+= attack(character,arma1);
 //        msg+="\n";
-//        msg+= attack(character,weapon2);
+//        msg+= attack(character,arma2);
         return msg;
     }
 
@@ -95,15 +96,15 @@ public class Partida {
         return  equipo == equipoInTurn;
     }
 
-    private boolean weaponEnabled(Weapon weapon){
-        return weapon.isActive();
+    private boolean weaponEnabled(Arma arma){
+        return arma.isActive();
     }
 
 
-    public String rechargeWeapon(Character guerrero){
+    public String rechargeWeapon(Personaje guerrero){
         boolean canReload = true;
-        for (Weapon arma: guerrero.getWeapons()){
-            if(arma.isActive())
+        for (Weapon arma: guerrero.getArmas()){
+            if(((Arma)arma).isActive())
                 canReload = false;
         }
         if (canReload) {

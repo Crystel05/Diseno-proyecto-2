@@ -1,6 +1,6 @@
 package Modelo;
 
-public enum TiposE {
+public enum EnumTipoPersonaje {
     FUEGO,
     AIRE,
     AGUA,
