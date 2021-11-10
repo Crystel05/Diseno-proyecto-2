@@ -50,8 +50,6 @@ public class JsonLoader {
                 InputStream is = new FileInputStream(this.URL);
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is));
                 ObjFormat data = json.fromJson(bufferedReader, ObjFormat.class);
-                System.out.println(data);
-                System.out.println(data !=  null);
                 if (data !=  null){
                     this.data = data;
                 }
