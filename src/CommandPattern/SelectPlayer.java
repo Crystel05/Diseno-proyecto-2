@@ -8,12 +8,9 @@ public class SelectPlayer extends BaseCommand {
     }
 
     @Override
-    public String getCommandName() {
-        return null;
-    }
-
-    @Override
     public void execute(ArrayList<Object> params) {
-
+    //Esto se va a usar para actualizar la pantalla nada mas
+        //Se manda el equipo o algo asi.
+        //Pero puede llamar al logger
     }
 }

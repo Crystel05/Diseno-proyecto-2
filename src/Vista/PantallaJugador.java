@@ -1,5 +1,6 @@
 package Vista;
 
+import Controller.ControladorPantalla;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
@@ -18,6 +19,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -30,6 +33,7 @@ public class PantallaJugador implements Initializable {
     private String lineaComando = "";
     private ArrayList<Text> errores = new ArrayList<>();
     private ArrayList<Text> inicios = new ArrayList<>();
+    private ControladorPantalla controladorPantalla = ControladorPantalla.getInstance();
 
     @FXML
     private Text arma1At1;
@@ -424,5 +428,13 @@ public class PantallaJugador implements Initializable {
             }
         });
 
+    }
+
+    public void conexionAlServidor() throws IOException, ClassNotFoundException {
+        controladorPantalla.connectionRequest();
+    }
+
+    public void requestCommand(){
+        //controladorPantalla.requestCommand(datosPantalla);
     }
 }

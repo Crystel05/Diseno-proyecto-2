@@ -1,45 +1,53 @@
 package Modelo;
 
+import Network.BaseServerClasses.BasicServerClient;
+import Network.Server.Server;
+import ProjectNetwork.CommandRequestHandler;
+import ProjectNetwork.CommandServerSideClient;
+import ProjectNetwork.Responses.AvaliableWariorsResponse;
+import ProjectNetwork.Responses.MessageResponse;
 import CommandPattern.Attack;
+import Model.Weapon;
+import java.io.IOException;
 
-import java.util.ArrayList;
+public class Partida extends Server{
 
-public class Partida {
     private static Partida partida;
 
-    private Equipo equipo1;
-    private Equipo equipo2;
+
     private EjecutorComandos ejecutarComandos;
 
     public Equipo[] equipos = new Equipo[2];
     private Equipo equipoInTurn;
-    private boolean mutualGiveUp;
-    private boolean winCondition;
+    //Referencia al prototypeManager de la libreria de proyecto 1
+    private Guerrero[] guerreros;//Esto es temporal mientras se implementa el proyecto1
 
-    public Partida(Equipo equipo1, Equipo equipo2) {
-        this.equipo1 = equipo1;
-        this.equipo2 = equipo2;
+
+    private Partida(int port,CommandRequestHandler requestHandler) throws IOException, ClassNotFoundException {
+        super(port,requestHandler);
     }
 
-    public Equipo getEquipo1() {
-        return equipo1;
+    public void addEquipo(Equipo equipo) {
+        if(equipos[0] == null)
+            this.equipos[0] = equipo;
+        this.equipos[1] = equipo;
     }
 
-    public void setEquipo1(Equipo equipo1) {
-        this.equipo1 = equipo1;
+    public Equipo[] getEquipos(){
+        return  equipos;
     }
 
-    public Equipo getEquipo2() {
-        return equipo2;
+    //xd
+    public static Partida getInstance(){
+        return partida;
     }
 
-    public void setEquipo2(Equipo equipo2) {
-        this.equipo2 = equipo2;
+    //Creacion del Singleton
+    public static Partida createInstance(int port,CommandRequestHandler requestHandler) throws IOException, ClassNotFoundException {
+        return partida == null? new Partida(port,requestHandler):partida;
     }
 
-
-    //
-    private void nextTurn(){
+    public void nextTurn(){
         if(equipoInTurn == equipos[0])
             equipoInTurn = equipos[1];
         else
@@ -50,69 +58,13 @@ public class Partida {
         return equipoInTurn;
     }
 
-    public String attack(){
-        return "";
-    }
-
-    private String doubleAttack(Guerrero guerrero, Arma weapon1, Guerrero guerrero2, Arma weapon2){
-        String msg = "";
-        Attack attack = new Attack(guerrero,weapon1);
-        Attack attack2 = new Attack(guerrero2,weapon2);
-
-        ArrayList<Object> objects = new ArrayList<>();
-        objects.add(guerrero);
-        objects.add(weapon1);
-        objects.add(guerrero2);
-        objects.add(weapon2);
-        attack.execute(objects);
-        attack2.execute(objects);
-//        msg+= attack(equipo,weapon1);//Cuidado aca porque si no existe la segunda arma ya se va a haber realizado el primer ataque
-//        msg += "\n";
-//        msg+= attack(equipo2,weapon2);
-
-        return  msg;
-    }
-
-    private String doubleWeapon(Guerrero guerrero, Arma weapon1, Arma weapon2){
-        String msg = "";
-        Attack attack = new Attack(guerrero,weapon1);
-        Attack attack2 = new Attack(guerrero,weapon2);
-
-        ArrayList<Object> objects = new ArrayList<>();
-        objects.add(guerrero);
-        objects.add(weapon1);
-        objects.add(weapon2);
-
-        attack.execute(objects);
-        attack2.execute(objects);
-//        msg+= attack(character,weapon1);
-//        msg+="\n";
-//        msg+= attack(character,weapon2);
-        return msg;
-    }
-
     private boolean isInTurn(Equipo equipo){
         return  equipo == equipoInTurn;
     }
 
+
     private boolean weaponEnabled(Arma weapon){
         return weapon.isActive();
-    }
-
-
-    public String rechargeWeapon(Guerrero guerrero){
-        boolean canReload = true;
-        for (Arma arma: guerrero.getArmas()){
-            if(arma.isActive())
-                canReload = false;
-        }
-        if (canReload) {
-            guerrero.rechargeWeapon();
-            return "reloaded weapons";
-        }
-        else {
-            return  "Available weapons";
-        }
     }
 
     private Equipo equipoEnemigo(){
@@ -123,37 +75,104 @@ public class Partida {
         return  null;
     }
 
-    public String mutualExit(){//Tienen que estar los dos de acuerdo
-        winCondition = true;
-        equipoInTurn.giveUp();
-        equipoEnemigo().giveUp();
-        return  "Both players gave up";
+
+    public void endGame() throws IOException {
+        ejecutarComandos.setCanExecute(false);
+        sendToClients("Game is over");
     }
 
 
+    //Esto puede hacer la calidaciones y luego enviarlas a los metodos del ejecutor.
 
-    public String giveUp(){
-        winCondition = true;
-        equipoInTurn.giveUp();
-        endGame();
-        return equipoInTurn.getUsuario().getNombre() +" gave up";
+    public void attackCommand(String guerreroString,String armaString) throws IOException {
+        //No olvidar las validaciones.
+        if (ejecutarComandos.canExecute()){
+            Guerrero guerrero = getGuerreroEquipoEnTurno(guerreroString);
+            Arma arma = guerrero.getArma(armaString);
+            ejecutarComandos.attack(equipoEnemigo(),guerrero,arma);
+            updateUsuarios();
+        }
+        else {
+            //Ya termino el juego...
+        }
+
+
     }
 
-    // TODO: Ver como pasar los parámetros
-    public String useWildCard(String[] args){//Si se reciben dos armas o si s reciben dos character
-//        if(args.length == 3)
-//            return doubleWeapon(args[0],args[1],args[2]);
-//        else
-//            return doubleAttack(args[0],args[1],args[2],args[3]);
+
+    public void useWildCard(String[] params){
+
+        //convierte los parametros en los objetos
+        //valida los objetos
+        //luego se los envia al ejecutor de comandos
+
+    }
+
+    public void giveUpCommand(String[] params){
+
+        //convierte los parametros en los objetos
+        //valida los objetos
+        //luego se los envia al ejecutor de comandos
+
+    }
+    public void mutualExitCommand(String[] params){
+
+        //convierte los parametros en los objetos
+        //valida los objetos
+        //luego se los envia al ejecutor de comandos
+    }
+    public void passTurnCommand(String[] params){
+
+        //convierte los parametros en los objetos
+        //valida los objetos
+        //luego se los envia al ejecutor de comandos
+    }
+    public void chatCommand(){
+        //For clientes mande un mensaje directo a todos los que no hayan hecho el request.
+    }
+
+    public void rechargeCommand(){
+
+    }
+
+    public void errorCommand(){
+
+    }
+
+
+    private Guerrero getGuerreroEquipoEnTurno(String guerreroString) {
+        for (Guerrero guerrero:equipoInTurn.getGuerreros()) {
+            if(guerrero.name.equals(guerreroString));
+                return guerrero;
+        }
         return null;
     }
 
-    public String passTurn(){
-        String msg = equipoInTurn.getUsuario().getNombre() + " passed turn";
-        nextTurn();
-        return msg;
+
+
+    //Responses enviados por el servidor
+    public void updateUsuarios() throws IOException {
+        int i = 0;
+        for (BasicServerClient client:getClientes()){
+            ((CommandServerSideClient)client).updateData(equipos[i++]);
+        }
     }
 
-    private void endGame() {
+    public void enviarPersonajesDisponibles(int clientId) throws IOException {
+        ((CommandServerSideClient)getClientes().get(clientId)).sendResponse(new AvaliableWariorsResponse(guerreros));
     }
+
+    public void sendToClients(String string) throws IOException {
+        int i = 0;
+        for (BasicServerClient client:getClientes()){
+            ((CommandServerSideClient)client).sendMessage(string);
+        }
+    }
+
+    public void directMessage(String string,int clientId) throws  IOException{
+        ((CommandServerSideClient)getClientes().get(clientId)).sendResponse(new MessageResponse(string));
+    }
+
+
+
 }

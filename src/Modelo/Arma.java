@@ -1,21 +1,26 @@
 package Modelo;
 
-import java.util.ArrayList;
+import Model.Weapon;
 
-public class Arma {
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class Arma extends Weapon {
 
     private boolean isActive;
-    private ArrayList<TiposE> armas;
+    private ArrayList<EnumTipoPersonaje> armaAtaca;
     private ArrayList <Integer> daños;
 
-    public Arma(boolean isActive, ArrayList<TiposE> armas, ArrayList<Integer> daños) {
+    public Arma(int scope, double damage, double explotionRange, boolean levelIncrease, String name, HashMap<Integer, ArrayList<String>> aspect,
+                int level, double cost, boolean isActive, ArrayList<EnumTipoPersonaje> armas, ArrayList<Integer> daños) {
+
+        super(scope, damage, explotionRange, levelIncrease, name, aspect, level, cost);  // super(name, aspect, level, cost); Esto lo hace la mamá gameEntity, en Weapon
         this.isActive = isActive;
-        this.armas = armas;
+        this.armaAtaca = armas;
         this.daños = daños;
     }
 
-    public Arma() {
-    }
+    public Arma() {}
 
     public boolean isActive() {
         return isActive;
@@ -25,12 +30,12 @@ public class Arma {
         isActive = active;
     }
 
-    public ArrayList<TiposE> getArmas() {
-        return armas;
+    public ArrayList<EnumTipoPersonaje> getArmaAtaca() {
+        return armaAtaca;
     }
 
-    public void setArmas(ArrayList<TiposE> armas) {
-        this.armas = armas;
+    public void setArmaAtaca(ArrayList<EnumTipoPersonaje> armas) {
+        this.armaAtaca = armas;
     }
 
     public ArrayList<Integer> getDaños() {
@@ -40,4 +45,20 @@ public class Arma {
     public void setDaños(ArrayList<Integer> daños) {
         this.daños = daños;
     }
+
+
+    public int getDano(TiposE tipo) {
+    }
+
+    public Arma clone() {
+        HashMap<Integer, ArrayList<String>> aspect = this.aspect;
+        return new Arma(this.getScope(),this.getDamage(),this.getExplotionRange(),this.isLevelIncrease(),this.getName(),this.getAspect(),
+                this.getLevel(),this.getCost(),this.isActive,this.getArmaAtaca(),this.getDaños());
+    }
+
+    public Arma deepClone() {
+        return this.clone();
+    }
+
+
 }

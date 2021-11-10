@@ -53,16 +53,6 @@ public class Usuario {
         this.partidasPerdidas = partidasPerdidas;
     }
 
-    public void getCommand(){
 
-    }
-
-    public void giveUp(){
-
-    }
-
-    public void attack(){
-
-    }
 }
 

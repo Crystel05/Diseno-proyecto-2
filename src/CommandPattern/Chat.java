@@ -8,12 +8,21 @@ public class Chat extends BaseCommand{
     }
 
     @Override
-    public String getCommandName() {
-        return null;
-    }
-
-    @Override
     public void execute(ArrayList<Object> params) {
-
+//        if(args.length<=0) return;
+//
+//        try {
+//
+//            if(Game.getInstance().players[0]!=null){
+//                Game.getInstance().players[0].sendMessageToPlayer("PrintConsole", args[0]);
+//            }
+//
+//            if(Game.getInstance().players[1]!=null){
+//                Game.getInstance().players[1].sendMessageToPlayer("PrintConsole", args[0]);
+//            }
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 }
