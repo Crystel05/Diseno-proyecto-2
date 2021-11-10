@@ -1,6 +1,5 @@
-import Model.CharacterPrototypeFactory;
-import Model.ICreator;
-import Model.WeaponPrototypeFactory;
+import Model.*;
+import Model.Character;
 import Modelo.Arma;
 import Modelo.Personaje;
 import Utils.JsonLoader;
@@ -49,10 +48,11 @@ public class Pruebas {
         System.out.println(personaje.getAspect());
         System.out.println(personaje.getCost());
 
-
-        /*
-        Personaje pruebaP = (Personaje) factory.getPrototypeDeepClone("Qiqi");
-        System.out.println(pruebaP.getName()); */
+        System.out.println("-----------------Imprimiendo prototipo arma tomado del hash con un deepClone ---------------------"+"\n");
+        Arma pruebaW = (Arma) factory2.getPrototypeDeepClone("Gouba");
+        System.out.println(pruebaW.getName());
+        System.out.println(pruebaW.getScope());
+        System.out.println(pruebaW.getArmaAtaca());
 
     }
 

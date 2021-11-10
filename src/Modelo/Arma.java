@@ -45,4 +45,15 @@ public class Arma extends Weapon {
     public void setDaños(ArrayList<Integer> daños) {
         this.daños = daños;
     }
+
+    public Arma clone() {
+        HashMap<Integer, ArrayList<String>> aspect = this.aspect;
+        return new Arma(this.getScope(),this.getDamage(),this.getExplotionRange(),this.isLevelIncrease(),this.getName(),this.getAspect(),
+                this.getLevel(),this.getCost(),this.isActive,this.getArmaAtaca(),this.getDaños());
+    }
+
+    public Arma deepClone() {
+        return this.clone();
+    }
+
 }
