@@ -1,18 +1,18 @@
 package Vista;
 
-import Controller.ControladorPantalla;
+import Modelo.Usuario;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Control;
-import javafx.scene.control.Skin;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
@@ -23,7 +23,6 @@ import javafx.scene.text.TextFlow;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class PantallaJugador implements Initializable {
@@ -33,10 +32,12 @@ public class PantallaJugador implements Initializable {
     private String lineaComando = "";
     private ArrayList<Text> errores = new ArrayList<>();
     private ArrayList<Text> inicios = new ArrayList<>();
-    private ControladorPantalla controladorPantalla = ControladorPantalla.getInstance();
 
     @FXML
     private Text arma1At1;
+
+    @FXML
+    private AnchorPane anchorPaneScroll;
 
     @FXML
     private Text arma1At10;
@@ -338,8 +339,82 @@ public class PantallaJugador implements Initializable {
     @FXML
     private Text tipoGuerreroAtaca;
 
+    @FXML
+    private Text nombreContrincante;
+
+    @FXML
+    private ListView<String> comandosLista;
+
+    @FXML
+    private ScrollPane scrollsComandos;
+
+    private void llenarListas(){
+        rankingNames.add(nomR1);rankingNames.add(nomR2);rankingNames.add(nomR3);rankingNames.add(nomR4);rankingNames.add(nomR5);
+        rankingNames.add(nomR6);rankingNames.add(nomR7);rankingNames.add(nomR8);rankingNames.add(nomR9);rankingNames.add(nomR10);
+    }
+
+    private void cargarDatosRanking(){
+        ArrayList<String> nombres = new ArrayList<>(); // agregar aquí el archivo o lista real
+        nombres.add("Manchas");
+        nombres.add("Manchas");
+        nombres.add("Manchas");
+        nombres.add("Manchas");
+        nombres.add("Manchas");
+        nombres.add("Manchas");
+        nombres.add("Manchas");
+        nombres.add("Manchas");
+        for (int i = 0; i < nombres.size()-1; i++){
+            rankingNames.get(i).setText(nombres.get(i));
+        }
+    }
+
+    private void cargarDatosCompetidores(){
+
+        Usuario contrincante = new Usuario(); //cambiar esto por el usuario real
+        contrincante.setNombre("Peter");
+        contrincante.setPartidasPerdidas(12);
+        contrincante.setPartidasGanadas(5);
+        contrincante.setAtaquesExitosos(100);
+        contrincante.setAtaquesFallados(5);
+        contrincante.setRendiciones(5);
+
+        puestoContra.setText("#"+contrincante.getRanking());
+        nombreContrincante.setText("("+contrincante.getNombre()+")");
+        ganadasContricante.setText(String.valueOf(contrincante.getPartidasGanadas()));
+        perdidasContrincante.setText(String.valueOf(contrincante.getPartidasPerdidas()));
+        ataquesCont.setText(String.valueOf(contrincante.getAtaquesExitosos()));
+        falladasContr.setText(String.valueOf(contrincante.getAtaquesFallados()));
+        rendicionesContr.setText(String.valueOf(contrincante.getRendiciones()));
+
+        Usuario actual = new Usuario(); //cambiar esto por el usuario real
+        actual.setRendiciones(10);
+        actual.setPartidasPerdidas(12);
+        actual.setPartidasGanadas(5);
+        actual.setAtaquesExitosos(100);
+        actual.setAtaquesFallados(5);
+        actual.setRendiciones(5);
+        actual.setNombre("Manchas");
+        puestoMio.setText("#"+actual.getRanking());
+        ganadasMio.setText(String.valueOf(actual.getPartidasGanadas()));
+        perdidasMio.setText(String.valueOf(actual.getAtaquesFallados()));
+        falladasMio.setText(String.valueOf(actual.getAtaquesFallados()));
+        ataquesMio.setText(String.valueOf(actual.getAtaquesExitosos()));
+        rendicionesMio.setText(String.valueOf(actual.getRendiciones()));
+    }
+
+    private void cargarDatosAtaque(){
+        
+    }
+
+    private void cargarDatosAtacado(){
+
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        llenarListas();
+        cargarDatosRanking();
+        cargarDatosCompetidores();
         comandos.skinProperty().addListener(new ChangeListener<Skin<?>>() {
             @Override
             public void changed(ObservableValue<? extends Skin<?>> observable, Skin<?> oldValue, Skin<?> newValue) {
@@ -359,8 +434,10 @@ public class PantallaJugador implements Initializable {
                 }
             }
         });
+        comandosMostrar.getChildren().add(new Text("\n"));
         Text tI = new Text(">>");
-        tI.setFont(new Font("Eras Demi ITC", 17));
+        ultimo = tI;
+        tI.setFont(new Font("Eras Demi ITC", 15));
         tI.setFill(Color.GREEN);
         inicios.add(tI);
         comandosMostrar.getChildren().add(tI);
@@ -371,7 +448,7 @@ public class PantallaJugador implements Initializable {
                     Text comando = new Text(newValue.replace(oldValue, ""));
                     comando.setText(comando.getText().replace("\n", ""));
                     comando.setFill(Color.GREEN);
-                    comando.setFont(new Font("Eras Demi ITC", 17));
+                    comando.setFont(new Font("Eras Demi ITC", 15));
                     comandosMostrar.getChildren().add(comando);
                 }
                 comandos.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -399,35 +476,75 @@ public class PantallaJugador implements Initializable {
                                 }catch (IllegalArgumentException ignore){}
                             }
                         }else{
-                            if (event.getCode() == KeyCode.ENTER){
-                                lineaComando = newValue.replace("\n", "");
-                                if (lineaComando.equals("error")) {
+                            borrando = false;
+                            if (event.getCode() == KeyCode.ENTER) {
+                                cantComandos ++;
+                                String[] comandos = newValue.split("\n");
+                                lineaComando = comandos[comandos.length-1]; //este es el comando
+                                Text t = new Text(lineaComando);
+                                t.setFill(Color.GREEN);
+                                t.setFont(new Font("Eras Demi ITC", 15));
+                                comandosHechos.add(t);
+                                ObservableList<Node> textosA = comandosMostrar.getChildren();
+                                for (int i = textosA.size()-1; i>=0; i--){
+                                    if (textosA.get(i).equals(ultimo)) {
+                                        comandosMostrar.getChildren().remove(textosA.get(i));
+                                        break;
+                                    }
+                                    comandosMostrar.getChildren().remove(textosA.get(i));
+                                }
+                                Text in = new Text(">>");
+                                in.setFont(new Font("Eras Demi ITC", 15));
+                                in.setFill(Color.GREEN);
+                                inicios.add(in);
+                                comandosMostrar.getChildren().add(in);
+                                comandosMostrar.getChildren().add(t);
+
+                                if (lineaComando.equals("error")) { //una lista de errores o mensajes
                                     comandosMostrar.getChildren().add(new Text("\n"));
-                                    Text error = new Text("Esto es un mensaje de error");
+                                    Text error = new Text("Esto es un mensaje de error"); //cambiar este error por los errores que aparezcan
                                     error.setFill(Color.RED);
-                                    error.setFont(new Font("Eras Demi ITC", 17));
+                                    comandosHechos.add(error);
+                                    error.setFont(new Font("Eras Demi ITC", 15));
                                     errores.add(error);
                                     comandosMostrar.getChildren().add(error);
-                                    lineaComando = "";
                                     comandosMostrar.getChildren().add(new Text("\n"));
+                                    Text ini = new Text(">>");
+                                    ultimo = ini;
+                                    ini.setFont(new Font("Eras Demi ITC", 15));
+                                    ini.setFill(Color.GREEN);
+                                    inicios.add(ini);
+                                    comandosMostrar.getChildren().add(ini);
+                                }else{
+                                    if (cantComandos >= 9){
+                                        ObservableList<Node> textos = comandosMostrar.getChildren();
+                                        for (int i = textos.size()-1; i>=0; i--){
+                                            comandosMostrar.getChildren().remove(textos.get(i));
+                                        }
+                                        for (int i = nuevo; i<comandosHechos.size(); i++){
+                                            Text inicio = new Text(">>");
+                                            inicio.setFill(Color.GREEN);
+                                            inicio.setFont(new Font("Eras Demi ITC", 15));
+                                            comandosMostrar.getChildren().add(new Text("\n"));
+                                            comandosMostrar.getChildren().add(inicio);
+                                            comandosMostrar.getChildren().add(comandosHechos.get(i));
+                                        }
+                                        nuevo++;
+                                    }
+                                    Text inicio = new Text(">>");
+                                    ultimo = inicio;
+                                    inicio.setFont(new Font("Eras Demi ITC", 15));
+                                    inicio.setFill(Color.GREEN);
+                                    inicios.add(inicio);
+                                    comandosMostrar.getChildren().add(new Text("\n"));
+                                    comandosMostrar.getChildren().add(inicio);
                                 }
-
-                                Text inicio = new Text(">>");
-                                inicio.setFont(new Font("Eras Demi ITC", 17));
-                                inicio.setFill(Color.GREEN);
-                                inicios.add(inicio);
-                                comandosMostrar.getChildren().add(new Text("\n"));
-                                comandosMostrar.getChildren().add(inicio);
-                                //hacer algo
-                                lineaComando = "";
                             }
-                            borrando = false;
                         }
                     }
                 });
             }
         });
-
     }
 
     public void conexionAlServidor() throws IOException, ClassNotFoundException {
