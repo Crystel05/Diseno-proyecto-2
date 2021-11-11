@@ -30,7 +30,7 @@ public class JsonRanking {
     private ObjFormat data;
 
     private JsonRanking () throws IOException{
-        this.URL = "src\\resources\\test.json";
+        this.URL = "src\\resources\\ranking.json";
         this.json = new Gson();
         data = new ObjFormat();
         this.readJSON();
@@ -83,6 +83,6 @@ public class JsonRanking {
     public ArrayList<Usuario> getCharacters(){
         return this.data.usuarios;
     }
-    
+
 
 }
