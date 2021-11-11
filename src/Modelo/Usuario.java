@@ -6,6 +6,9 @@ public class Usuario {
     private int ranking;
     private int partidasGanadas;
     private int partidasPerdidas;
+    private int ataquesExitosos;
+    private int ataquesFallados;
+    private int rendiciones;
 
     public Usuario(String nombre, int ranking, int partidasGanadas, int partidasPerdidas) {
         this.nombre = nombre;
@@ -53,6 +56,31 @@ public class Usuario {
         this.partidasPerdidas = partidasPerdidas;
     }
 
+    public int getAtaquesExitosos() {
+        return ataquesExitosos;
+    }
+
+    public void setAtaquesExitosos(int ataquesExitosos) {
+        this.ataquesExitosos = ataquesExitosos;
+    }
+
+    public int getAtaquesFallados() {
+        return ataquesFallados;
+    }
+
+    public void setAtaquesFallados(int ataquesFallados) {
+        this.ataquesFallados = ataquesFallados;
+    }
+
+    public int getRendiciones() {
+        return rendiciones;
+    }
+
+    public void setRendiciones(int rendiciones) {
+        this.rendiciones = rendiciones;
+    }
+
+    public void getCommand(){
 
 }
 
