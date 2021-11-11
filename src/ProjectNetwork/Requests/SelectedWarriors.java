@@ -6,7 +6,8 @@ import ProjectNetwork.Requests.Enumerable.GameRequestTypes;
 
 public class SelectedWarriors extends BaseRequest {
 
-    Equipo equipoElegido;
+    public Equipo equipoElegido;
+    public int clientId;
 
     public SelectedWarriors(Equipo equipo){
         this.equipoElegido = equipo;

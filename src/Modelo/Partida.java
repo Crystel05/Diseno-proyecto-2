@@ -1,5 +1,6 @@
 package Modelo;
 
+import FileManager.Logger;
 import Network.BaseServerClasses.BasicServerClient;
 import Network.Server.Server;
 import ProjectNetwork.CommandRequestHandler;
@@ -12,13 +13,13 @@ public class Partida extends Server{
 
     private static Partida partida;
 
-
     private EjecutorComandos ejecutarComandos;
 
     public Equipo[] equipos = new Equipo[2];
-    private Equipo equipoInTurn;
     //Referencia al prototypeManager de la libreria de proyecto 1
-    //private Guerrero[] guerreros;//Esto es temporal mientras se implementa el proyecto1
+    private Personaje[] personajes;//Esto es temporal mientras se implementa el proyecto1
+    private int mutualExit;
+    private int inTurn,notInTurn;
 
 
     private Partida(int port,CommandRequestHandler requestHandler) throws IOException, ClassNotFoundException {
@@ -46,20 +47,16 @@ public class Partida extends Server{
     }
 
     public void nextTurn(){
-        if(equipoInTurn == equipos[0])
-            equipoInTurn = equipos[1];
-        else
-            equipoInTurn = equipos[0];
+        equipos[inTurn].setInTurn(false);
+        inTurn += 1;
+        if(inTurn != 1)
+            inTurn = 0;
+        equipos[inTurn].setInTurn(true);
     }
 
     public Equipo getEquipoInTurn() {
-        return equipoInTurn;
+        return equipos[inTurn];
     }
-
-    private boolean isInTurn(Equipo equipo){
-        return  equipo == equipoInTurn;
-    }
-
 
     private boolean weaponEnabled(Arma weapon){
         return weapon.isActive();
@@ -67,7 +64,7 @@ public class Partida extends Server{
 
     private Equipo equipoEnemigo(){
         for (Equipo equipo: equipos){
-            if(equipo != equipoInTurn)
+            if(equipo.isInTurn())
                 return  equipo;
         }
         return  null;
@@ -83,18 +80,15 @@ public class Partida extends Server{
     //Esto puede hacer la calidaciones y luego enviarlas a los metodos del ejecutor.
 
     public void attackCommand(String guerreroString,String armaString) throws IOException {
-        //No olvidar las validaciones.
         if (ejecutarComandos.canExecute()){
-            //Guerrero guerrero = getGuerreroEquipoEnTurno(guerreroString);
-            //Arma arma = guerrero.getArma(armaString);
-           // ejecutarComandos.attack(equipoEnemigo(),guerrero,arma);
+            Personaje guerrero = equipos[inTurn].getGuerrero(guerreroString);
+            Arma arma = guerrero.getArma(armaString);
+            ejecutarComandos.attack(equipoEnemigo(),guerrero,arma);
             updateUsuarios();
         }
         else {
             //Ya termino el juego...
         }
-
-
     }
 
 
@@ -113,40 +107,27 @@ public class Partida extends Server{
         //luego se los envia al ejecutor de comandos
 
     }
-    public void mutualExitCommand(String[] params){
-
-        //convierte los parametros en los objetos
-        //valida los objetos
-        //luego se los envia al ejecutor de comandos
+    public void mutualExitCommand() throws IOException {
+        mutualExit +=1;
+        if(mutualExit > 1)
+            ejecutarComandos.mutualExit(equipos);
     }
-    public void passTurnCommand(String[] params){
-
-        //convierte los parametros en los objetos
-        //valida los objetos
-        //luego se los envia al ejecutor de comandos
+    public void passTurnCommand() throws IOException {
+        ejecutarComandos.passTurn(equipos[inTurn]);
     }
     public void chatCommand(){
         //For clientes mande un mensaje directo a todos los que no hayan hecho el request.
     }
 
-    public void rechargeCommand(){
-
+    public void errorCommand(String param){
+        Logger.addToLogger("Error de comando "+param);
     }
 
-    public void errorCommand(){
-
+    public void rechargeCommand(String guerreroString) throws IOException {
+        //Validar si existe el guerrero o se hace en pantalla? Se hacen las validadciones en la pantalla.
+        Personaje guerrero = equipos[inTurn].getGuerrero(guerreroString);//Se usa para buscar guerreros
+        ejecutarComandos.rechargeWeapon(guerrero);
     }
-
-
-//    private Guerrero getGuerreroEquipoEnTurno(String guerreroString) {
-//        for (Guerrero guerrero:equipoInTurn.getGuerreros()) {
-//            if(guerrero.name.equals(guerreroString));
-//                return guerrero;
-//        }
-//        return null;
-//    }
-
-
 
     //Responses enviados por el servidor
     public void updateUsuarios() throws IOException {
@@ -156,10 +137,6 @@ public class Partida extends Server{
         }
     }
 
-//    public void enviarPersonajesDisponibles(int clientId) throws IOException {
-//        ((CommandServerSideClient)getClientes().get(clientId)).sendResponse(new AvaliableWariorsResponse(guerreros));
-//    }
-
     public void sendToClients(String string) throws IOException {
         int i = 0;
         for (BasicServerClient client:getClientes()){
@@ -167,10 +144,26 @@ public class Partida extends Server{
         }
     }
 
-    public void directMessage(String string,int clientId) throws  IOException{
-        ((CommandServerSideClient)getClientes().get(clientId)).sendResponse(new MessageResponse(string));
+    public void directMessageInTurn(String string) throws  IOException{
+        CommandServerSideClient client = (CommandServerSideClient)getClientes().get(0);
+        MessageResponse response = new MessageResponse(string);
+        if(client.getEquipo().isInTurn())
+            client.getResponseSender().sendResponse(response);
+        else
+            getClientes().get(1).getResponseSender().sendResponse(response);
+    }
+
+    public void directMessageNotInTurn(String string) throws  IOException{
+        CommandServerSideClient client = (CommandServerSideClient)getClientes().get(0);
+        MessageResponse response = new MessageResponse(string);
+        if(!client.getEquipo().isInTurn())
+            client.getResponseSender().sendResponse(response);
+        else
+            getClientes().get(1).getResponseSender().sendResponse(response);
     }
 
 
-
+    public Personaje[] getPersonajesDisponibles() {
+        return personajes;
+    }
 }

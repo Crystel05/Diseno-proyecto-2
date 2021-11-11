@@ -11,7 +11,7 @@ public class Logger {
     public Logger() {
     }
 
-    public void createLogFile(){
+    public static void createLogFile(){
         try {
             File myObj = new File("Log.txt");
             if (myObj.createNewFile()) {
@@ -27,7 +27,7 @@ public class Logger {
         }
     }
 
-    public void addToLogger(String addedCommand){
+    public static  void addToLogger(String addedCommand){
         try {
             FileWriter myWriter = new FileWriter("Log.txt");
             myWriter.write("\n"+addedCommand);
@@ -39,7 +39,7 @@ public class Logger {
         }
     }
 
-    public void readLogger(){
+    public static void readLogger(){
         try {
             File myObj = new File("Log.txt");
             Scanner myReader = new Scanner(myObj);

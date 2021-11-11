@@ -46,6 +46,10 @@ public class Arma extends Weapon {
         this.daños = daños;
     }
 
+    public int getDano(EnumTipoPersonaje tipoPersonaje){
+        return daños.get(armaAtaca.indexOf(tipoPersonaje));
+    }
+
     public Arma clone() {
         HashMap<Integer, ArrayList<String>> aspect = this.aspect;
         return new Arma(this.getScope(),this.getDamage(),this.getExplotionRange(),this.isLevelIncrease(),this.getName(),this.getAspect(),
@@ -55,5 +59,7 @@ public class Arma extends Weapon {
     public Arma deepClone() {
         return this.clone();
     }
+
+
 
 }

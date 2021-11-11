@@ -10,6 +10,9 @@ import ProjectNetwork.Responses.UpdateResponse;
 import java.io.IOException;
 
 public class CommandServerSideClient extends BasicServerClient implements ISendResponse {
+
+    Equipo equipo;
+
     public CommandServerSideClient(int objectId) {
         super(objectId);
     }
@@ -25,5 +28,13 @@ public class CommandServerSideClient extends BasicServerClient implements ISendR
 
     public void sendMessage(String string) throws IOException {
         sendResponse(new MessageResponse(string));
+    }
+
+    public void setEquipo(Equipo equipoElegido) {
+        this.equipo = equipoElegido;
+    }
+
+    public Equipo getEquipo() {
+        return equipo;
     }
 }
