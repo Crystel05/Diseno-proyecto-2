@@ -17,6 +17,10 @@ public class Personaje extends Character {
         super(life,hitsPerTime,fieldsInArmy, levelRequired, weapons, currentWeapon, direction, name, aspect, level, cost);
     }
 
+    public Personaje (){
+        
+    }
+
     public ArrayList<Arma> getArmas(){
         ArrayList<Arma> armas = new ArrayList<>();
         for (Weapon weapon:getWeapons()){
