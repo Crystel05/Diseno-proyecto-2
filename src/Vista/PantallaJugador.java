@@ -423,7 +423,6 @@ public class PantallaJugador implements Initializable {
         for (int j = 0; j<arma.size()-1; j++){
             porcentajes.get(armaIndex).get(j).setText(String.valueOf(arma.get(j)));
         }
-
     }
 
     private String porcentaje(){

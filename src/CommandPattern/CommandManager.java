@@ -10,9 +10,12 @@ public class CommandManager {
 
     private static HashMap<CommandsE, ICommand> comandos;
     private static CommandManager commandManager;
-    private static Logger logger;
 
-    public CommandManager getInstance(){
+    private CommandManager(){
+        comandos = new HashMap<>();
+    }
+
+    public static CommandManager getInstance(){
         if (commandManager == null)
             return new CommandManager();
         return commandManager;
@@ -22,8 +25,11 @@ public class CommandManager {
         return comandos.get(comando);
     }
 
-    public void registrarCommand(CommandsE comando, ICommand comandClass){
+    public static void registrarCommand(CommandsE comando, ICommand comandClass){
         comandos.put(comando, comandClass);
     }
 
+    public static void createCommands(){
+        CommandManager.registrarCommand(CommandsE.CHAT,new Chat());
+    }
     }

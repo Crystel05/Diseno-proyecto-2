@@ -5,7 +5,7 @@ import ProjectNetwork.Responses.Enumerable.GameResponsesType;
 
 public class MessageResponse extends BaseResponse {
 
-    String content;
+    public String content;
 
     public MessageResponse(String content){
         this.type = GameResponsesType.MESSAGE;

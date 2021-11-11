@@ -13,6 +13,7 @@ import ProjectNetwork.Requests.ConnectRequest;
 import ProjectNetwork.Requests.Enumerable.GameRequestTypes;
 import ProjectNetwork.Requests.SelectedWarriors;
 import ProjectNetwork.Responses.AvaliableWariorsResponse;
+import ProjectNetwork.Responses.ConnectResponse;
 import ProjectNetwork.Responses.MessageResponse;
 
 import java.io.IOException;
@@ -32,14 +33,14 @@ public class CommandRequestHandler implements IHandleRequest {
             case CONNECT:
                 int id = handler.getClientes().size();
                 handler.addToClients(new CommandServerSideClient(id));
-                handler.getResponseSender().sendResponse(new MessageResponse("Successful connection"));
+                handler.getResponseSender().sendResponse(new ConnectResponse(id));
                 handler.getResponseSender().sendResponse(new AvaliableWariorsResponse(Partida.getInstance().getPersonajesDisponibles()));
                 break;
             case SELECTEDTEAM:
                 SelectedWarriors selectedWarriorsRequest = (SelectedWarriors) request;
                 CommandServerSideClient client = (CommandServerSideClient)handler.getClientes().get(selectedWarriorsRequest.clientId);
                 client.setEquipo(selectedWarriorsRequest.equipoElegido);
-
+                break;
             default:
                 System.out.println("Not known request");
                 break;

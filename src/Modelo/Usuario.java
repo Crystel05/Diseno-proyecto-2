@@ -1,6 +1,8 @@
 package Modelo;
 
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable {
 
     private String nombre;
     private int ranking;
@@ -80,5 +82,24 @@ public class Usuario {
         this.rendiciones = rendiciones;
     }
 
+    public void addAtaquesFallidos() {
+        ataquesFallados+=1;
+    }
+
+    public void addAtaquesExitosos() {
+        ataquesExitosos+=1;
+    }
+
+    public void addVictorias() {
+        partidasGanadas+=1;
+    }
+
+    public void addDerrotas() {
+        partidasPerdidas+=1;
+    }
+
+    public void addRendiciones() {
+        rendiciones+=1;
+    }
 }
 

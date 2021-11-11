@@ -1,6 +1,7 @@
 package ProjectNetwork;
 
 import Controller.ControladorPantalla;
+import Modelo.AttackInfo;
 import Network.Client.ClientResponseHandler;
 import Network.Response.IHandleResponse;
 import Network.Response.IResponse;
@@ -8,8 +9,7 @@ import ProjectNetwork.ClientTypes.CommandGameClient;
 import ProjectNetwork.Requests.AvaliableWariorsRequest;
 import ProjectNetwork.Requests.CommandRequest;
 import ProjectNetwork.Requests.ConnectRequest;
-import ProjectNetwork.Responses.AvaliableWariorsResponse;
-import ProjectNetwork.Responses.ConnectResponse;
+import ProjectNetwork.Responses.*;
 import ProjectNetwork.Responses.Enumerable.GameResponsesType;
 
 import java.io.IOException;
@@ -23,15 +23,25 @@ public class CommandClientResponseHandler implements IHandleResponse {
             case CONNECT:
                 ConnectResponse commandRequest = (ConnectResponse) request;
                 client.setClientId(commandRequest.clientId);
+                System.out.println("Me conecto");
                 break;
             case UPDATE:
+                UpdateResponse updateResponse = (UpdateResponse) request;
+                client.setEquipo(updateResponse.equipo);
                 break;
             case MESSAGE:
+                MessageResponse messageResponse = (MessageResponse) request;
+                System.out.println(messageResponse.content);
                 break;
             case SENDWARIORS:
                 AvaliableWariorsResponse avaliableWariorsRequest = (AvaliableWariorsResponse) request;
+                System.out.println("Me llegan guerreros"+avaliableWariorsRequest.guerreros[0].getName());
+                System.out.println(avaliableWariorsRequest.guerreros[0].getType().name());
                // ControladorPantalla.getInstance().setAvaliableWariors(avaliableWariorsRequest.guerreros);
                 break;
+            case ATTACKINFO:
+                AttackInfoResponse attackInfoResponse = (AttackInfoResponse) request;
+                //Controladar.showAttackInfo(attackInfoResponse.attackInfo)
             default:
                 break;
         }

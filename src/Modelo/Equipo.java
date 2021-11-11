@@ -2,13 +2,15 @@ package Modelo;
 
 import Model.Weapon;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Equipo {
+public class Equipo implements Serializable {
 
     private ArrayList<Personaje> guerreros;
     private  Usuario usuario;
     private boolean inTurn;
+    private boolean comodin;
 
     public boolean isInTurn() {
         return inTurn;
@@ -65,5 +67,13 @@ public class Equipo {
                 return true;
         }
         return false;
+    }
+
+    public boolean isComodin() {
+        return comodin;
+    }
+
+    public void setComodin(boolean comodin) {
+        this.comodin = comodin;
     }
 }

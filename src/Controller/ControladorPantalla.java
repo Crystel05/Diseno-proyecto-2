@@ -40,7 +40,6 @@ public class ControladorPantalla {
 
     public void connectionRequest() throws IOException, ClassNotFoundException {
         client.request(new ConnectRequest());//Asegurarme que el response de esta conexion me de todos los datos que necesito para la pantalla.
-        client.request(new AvaliableWariorsRequest());
     }
 
 

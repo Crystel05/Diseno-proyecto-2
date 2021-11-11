@@ -9,16 +9,16 @@ public class EjecutorComandos {
     //Las validaciones se hacen en pantalla
     boolean canExecute;
 
-    private void doubleAttack(Equipo objetivo, Personaje guerrero, Arma weapon1, Personaje guerrero2, Arma weapon2){
-        //Logger.addToLog("Ataque Doble");
-        attack(objetivo,guerrero,weapon1);
-        attack(objetivo,guerrero,weapon2);
+    public void doubleAttack( Personaje guerrero, Arma weapon1, Personaje guerrero2, Arma weapon2) throws IOException {
+        Logger.addToLogger("Ataque Doble");
+        attack(guerrero,weapon1);
+        attack(guerrero,weapon2);
     }
 
-    private void doubleWeapon(Equipo equipo, Personaje guerrero, Arma weapon1, Arma weapon2){
-        //Logger.addToLog("Ataque Doble Arma");
-        attack(equipo,guerrero,weapon1);
-        attack(equipo,guerrero,weapon2);
+    public void doubleWeapon(Personaje guerrero, Arma weapon1, Arma weapon2) throws IOException {
+        Logger.addToLogger("Ataque Doble Arma");
+        attack(guerrero,weapon1);
+        attack(guerrero,weapon2);
     }
 
     public void rechargeWeapon(Personaje guerrero) throws IOException {
@@ -34,44 +34,69 @@ public class EjecutorComandos {
         }
     }
 
-    public void mutualExit(Equipo[] equipos) throws IOException {//Tienen que estar los dos de acuerdo
+    public void mutualExit() throws IOException {//Tienen que estar los dos de acuerdo
         Logger.addToLogger("Salida mutua");
         Partida.getInstance().endGame();
-        equipos[0].giveUp();
-        equipos[1].giveUp();
+        Partida.getInstance().getEquipoInTurn().giveUp();
+        Partida.getInstance().equipoEnemigo().giveUp();
         String mensaje = "Se rinden ambos jugadores";
         Logger.addToLogger(mensaje);
+        Partida.getInstance().getEquipoInTurn().getUsuario().addRendiciones();
+        Partida.getInstance().equipoEnemigo().getUsuario().addRendiciones();
         Partida.getInstance().sendToClients(mensaje);
     }
 
-    public void giveUp(Equipo equipo) throws IOException {
+    public void giveUp() throws IOException {
         Logger.addToLogger("Rendirse");
         Partida.getInstance().endGame();
-        equipo.giveUp();
-        String mensaje = equipo.getUsuario().getNombre() +" gave up";
+        Partida.getInstance().getEquipoInTurn().giveUp();
+        String mensaje = Partida.getInstance().getEquipoInTurn().getUsuario().getNombre() +" gave up";
         Logger.addToLogger(mensaje);
+        Partida.getInstance().getEquipoInTurn().getUsuario().addRendiciones();
+        Partida.getInstance().equipoEnemigo().getUsuario().addVictorias();
         Partida.getInstance().sendToClients(mensaje);
     }
 
-    public void passTurn(Equipo equipo) throws IOException {
+    public void passTurn() throws IOException {
         Logger.addToLogger("Turn passed");
         Partida.getInstance().nextTurn();
-        Partida.getInstance().sendToClients(equipo.getUsuario().getNombre() + " passed turn");
+        Partida.getInstance().sendToClients(Partida.getInstance().getEquipoInTurn().getUsuario().getNombre() + " passed turn");
     }
 
-    public void attack(Equipo objetivo,Personaje guerrero,Arma arma){//Se puede construir un mensaje para enviar.
+    public void attack(Personaje guerrero,Arma arma) throws IOException {//Se puede construir un mensaje para enviar.
         Logger.addToLogger("Attack");//Asociado al jugador actual
         Logger.addToLogger(guerrero.getName() + " ataca con "+arma.getName());
+        AttackInfo attackInfo = new AttackInfo(guerrero.getName(),arma.getName());
         //Agregar al personaje cuando es una ataque exitoso o fallido
-        for (Personaje guerreroEnemigo : objetivo.getGuerreros()) {
-            int dano = arma.getDano(guerreroEnemigo.getType());
-            guerreroEnemigo.recieveDamage(dano);
-            Logger.addToLogger("Haciendo "+dano+ " de dano");
-            if(guerrero.isAlive())
-                System.out.println("Ataque fallido");//Esto agrega al usuario
-            else
-                System.out.println("Ataque exitoso");
+        int muertos = 0;
+        int sumaDano = 0;
+        for (Personaje guerreroEnemigo : Partida.getInstance().equipoEnemigo().getGuerreros()) {
+            if(guerreroEnemigo.isAlive()){
+                int dano = arma.getDano(guerreroEnemigo.getType());
+                guerreroEnemigo.recieveDamage(dano);
+                sumaDano += dano;
+                attackInfo.addToDamageToTeam(guerreroEnemigo.getName(),dano);
+                if(!guerreroEnemigo.isAlive()){
+                    muertos++;
+                }
+                Logger.addToLogger("Haciendo "+dano+ " de dano a"+guerreroEnemigo.getName());
+                if(sumaDano <= 100){
+                    Partida.getInstance().getEquipoInTurn().getUsuario().addAtaquesFallidos();
+                }
+                else {
+                    Partida.getInstance().getEquipoInTurn().getUsuario().addAtaquesExitosos();
+                }
+            }
+            else {
+                muertos++;
+            }
         }
+        if(muertos == Partida.getInstance().PERSONAJES_POR_JUGADOR){
+            Partida.getInstance().getEquipoInTurn().getUsuario().addVictorias();
+            Partida.getInstance().equipoEnemigo().getUsuario().addDerrotas();
+            Partida.getInstance().endGame();
+        }
+        Partida.getInstance().sendToClients(attackInfo);
     }
 
     public boolean canExecute() {

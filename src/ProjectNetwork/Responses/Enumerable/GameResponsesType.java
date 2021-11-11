@@ -1,5 +1,5 @@
 package ProjectNetwork.Responses.Enumerable;
 
 public enum GameResponsesType {
-    MESSAGE, UPDATE, CONNECT, SENDWARIORS;
+    MESSAGE, UPDATE, CONNECT, SENDWARIORS,ATTACKINFO;
 }

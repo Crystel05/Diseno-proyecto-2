@@ -2,7 +2,9 @@ package CommandPattern;
 
 import CommandPattern.Enumerable.CommandsE;
 import Modelo.Arma;
+import Modelo.Partida;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class UseWildCard extends BaseCommand{
@@ -12,17 +14,11 @@ public class UseWildCard extends BaseCommand{
     }
 
     @Override
-    public void execute(String[] params) {
-//        if(params.size() == 3){ // doble arma
-//            Guerrero guerrero = (Guerrero) params.get(0);
-//            Arma arma1 = (Arma) params.get(1);
-//            Arma arma2 = (Arma) params.get(2);
-//            //EjecutorComandos.doubleArmaAttack();
-//        }else {
-//            Guerrero guerrero1 = (Guerrero) params.get(0);
-//            Arma arma1 = (Arma) params.get(1);
-//            Guerrero guerrero2 = (Guerrero) params.get(2);
-//            Arma arma2 = (Arma) params.get(3);
-//        }
+    public void execute(String[] params) throws IOException {
+        if(params.length == 3){ // doble arma
+            Partida.getInstance().doubleWeapon(params[0],params[1],params[2]);
+        }else {
+            Partida.getInstance().doubleAttack(params[0],params[1],params[2],params[3]);
+        }
     }
 }

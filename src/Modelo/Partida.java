@@ -1,5 +1,9 @@
 package Modelo;
 
+import CommandPattern.AttackCommand;
+import CommandPattern.Chat;
+import CommandPattern.CommandManager;
+import CommandPattern.Enumerable.CommandsE;
 import FileManager.Logger;
 import Network.BaseServerClasses.BasicServerClient;
 import Network.Server.Server;
@@ -12,6 +16,7 @@ import java.io.IOException;
 public class Partida extends Server{
 
     private static Partida partida;
+    public int PERSONAJES_POR_JUGADOR = 5;
 
     private EjecutorComandos ejecutarComandos;
 
@@ -24,6 +29,13 @@ public class Partida extends Server{
 
     private Partida(int port,CommandRequestHandler requestHandler) throws IOException, ClassNotFoundException {
         super(port,requestHandler);
+        ComodinTimer comodinTimer = new ComodinTimer();
+        comodinTimer.start();
+    }
+
+    public void setGuerrerosDisponibles(Personaje[] personajes){
+        this.personajes = personajes;
+
     }
 
     public void addEquipo(Equipo equipo) {
@@ -42,8 +54,8 @@ public class Partida extends Server{
     }
 
     //Creacion del Singleton
-    public static Partida createInstance(int port,CommandRequestHandler requestHandler) throws IOException, ClassNotFoundException {
-        return partida == null? new Partida(port,requestHandler):partida;
+    public static void createInstance(int port,CommandRequestHandler requestHandler) throws IOException, ClassNotFoundException {
+        partida = partida == null? new Partida(port,requestHandler):partida;
     }
 
     public void nextTurn(){
@@ -62,7 +74,7 @@ public class Partida extends Server{
         return weapon.isActive();
     }
 
-    private Equipo equipoEnemigo(){
+    public Equipo equipoEnemigo(){
         for (Equipo equipo: equipos){
             if(equipo.isInTurn())
                 return  equipo;
@@ -74,6 +86,7 @@ public class Partida extends Server{
     public void endGame() throws IOException {
         ejecutarComandos.setCanExecute(false);
         sendToClients("Game is over");
+        //TODO: Guardar los tados de l usuario actualizado Actualizar los datos de los usuarios.
     }
 
 
@@ -83,53 +96,82 @@ public class Partida extends Server{
         if (ejecutarComandos.canExecute()){
             Personaje guerrero = equipos[inTurn].getGuerrero(guerreroString);
             Arma arma = guerrero.getArma(armaString);
-            ejecutarComandos.attack(equipoEnemigo(),guerrero,arma);
-            updateUsuarios();
+            ejecutarComandos.attack(guerrero,arma);
+            nextTurn();
         }
         else {
-            //Ya termino el juego...
+            //Ya termino el juego... YANO !!
         }
+        updateUsuarios();
     }
 
 
-    public void useWildCard(String[] params){
-
-        //convierte los parametros en los objetos
-        //valida los objetos
-        //luego se los envia al ejecutor de comandos
+    public void doubleAttack(String guerreroName1,String armaName1,String guerreroName2,String armaName2) throws IOException {
+        if(getEquipoInTurn().isComodin()){
+            Personaje guerrero1 = equipos[inTurn].getGuerrero(guerreroName1);
+            Personaje guerrero2 = equipos[inTurn].getGuerrero(guerreroName2);
+            Arma arma1 = guerrero1.getArma(armaName1);
+            Arma arma2 = guerrero2.getArma(armaName2);
+            ejecutarComandos.doubleAttack(guerrero1,arma1,guerrero2,arma2);
+            nextTurn();
+        }
+        else {
+            sendToClients("No disponible el comodin");
+        }
+        updateUsuarios();
 
     }
 
-    public void giveUpCommand(String[] params){
-
-        //convierte los parametros en los objetos
-        //valida los objetos
-        //luego se los envia al ejecutor de comandos
-
+    public void doubleWeapon(String guerreroName,String armaName1,String armaName2) throws IOException {
+        if(getEquipoInTurn().isComodin()){
+            Personaje guerrero = equipos[inTurn].getGuerrero(guerreroName);
+            Arma arma1 = guerrero.getArma(armaName1);
+            Arma arma2 = guerrero.getArma(armaName2);
+            ejecutarComandos.doubleWeapon(guerrero,arma1,arma2);
+            nextTurn();//Pasa el turno solo
+        }
+        else {
+            sendToClients("No disponible el comodin");
+        }
+        updateUsuarios();
     }
+
+    public void giveUpCommand(String[] params) throws IOException {
+        ejecutarComandos.giveUp();
+        updateUsuarios();
+    }
+
     public void mutualExitCommand() throws IOException {
         mutualExit +=1;
         if(mutualExit > 1)
-            ejecutarComandos.mutualExit(equipos);
+            ejecutarComandos.mutualExit();
+        updateUsuarios();
     }
     public void passTurnCommand() throws IOException {
-        ejecutarComandos.passTurn(equipos[inTurn]);
+        ejecutarComandos.passTurn();
+        updateUsuarios();
     }
-    public void chatCommand(){
-        //For clientes mande un mensaje directo a todos los que no hayan hecho el request.
+    public void chatCommand(String message) throws IOException {
+        directMessageNotInTurn(message);
     }
 
-    public void errorCommand(String param){
+    public void errorCommand(String param) throws IOException {
         Logger.addToLogger("Error de comando "+param);
+        updateUsuarios();
     }
 
     public void rechargeCommand(String guerreroString) throws IOException {
-        //Validar si existe el guerrero o se hace en pantalla? Se hacen las validadciones en la pantalla.
         Personaje guerrero = equipos[inTurn].getGuerrero(guerreroString);//Se usa para buscar guerreros
         ejecutarComandos.rechargeWeapon(guerrero);
+        updateUsuarios();
     }
 
+    public void selectPlayerCommand() throws IOException {
+        Logger.addToLogger("Jugador "+ inTurn +" Selecciono personaje");
+        updateUsuarios();
+    }
     //Responses enviados por el servidor
+
     public void updateUsuarios() throws IOException {
         int i = 0;
         for (BasicServerClient client:getClientes()){
@@ -166,4 +208,19 @@ public class Partida extends Server{
     public Personaje[] getPersonajesDisponibles() {
         return personajes;
     }
+
+    public void sendToClients(AttackInfo attackInfo) throws IOException {        int i = 0;
+        for (BasicServerClient client:getClientes()){
+            ((CommandServerSideClient)client).sendAttackInfo(attackInfo);
+        }
+
+    }
+
+    public void comodinTimer(){
+        for (Equipo equipo:equipos) {
+            equipo.setComodin(true);
+        }
+    }
+
+
 }

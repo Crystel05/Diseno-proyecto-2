@@ -4,10 +4,11 @@ import Model.Character;
 import Model.Direction;
 import Model.Weapon;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Personaje extends Character {
+public class Personaje extends Character implements Serializable {
 
     EnumTipoPersonaje tipo;
 
@@ -18,7 +19,7 @@ public class Personaje extends Character {
     }
 
     public Personaje (){
-        
+
     }
 
     public ArrayList<Arma> getArmas(){
@@ -72,5 +73,9 @@ public class Personaje extends Character {
                 return true;
         }
         return false;
+    }
+
+    public void setTipo(EnumTipoPersonaje tipo) {
+        this.tipo = tipo;
     }
 }
