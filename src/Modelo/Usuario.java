@@ -80,7 +80,7 @@ public class Usuario {
         this.rendiciones = rendiciones;
     }
 
-    public void getCommand(){
+    public void getCommand(){}
 
 }
 

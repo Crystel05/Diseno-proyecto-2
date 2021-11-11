@@ -21,6 +21,7 @@ public class Personaje extends Character {
     public void rechargeWeapon(){
         // Recargar armas.
     }
+
     public ArrayList<Weapon> getArmas(){
         return getWeapons();
     }

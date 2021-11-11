@@ -1,5 +1,8 @@
 package Vista;
 
+import Controller.ControladorPantalla;
+import Model.Weapon;
+import Modelo.Personaje;
 import Modelo.Usuario;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -9,10 +12,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
@@ -20,6 +24,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -27,17 +33,30 @@ import java.util.ResourceBundle;
 
 public class PantallaJugador implements Initializable {
 
+    private ControladorPantalla controladorPantalla;
+    private Comunicador comunicador = Comunicador.getInstance();
     private Boolean borrando = false;
     private Boolean mostrandoError = false;
     private String lineaComando = "";
     private ArrayList<Text> errores = new ArrayList<>();
     private ArrayList<Text> inicios = new ArrayList<>();
+    private ArrayList<Text> rankingNames= new ArrayList();
+    private ArrayList<Text> comandosHechos= new ArrayList();
+    private Text ultimo;
+    private int cantComandos;
+    private int nuevo;
+    private ArrayList<ImageView> guerrerosFotos = new ArrayList<>();
+    private ArrayList<Text> armasPersonaje = new ArrayList<>();
+    private ArrayList<Text> arma1 = new ArrayList<>();
+    private ArrayList<Text> arma2 = new ArrayList<>();
+    private ArrayList<Text> arma3 = new ArrayList<>();
+    private ArrayList<Text> arma4 = new ArrayList<>();
+    private ArrayList<Text> arma5 = new ArrayList<>();
+    private ArrayList<ArrayList<Text>> porcentajes = new ArrayList<>();
+    private ArrayList<ArrayList<Integer>> porcentajesFinales = new ArrayList<>();
 
     @FXML
     private Text arma1At1;
-
-    @FXML
-    private AnchorPane anchorPaneScroll;
 
     @FXML
     private Text arma1At10;
@@ -199,7 +218,7 @@ public class PantallaJugador implements Initializable {
     private Text arma5Nombre;
 
     @FXML
-    private Text armaAt1;
+    private Text arma3At1;
 
     @FXML
     private Text armaAtaca;
@@ -343,14 +362,89 @@ public class PantallaJugador implements Initializable {
     private Text nombreContrincante;
 
     @FXML
-    private ListView<String> comandosLista;
+    public void seleccionadoGuerrero1(MouseEvent event){
+//        Personaje guerrero1 = comunicador.getGuerrerosEscogidos().get(0);
+//        nombreGuerreroUsando.setText(guerrero1.getName());
+//        porcentajeVidaUsando.setText(String.valueOf(guerrero1.getLife())); //no estoy segura de que sea así
+//        ArrayList<Weapon> armas = guerrero1.getArmas();
+//        ponerNombreArma(armas);
+        escribirPorcentajes(0);
+    }
 
     @FXML
-    private ScrollPane scrollsComandos;
+    public void seleccionadoGuerrero2(MouseEvent event){
+//        Personaje guerrero2 = comunicador.getGuerrerosEscogidos().get(1);
+//        nombreGuerreroUsando.setText(guerrero2.getName());
+//        porcentajeVidaUsando.setText(String.valueOf(guerrero2.getLife())); //no estoy segura de que sea así
+//        ArrayList<Weapon> armas = guerrero2.getArmas();
+//        ponerNombreArma(armas);
+        escribirPorcentajes(1);
+    }
+
+    @FXML
+    public void seleccionadoGuerrero3(MouseEvent event){
+//        Personaje guerrero3 = comunicador.getGuerrerosEscogidos().get(2);
+//        nombreGuerreroUsando.setText(guerrero3.getName());
+//        porcentajeVidaUsando.setText(String.valueOf(guerrero3.getLife())); //no estoy segura de que sea así
+//        ArrayList<Weapon> armas = guerrero3.getArmas();
+//        ponerNombreArma(armas);
+        escribirPorcentajes(2);
+    }
+
+    @FXML
+    public void seleccionadoGuerrero4(MouseEvent event){
+//        Personaje guerrero4 = comunicador.getGuerrerosEscogidos().get(3);
+//        nombreGuerreroUsando.setText(guerrero4.getName());
+//        porcentajeVidaUsando.setText(String.valueOf(guerrero4.getLife())); //no estoy segura de que sea así
+//        ArrayList<Weapon> armas = guerrero4.getArmas();
+//        ponerNombreArma(armas);
+        escribirPorcentajes(3);
+    }
+
+    private void ponerNombreArma(ArrayList<Weapon> armas){
+        for (int i = 0; i<4; i++){
+            armasPersonaje.get(i).setText(armas.get(i).getName());
+        }
+    }
+
+    private void colocarPorcentajes(){
+        for (int i = 0; i<5; i++){
+            ArrayList<Integer> porcentajesArma = new ArrayList<>();
+            for (int j = 0; j < 10; j++){
+                String porcentaje = porcentaje();
+                porcentajesArma.add(Integer.valueOf(porcentaje));
+            }
+            porcentajesFinales.add(porcentajesArma);
+        }
+    }
+
+    private void escribirPorcentajes(int armaIndex){
+        ArrayList<Integer> arma = porcentajesFinales.get(armaIndex);
+        for (int j = 0; j<arma.size()-1; j++){
+            porcentajes.get(armaIndex).get(j).setText(String.valueOf(arma.get(j)));
+        }
+
+    }
+
+    private String porcentaje(){
+        int porcentaje =(int) (Math.random()*100+1);
+        return String.valueOf(porcentaje);
+    }
 
     private void llenarListas(){
         rankingNames.add(nomR1);rankingNames.add(nomR2);rankingNames.add(nomR3);rankingNames.add(nomR4);rankingNames.add(nomR5);
         rankingNames.add(nomR6);rankingNames.add(nomR7);rankingNames.add(nomR8);rankingNames.add(nomR9);rankingNames.add(nomR10);
+
+        guerrerosFotos.add(guerrero1); guerrerosFotos.add(guerrero2); guerrerosFotos.add(guerrero3); guerrerosFotos.add(guerrero4);
+
+        arma1.add(arma1At1);arma1.add(arma1At2);arma1.add(arma1At3);arma1.add(arma1At4);arma1.add(arma1At5);
+        arma2.add(arma2At1);arma2.add(arma2At2);arma2.add(arma2At3);arma2.add(arma2At4);arma2.add(arma2At5);
+        arma3.add(arma3At1);arma3.add(arma3At2);arma3.add(arma3At3);arma3.add(arma3At4);arma3.add(arma3At5);
+        arma4.add(arma4At1);arma4.add(arma4At2);arma4.add(arma4At3);arma4.add(arma4At4);arma4.add(arma4At5);
+        arma5.add(arma5At1);arma5.add(arma5At2);arma5.add(arma5At3);arma5.add(arma5At4);arma5.add(arma5At5);
+
+        porcentajes.add(arma1); porcentajes.add(arma2); porcentajes.add(arma3); porcentajes.add(arma4); porcentajes.add(arma5);
+
     }
 
     private void cargarDatosRanking(){
@@ -379,7 +473,7 @@ public class PantallaJugador implements Initializable {
         contrincante.setRendiciones(5);
 
         puestoContra.setText("#"+contrincante.getRanking());
-        nombreContrincante.setText("("+contrincante.getNombre()+")");
+        //nombreContrincante.setText("("+contrincante.getNombre()+")");
         ganadasContricante.setText(String.valueOf(contrincante.getPartidasGanadas()));
         perdidasContrincante.setText(String.valueOf(contrincante.getPartidasPerdidas()));
         ataquesCont.setText(String.valueOf(contrincante.getAtaquesExitosos()));
@@ -410,11 +504,22 @@ public class PantallaJugador implements Initializable {
 
     }
 
+    private void cargarDatosEquipo() throws FileNotFoundException {
+        for (int i = 0; i < comunicador.getGuerrerosEscogidos().size()-1; i++){
+            String pathFoto = comunicador.getGuerrerosEscogidos().get(i).getAspect().get(1).get(1);
+            FileInputStream stream = new FileInputStream(pathFoto);
+            Image image = new Image(stream);
+            guerrerosFotos.get(i).setImage(image);
+        }
+
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         llenarListas();
         cargarDatosRanking();
         cargarDatosCompetidores();
+        colocarPorcentajes();
         comandos.skinProperty().addListener(new ChangeListener<Skin<?>>() {
             @Override
             public void changed(ObservableValue<? extends Skin<?>> observable, Skin<?> oldValue, Skin<?> newValue) {
@@ -553,5 +658,12 @@ public class PantallaJugador implements Initializable {
 
     public void requestCommand(){
         //controladorPantalla.requestCommand(datosPantalla);
+    }
+
+    public static void main(String[] args){
+        for (int i = 0; i<100; i++) {
+            int num = (int) (Math.random() * 100 + 1);
+            System.out.println(num);
+        }
     }
 }
