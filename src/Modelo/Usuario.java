@@ -80,6 +80,5 @@ public class Usuario {
         this.rendiciones = rendiciones;
     }
 
-
 }
 
