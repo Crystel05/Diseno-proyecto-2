@@ -2,8 +2,16 @@ import Model.*;
 import Model.Character;
 import Modelo.Arma;
 import Modelo.Personaje;
+import Modelo.Usuario;
 import Utils.JsonLoader;
+import Utils.JsonRanking;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,12 +19,14 @@ import java.util.Objects;
 
 public class Pruebas {
     private static JsonLoader json;
+    private static JsonRanking jsonRanking;
     private static ICreator factory;
     private static ICreator factory2;
 
     //GeneralViewerController.getInstance().getCharacterList()
 
     public static void main(String[] args) throws IOException {
+        /*
         json = JsonLoader.getInstance();
         factory = new CharacterPrototypeFactory();
         factory2 = new WeaponPrototypeFactory();
@@ -53,6 +63,51 @@ public class Pruebas {
         System.out.println(pruebaW.getName());
         System.out.println(pruebaW.getScope());
         System.out.println(pruebaW.getArmaAtaca());
+        */
+
+        jsonRanking = JsonRanking.getInstance();
+        Usuario u = jsonRanking.getUsuarios().get(0);  //Agarra el usuario 0
+        //u.setNombre("puta vida");
+       // jsonRanking.updateJSON(u);
+        //System.out.println(jsonRanking.getUsuarios());
+
+
+
+
+
+            String json = "{\"Germany\": {\"Languages\": [\"German\",\"English\",\"Austrian German\"],\"Continent\": \"unknown\",\"Capital\": \"Berlin\" }}";
+            Gson gson = new Gson();
+            JsonElement countryJsonElement = gson.fromJson(json, JsonElement.class);
+            System.out.println(countryJsonElement.toString());
+            System.out.println();
+            JsonElement germanyJsonElement = countryJsonElement.getAsJsonObject().get("Germany");
+
+            boolean updatedFlag = false;
+
+            if (germanyJsonElement != null) {
+                if (germanyJsonElement.getAsJsonObject().get("Continent").getAsString().equalsIgnoreCase("unknown")) {
+                    //germanyJsonElement.getAsJsonObject().remove("Continent");  borrar clave t valor
+                    if(!germanyJsonElement.getAsJsonObject().get("Continent").getAsString().equals("unknown")){
+                        germanyJsonElement.getAsJsonObject().addProperty("Continent", "Europe2agregado");
+                    }
+                    updatedFlag = true;
+                }
+            }
+
+            if (updatedFlag) {
+                countryJsonElement.getAsJsonObject().remove("Germany");
+                countryJsonElement.getAsJsonObject().add("Germany2", germanyJsonElement);
+
+                System.out.println("Germany continent updated....");
+                System.out.println(countryJsonElement.toString());
+            } else {
+                System.out.println("Germany continent not updated....");
+            }
+
+
+
+
+
 
     }
 
