@@ -57,7 +57,11 @@ public class JsonRanking {
     }
 
 
-
+    /**
+     * Con los datos cargados con anterioridad, los toma para escribir en el Json los objetos existentes
+     * para actualizar cambios
+     * @throws IOException
+     */
     public void updateJSON() throws IOException {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(new File(this.URL)));

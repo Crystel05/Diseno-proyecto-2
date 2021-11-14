@@ -1,11 +1,16 @@
 package Modelo;
 
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable {
 
     private String nombre;
     private int ranking;
     private int partidasGanadas;
     private int partidasPerdidas;
+    private int ataquesExitosos;
+    private int ataquesFallados;
+    private int rendiciones;
 
     public Usuario(String nombre, int ranking, int partidasGanadas, int partidasPerdidas) {
         this.nombre = nombre;
@@ -53,16 +58,48 @@ public class Usuario {
         this.partidasPerdidas = partidasPerdidas;
     }
 
-    public void getCommand(){
-
+    public int getAtaquesExitosos() {
+        return ataquesExitosos;
     }
 
-    public void giveUp(){
-
+    public void setAtaquesExitosos(int ataquesExitosos) {
+        this.ataquesExitosos = ataquesExitosos;
     }
 
-    public void attack(){
+    public int getAtaquesFallados() {
+        return ataquesFallados;
+    }
 
+    public void setAtaquesFallados(int ataquesFallados) {
+        this.ataquesFallados = ataquesFallados;
+    }
+
+    public int getRendiciones() {
+        return rendiciones;
+    }
+
+    public void setRendiciones(int rendiciones) {
+        this.rendiciones = rendiciones;
+    }
+
+    public void addAtaquesFallidos() {
+        ataquesFallados+=1;
+    }
+
+    public void addAtaquesExitosos() {
+        ataquesExitosos+=1;
+    }
+
+    public void addVictorias() {
+        partidasGanadas+=1;
+    }
+
+    public void addDerrotas() {
+        partidasPerdidas+=1;
+    }
+
+    public void addRendiciones() {
+        rendiciones+=1;
     }
 }
 

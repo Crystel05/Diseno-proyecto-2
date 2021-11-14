@@ -1,5 +1,9 @@
 package CommandPattern;
 
+import CommandPattern.Enumerable.CommandsE;
+import Modelo.Partida;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class GiveUp extends BaseCommand{
@@ -7,15 +11,12 @@ public class GiveUp extends BaseCommand{
 
 
     public GiveUp() {
+        this.type = CommandsE.GIVEUP;
     }
 
-    @Override
-    public String getCommandName() {
-        return null;
-    }
 
     @Override
-    public void execute(ArrayList<Object> params) {
-
+    public void execute(String[] params) throws IOException {
+        Partida.getInstance().giveUpCommand(params);
     }
 }

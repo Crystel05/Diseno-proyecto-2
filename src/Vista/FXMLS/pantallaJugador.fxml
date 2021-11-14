@@ -388,10 +388,10 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="288.0" layoutX="434.0" layoutY="55.0" stroke="#0c899c" strokeType="INSIDE" width="141.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="288.0" layoutX="293.0" layoutY="55.0" stroke="#0c899c" strokeType="INSIDE" width="141.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="288.0" layoutX="152.0" layoutY="55.0" stroke="#0c899c" strokeType="INSIDE" width="141.0" />
-            <ImageView fx:id="guerrero1" fitHeight="288.0" fitWidth="136.0" layoutX="14.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="guerrero2" fitHeight="288.0" fitWidth="136.0" layoutX="155.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="guerrero3" fitHeight="288.0" fitWidth="136.0" layoutX="296.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="guerrero4" fitHeight="288.0" fitWidth="136.0" layoutX="437.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="guerrero1" fitHeight="288.0" fitWidth="136.0" layoutX="14.0" layoutY="55.0" onMouseClicked="#seleccionadoGuerrero1" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="guerrero2" fitHeight="288.0" fitWidth="136.0" layoutX="155.0" layoutY="55.0" onMouseClicked="#seleccionadoGuerrero2" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="guerrero3" fitHeight="288.0" fitWidth="136.0" layoutX="296.0" layoutY="55.0" onMouseClicked="#seleccionadoGuerrero3" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="guerrero4" fitHeight="288.0" fitWidth="136.0" layoutX="437.0" layoutY="55.0" onMouseClicked="#seleccionadoGuerrero4" pickOnBounds="true" preserveRatio="true" />
             <Text fx:id="arma2At1" fill="WHITE" layoutX="125.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
@@ -442,7 +442,7 @@
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="armaAt1" fill="WHITE" layoutX="125.0" layoutY="521.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma3At1" fill="WHITE" layoutX="125.0" layoutY="521.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>

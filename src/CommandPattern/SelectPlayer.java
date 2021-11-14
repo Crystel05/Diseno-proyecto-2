@@ -1,5 +1,8 @@
 package CommandPattern;
 
+import Modelo.Partida;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class SelectPlayer extends BaseCommand {
@@ -8,12 +11,7 @@ public class SelectPlayer extends BaseCommand {
     }
 
     @Override
-    public String getCommandName() {
-        return null;
-    }
-
-    @Override
-    public void execute(ArrayList<Object> params) {
-
+    public void execute(String[] params) throws IOException {
+        Partida.getInstance().selectPlayerCommand();
     }
 }

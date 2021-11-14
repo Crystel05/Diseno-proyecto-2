@@ -48,8 +48,8 @@ public class Pruebas {
         System.out.println("-----------------Imprimiendo todo lo que está en el Json para el personaje Qiqi---------------------"+"\n");
         Personaje personaje = (Personaje) factory.getPrototypes().get("Qiqi");
         System.out.println(personaje.getLevel());
-        System.out.println("Armas");
-        System.out.println(personaje.getArmas().get(0));
+      System.out.println("Arma prueba perfecto");
+        System.out.println(personaje.getArmas().get(0).getArmaAtaca());
         System.out.println(personaje.getCurrentWeapon());
         System.out.println(personaje.getDirection());
         System.out.println(personaje.getFieldsInArmy());
@@ -71,8 +71,8 @@ public class Pruebas {
         System.out.println("print despues de leer");
         System.out.println(jsonRanking.getUsuarios());
 
-        Usuario u = jsonRanking.getUsuarios().get(1);  //Agarra el usuario 0
-        u.setNombre("Vanessa");  //Cambio objeto
+        Usuario u = jsonRanking.getUsuarios().get(0);  //Agarra el Personaje1
+        u.setNombre("PersonajeCambiado");  //Cambio objeto
         jsonRanking.updateJSON();  //Quiero actualizar
 
 

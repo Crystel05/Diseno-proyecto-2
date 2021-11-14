@@ -1,11 +1,24 @@
 package Modelo;
 
+import Model.Weapon;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Equipo {
+public class Equipo implements Serializable {
 
     private ArrayList<Personaje> guerreros;
     private  Usuario usuario;
+    private boolean inTurn;
+    private boolean comodin;
+
+    public boolean isInTurn() {
+        return inTurn;
+    }
+
+    public void setInTurn(boolean inTurn) {
+        this.inTurn = inTurn;
+    }
 
     public Equipo(ArrayList<Personaje> guerreros, Usuario usuario) {
         this.guerreros = guerreros;
@@ -32,6 +45,35 @@ public class Equipo {
     }
 
     public void giveUp(){
-        //Modificar el historial
+        usuario.setRendiciones(usuario.getRendiciones()+1);
+    }
+
+    public Personaje getGuerrero(String guerreroString) {
+        for (Personaje guerrero:getGuerreros()) {
+            if(guerrero.getName().equals(guerreroString));
+            return guerrero;
+        }
+        return null;
+    }
+
+    public boolean isArmaValida(Personaje personaje,String arma){
+        return personaje.isArmaValida(arma);
+    }
+
+    public boolean isPersonajeValido(String armaString){
+        for (Personaje personaje:getGuerreros()
+        ) {
+            if(personaje.getName().equals(armaString))
+                return true;
+        }
+        return false;
+    }
+
+    public boolean isComodin() {
+        return comodin;
+    }
+
+    public void setComodin(boolean comodin) {
+        this.comodin = comodin;
     }
 }

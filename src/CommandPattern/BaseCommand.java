@@ -1,8 +1,11 @@
 package CommandPattern;
 
+import CommandPattern.Enumerable.CommandsE;
+
 public abstract class BaseCommand implements ICommand{
+    CommandsE type;
 
-    public void write(String string){ //poner parámetros
-
+    public CommandsE getType() {
+        return type;
     }
 }
