@@ -17,7 +17,7 @@ public class CommandManager {
 
     public static CommandManager getInstance(){
         if (commandManager == null)
-            return new CommandManager();
+            commandManager = new CommandManager();
         return commandManager;
     }
 

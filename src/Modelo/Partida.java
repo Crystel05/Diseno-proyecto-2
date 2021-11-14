@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Partida extends Server{
 
@@ -29,8 +30,6 @@ public class Partida extends Server{
 
     public Equipo[] equipos = new Equipo[2];
     //Referencia al prototypeManager de la libreria de proyecto 1
-    private Personaje[] personajes;//Esto es temporal mientras se implementa el proyecto1
-    private Arma[] armas;
     private int mutualExit;
     private int inTurn,notInTurn;
     //para leer json personajes
@@ -42,18 +41,11 @@ public class Partida extends Server{
     private Partida(int port,CommandRequestHandler requestHandler) throws IOException, ClassNotFoundException {
         super(port,requestHandler);
         ComodinTimer comodinTimer = new ComodinTimer();
-        crearArmas();
-        crearPersonajes();
         comodinTimer.start();
         factory1 = new WeaponPrototypeFactory();
         factory2 = new CharacterPrototypeFactory();
         cargarFactorys();
 
-
-    }
-
-    public void setGuerrerosDisponibles(Personaje[] personajes){
-        this.personajes = personajes;
 
     }
 
@@ -224,10 +216,6 @@ public class Partida extends Server{
     }
 
 
-    public Personaje[] getPersonajesDisponibles() {
-        return personajes;
-    }
-
     public void sendToClients(AttackInfo attackInfo) throws IOException {        int i = 0;
         for (BasicServerClient client:getClientes()){
             ((CommandServerSideClient)client).sendAttackInfo(attackInfo);
@@ -239,39 +227,6 @@ public class Partida extends Server{
         for (Equipo equipo:equipos) {
             equipo.setComodin(true);
         }
-    }
-
-
-
-    public void crearPersonajes(){
-        personajes = new Personaje[2];
-        for (int index = 0; index < 2; index++){
-            Character character = new Personaje();
-            character.setLife(100);
-            character.setHitsPerTime(10);
-            character.setFieldsInArmy(10);
-            character.setLevelRequired(1);
-            character.setName("Personaje"+index);
-            Personaje p = (Personaje) character;
-            p.setTipo(EnumTipoPersonaje.AGUA);
-            personajes[index] = p;
-        }
-
-
-
-    }
-
-    public void crearArmas(){
-        armas = new Arma[5];
-        for (int i = 0;i < 5;i++){
-            Weapon weapon = new Arma();
-            weapon.setName("Test"+i);
-            armas[i] = (Arma) weapon;
-        }
-    }
-
-    public Arma[] getArmasDisponibles() {
-        return armas;
     }
 
 
@@ -288,14 +243,21 @@ public class Partida extends Server{
 
     }
 
-    public HashMap<String, IPrototype> cargarArmas(){
-        return factory1.getPrototypes();
+    public ArrayList<Arma> cargarArmas(){
+        ArrayList<Arma> armas = new ArrayList<>();
+        for (Map.Entry prototype:factory1.getPrototypes().entrySet()) {
+            armas.add((Arma) prototype.getValue());
+        }
+        return armas;
 
     }
 
-    public HashMap<String, IPrototype> cargarPersonajes(){
-        return factory2.getPrototypes();
-
+    public ArrayList<Personaje> cargarPersonajes(){
+        ArrayList<Personaje> personajes = new ArrayList<>();
+        for (Map.Entry prototype:factory2.getPrototypes().entrySet()) {
+            personajes.add((Personaje) prototype.getValue());
+        }
+        return personajes;
     }
 
 }

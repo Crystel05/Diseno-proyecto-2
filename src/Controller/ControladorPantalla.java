@@ -12,13 +12,14 @@ import Vista.InicioJuego;
 import Vista.PantallaJugador;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ControladorPantalla {
     //Tiene el cliente y la pantalla
     CommandGameClient client;
     static ControladorPantalla controladorPantalla;
-    Personaje[] personajes;
-    Arma[] armas;
+    ArrayList<Personaje> personajes;
+    ArrayList<Arma> armas;
     InicioJuego inicioJuego;
 
 
@@ -59,19 +60,19 @@ public class ControladorPantalla {
         client.request(new ConnectRequest());//Asegurarme que el response de esta conexion me de todos los datos que necesito para la pantalla.
     }
 
-    public void setAvaliableWariors(Personaje[] guerreros) {
+    public void setAvaliableWariors(ArrayList<Personaje> guerreros) {
         this.personajes = guerreros;
     }
 
-    public void setAvaliableWeapons(Arma[] armasDisponibles) {
+    public void setAvaliableWeapons(ArrayList<Arma> armasDisponibles) {
         this.armas = armasDisponibles;
     }
 
-    public Personaje[] getPersonajes() {
+    public ArrayList<Personaje> getPersonajes() {
         return personajes;  //
     }
 
-    public Arma[] getArmas() {
+    public ArrayList<Arma> getArmas() {
         return armas;
     }
 

@@ -32,14 +32,14 @@ public class CommandClientResponseHandler implements IHandleResponse {
             case SENDWARIORS:
                 AvaliableWariorsResponse avaliableWariorsRequest = (AvaliableWariorsResponse) request;
                 System.out.println(avaliableWariorsRequest.guerreros);
-                System.out.println("Me llegan guerreros"+avaliableWariorsRequest.guerreros[0]);
-                System.out.println(avaliableWariorsRequest.guerreros[0].getType().name());
+                System.out.println("Me llegan guerreros"+avaliableWariorsRequest.guerreros.get(0));
+                System.out.println(avaliableWariorsRequest.guerreros.get(0).getType().name());
                 ControladorPantalla.getInstance().setAvaliableWariors(avaliableWariorsRequest.guerreros);
                 break;
             case SENDWEAPONS:
                 AvaliableWeaponsResponse avaliableWeaponsResponse = (AvaliableWeaponsResponse) request;
                 ControladorPantalla.getInstance().setAvaliableWeapons(avaliableWeaponsResponse.armasDisponibles);
-                System.out.println("Me llegan armas"+avaliableWeaponsResponse.armasDisponibles[0].getName());
+                System.out.println("Me llegan armas"+avaliableWeaponsResponse.armasDisponibles.get(0).getName());
                 break;
             case ATTACKINFO:
                 AttackInfoResponse attackInfoResponse = (AttackInfoResponse) request;
