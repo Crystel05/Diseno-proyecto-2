@@ -3,7 +3,9 @@ package ProjectNetwork;
 import CommandPattern.CommandManager;
 import CommandPattern.Enumerable.CommandsE;
 import CommandPattern.ICommand;
+import Modelo.Arma;
 import Modelo.Partida;
+import Modelo.Personaje;
 import Network.Request.IHandleRequest;
 import Network.Request.IRequest;
 import Network.Request.ISendRequest;
@@ -35,10 +37,10 @@ public class CommandRequestHandler implements IHandleRequest {
                 int id = handler.getClientes().size();
                 System.out.println("Conectandose"+id);
                 handler.addToClients(new CommandServerSideClient(id));
-                System.out.println(Partida.getInstance().getPersonajesDisponibles()[0]);
                 handler.getResponseSender().sendResponse(new ConnectResponse(id));
-                handler.getResponseSender().sendResponse(new AvaliableWariorsResponse(Partida.getInstance().getPersonajesDisponibles()));
-                handler.getResponseSender().sendResponse(new AvaliableWeaponsResponse(Partida.getInstance().getArmasDisponibles()));
+                ArrayList<Personaje> personajes = Partida.getInstance().cargarPersonajes();
+                handler.getResponseSender().sendResponse(new AvaliableWariorsResponse(personajes));
+                handler.getResponseSender().sendResponse(new AvaliableWeaponsResponse(Partida.getInstance().cargarArmas()));
                 break;
             case SELECTEDTEAM:
                 SelectedWarriors selectedWarriorsRequest = (SelectedWarriors) request;
