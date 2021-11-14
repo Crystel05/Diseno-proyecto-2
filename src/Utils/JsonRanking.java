@@ -46,8 +46,6 @@ public class JsonRanking {
                 InputStream is = new FileInputStream(this.URL);
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is));
                 ObjFormat data = json.fromJson(bufferedReader, ObjFormat.class);
-                //System.out.println(data);
-                //System.out.println(data !=  null);
                 if (data !=  null){
                     this.data = data;
                 }
@@ -64,28 +62,35 @@ public class JsonRanking {
         try {
             InputStream is = new FileInputStream(this.URL);
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is));
+
             JsonElement element = json.fromJson(bufferedReader, JsonElement.class);
             System.out.println("Element");
             System.out.println(element);
+
             JsonElement u = element.getAsJsonObject().get("usuarios");
-            System.out.println("usuarios");
+            System.out.println("usuarios element");
             System.out.println(u);
-            JsonArray n = u.getAsJsonArray(); //.get("nombre");
-            System.out.println("nombre");
+
+            JsonArray n = u.getAsJsonArray();
+            System.out.println("Array");
             System.out.println(n);
+
             for (int i=0; i<n.size();i++){
                 JsonElement usuario = n.get(i);
                 System.out.println("User especifico");
                 System.out.println(usuario.getAsJsonObject());
                 if (usuario.getAsJsonObject().get("nombre").getAsString().equals("name")){
-                    System.out.println(usuario.getAsJsonObject().get("nombre").getAsString());
                     usuario.getAsJsonObject().addProperty("nombre", "cambio");
+                    //germanyJsonElement.getAsJsonObject().remove("Continent");
+                    System.out.println("User especifico cambio");
+                    System.out.println(usuario.getAsJsonObject());
+
                 }
 
             }
-
+           // BufferedWriter writer = new BufferedWriter(new FileWriter(new File(this.URL)));
+            //writer.write(URL.toString());
             //writeJSON(pObject);
-            //reader.close();
             bufferedReader.close();
         } catch (IOException e) {
             System.out.println(e);

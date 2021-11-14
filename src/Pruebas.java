@@ -26,7 +26,7 @@ public class Pruebas {
     //GeneralViewerController.getInstance().getCharacterList()
 
     public static void main(String[] args) throws IOException {
-        /*
+
         json = JsonLoader.getInstance();
         factory = new CharacterPrototypeFactory();
         factory2 = new WeaponPrototypeFactory();
@@ -47,7 +47,8 @@ public class Pruebas {
         System.out.println("-----------------Imprimiendo todo lo que está en el Json para el personaje Qiqi---------------------"+"\n");
         Personaje personaje = (Personaje) factory.getPrototypes().get("Qiqi");
         System.out.println(personaje.getLevel());
-        System.out.println(personaje.getArmas());
+        System.out.println("Armas");
+        System.out.println(personaje.getArmas().get(0));
         System.out.println(personaje.getCurrentWeapon());
         System.out.println(personaje.getDirection());
         System.out.println(personaje.getFieldsInArmy());
@@ -63,16 +64,15 @@ public class Pruebas {
         System.out.println(pruebaW.getName());
         System.out.println(pruebaW.getScope());
         System.out.println(pruebaW.getArmaAtaca());
-        */
 
         jsonRanking = JsonRanking.getInstance();
-        Usuario u = jsonRanking.getUsuarios().get(0);  //Agarra el usuario 0
+        //Usuario u = jsonRanking.getUsuarios().get(0);  //Agarra el usuario 0
         //u.setNombre("puta vida");
-       // jsonRanking.updateJSON(u);
+        //jsonRanking.updateJSON(u);
         //System.out.println(jsonRanking.getUsuarios());
 
 
-
+/*
 
 
             String json = "{\"Germany\": {\"Languages\": [\"German\",\"English\",\"Austrian German\"],\"Continent\": \"unknown\",\"Capital\": \"Berlin\" }}";
@@ -86,9 +86,10 @@ public class Pruebas {
 
             if (germanyJsonElement != null) {
                 if (germanyJsonElement.getAsJsonObject().get("Continent").getAsString().equalsIgnoreCase("unknown")) {
-                    //germanyJsonElement.getAsJsonObject().remove("Continent");  borrar clave t valor
-                    if(!germanyJsonElement.getAsJsonObject().get("Continent").getAsString().equals("unknown")){
-                        germanyJsonElement.getAsJsonObject().addProperty("Continent", "Europe2agregado");
+                   // germanyJsonElement.getAsJsonObject().remove("Continent");  //borrar clave t valor
+                    if(germanyJsonElement.getAsJsonObject().get("Continent").getAsString().equals("unknown")){
+                        System.out.println("Hi");
+                        germanyJsonElement.getAsJsonObject().addProperty("Continent", "Europe");
                     }
                     updatedFlag = true;
                 }
@@ -105,7 +106,7 @@ public class Pruebas {
             }
 
 
-
+*/
 
 
 
