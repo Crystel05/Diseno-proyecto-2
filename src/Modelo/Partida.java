@@ -274,6 +274,9 @@ public class Partida extends Server{
             guerrerosClonados.add(personajeClonado);
         }
         equipoClonado.setGuerreros(guerrerosClonados);
+
+        //TODO:Aqui llamar un metodo que revise si el usuario existe y si exitiera asignarlo al equipo sino entonces crear uno nuevo.
+
         addEquipo(equipoClonado);
         return equipoClonado;
     }

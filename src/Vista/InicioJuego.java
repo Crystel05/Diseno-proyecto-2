@@ -80,7 +80,8 @@ public class InicioJuego implements Initializable {
 
     @FXML
     void cambioPersonaje(MouseEvent event) throws FileNotFoundException { //Escogerlo del combobox actual
-        //ControladorPantalla.getInstance().setInitialData(); //Donde poner
+        ControladorPantalla.getInstance().setInitialData(); //TODO:ESTO ES TEMPORAL QUITAR
+        System.out.println("Me ejecuto antes de elegir");
         personajeEscogiendo = new GuerreroDatos(personajesDisponibles.getSelectionModel().getSelectedItem());
 //        String pathFoto = personajeEscogiendo.getAspect().get(1).get(1); //CREO preguntar después
 //        InputStream stream = new FileInputStream(pathFoto);
@@ -117,6 +118,7 @@ public class InicioJuego implements Initializable {
 //            stage.setResizable(false);
 //            stage.show();
 //        }
+            equipoDatos.setNombreUsuario(nombreUsuario.getText());//Se puede validar luego
             controladorPantalla.enviarEquipoElegido(equipoDatos);
             Node source = (Node) event.getSource();
             Stage stageActual = (Stage) source.getScene().getWindow();

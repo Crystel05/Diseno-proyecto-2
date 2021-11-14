@@ -1,13 +1,21 @@
 package Modelo.Data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class EquipoDatos {
+public class EquipoDatos implements Serializable {
+
+    ArrayList<GuerreroDatos> datosGuerreros = new ArrayList<>();
+    String nombreUsuario;
+
     public ArrayList<GuerreroDatos> getDatosGuerreros() {
+
         return datosGuerreros;
     }
 
-    ArrayList<GuerreroDatos> datosGuerreros = new ArrayList<>();
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
 
     public EquipoDatos(){
 

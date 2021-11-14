@@ -1,8 +1,9 @@
 package Modelo.Data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class GuerreroDatos {
+public class GuerreroDatos implements Serializable {
     ArrayList<String> nombresArmas = new ArrayList<>();
     String name;
 
