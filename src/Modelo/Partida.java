@@ -5,17 +5,20 @@ import CommandPattern.Chat;
 import CommandPattern.CommandManager;
 import CommandPattern.Enumerable.CommandsE;
 import FileManager.Logger;
+import Model.*;
 import Model.Character;
-import Model.Weapon;
 import Network.BaseServerClasses.BasicServerClient;
 import Network.Server.Server;
 import ProjectNetwork.CommandRequestHandler;
 import ProjectNetwork.CommandServerSideClient;
 import ProjectNetwork.Responses.AvaliableWariorsResponse;
 import ProjectNetwork.Responses.MessageResponse;
+import Utils.JsonLoader;
+
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Partida extends Server{
 
@@ -30,9 +33,10 @@ public class Partida extends Server{
     private Arma[] armas;
     private int mutualExit;
     private int inTurn,notInTurn;
-    //Arreglos en los que se guarda los personajes y armas que existen
-    private ArrayList<Arma> weapons;
-    private ArrayList<Personaje> character;
+    //para leer json personajes
+    private JsonLoader json;
+    private ICreator factory1 ;
+    private ICreator factory2 ;
 
 
     private Partida(int port,CommandRequestHandler requestHandler) throws IOException, ClassNotFoundException {
@@ -41,8 +45,11 @@ public class Partida extends Server{
         crearArmas();
         crearPersonajes();
         comodinTimer.start();
-        weapons = new ArrayList<>();
-        character = new ArrayList<>();
+        factory1 = new WeaponPrototypeFactory();
+        factory2 = new CharacterPrototypeFactory();
+        cargarFactorys();
+
+
     }
 
     public void setGuerrerosDisponibles(Personaje[] personajes){
@@ -267,9 +274,28 @@ public class Partida extends Server{
         return armas;
     }
 
-    public void cargarArmas(){}
-
-    public void cargarPersonajes(){}
 
     //Traer armas y personajes guardados y guardarlos aca.
+    public void cargarFactorys() throws IOException {
+        json = JsonLoader.getInstance();  //Lee y guarda personajes y armas
+        //Se guardan en los factorys respectivos
+        json.getWeapons().forEach(it -> {
+            factory1.addPrototype(it.getName(), it);
+        });
+        json.getCharacters().forEach(it -> {
+            factory2.addPrototype(it.getName(), it);
+        });
+
+    }
+
+    public HashMap<String, IPrototype> cargarArmas(){
+        return factory1.getPrototypes();
+
+    }
+
+    public HashMap<String, IPrototype> cargarPersonajes(){
+        return factory2.getPrototypes();
+
+    }
+
 }
