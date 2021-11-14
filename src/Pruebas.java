@@ -37,7 +37,8 @@ public class Pruebas {
         System.out.println("-----------------Imprimiendo todo lo que está en el Json para el personaje Qiqi---------------------"+"\n");
         Personaje personaje = (Personaje) factory.getPrototypes().get("Qiqi");
         System.out.println(personaje.getLevel());
-        System.out.println(personaje.getArmas());
+        System.out.println("Arma prueba perfecto");
+        System.out.println(personaje.getArmas().get(0).getArmaAtaca());
         System.out.println(personaje.getCurrentWeapon());
         System.out.println(personaje.getDirection());
         System.out.println(personaje.getFieldsInArmy());

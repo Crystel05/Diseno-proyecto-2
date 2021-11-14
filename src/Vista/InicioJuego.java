@@ -9,8 +9,11 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+import Controller.ControladorPantalla;
 import Model.Weapon;
+import Modelo.Arma;
 import Modelo.Personaje;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,6 +33,10 @@ import javafx.stage.StageStyle;
 public class InicioJuego implements Initializable {
 
     private Comunicador comunicador = Comunicador.getInstance();
+
+    //PRUEBAS
+    ControladorPantalla controladorPantalla = ControladorPantalla.getInstance();
+
     private Personaje personajeEscogiendo;
     private int cantPersonajes = 0;
     private int cantArmasPersonaje = 0;
@@ -70,6 +77,7 @@ public class InicioJuego implements Initializable {
 
     @FXML
     void cambioPersonaje(MouseEvent event) throws FileNotFoundException {
+        ControladorPantalla.getInstance().setInitialData();//PRUEBAS QUITAR
         //for para escoger el personaje y
 //        personajeEscogiendo = personajesDisponibles.getSelectionModel().getSelectedItem();
         personajeEscogiendo = new Personaje();
@@ -127,9 +135,35 @@ public class InicioJuego implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ArrayList<String> nombres = new ArrayList<>(); nombres.add("Manchas"); nombres.add("Peter");
-        ArrayList<String> armas = new ArrayList<>(); armas.add("Aruñar"); armas.add("Garras");
-        personajesDisponibles.setItems(FXCollections.observableArrayList(nombres)); //agregar aquí los personajes disponibles
-        armasDisponibles.setItems(FXCollections.observableArrayList(armas)); //agregar aquí las armas disponibles
+        controladorPantalla.setInicioJuego(this);//Esto asocia esta pantalla con el controlador
+        try {
+            controladorPantalla.connectionRequest();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void cargarDatosIniciales(){
+        ArrayList<String> personajes = new ArrayList<>();  //Agarrarlos de
+        ArrayList<String> armas = new ArrayList<>();
+
+        for (Personaje personaje :ControladorPantalla.getInstance().getPersonajes()
+        ) {
+            personajes.add(personaje.getName());
+        }
+        for (Arma arma :ControladorPantalla.getInstance().getArmas()
+        ) {
+            armas.add(arma.getName());
+        }
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                personajesDisponibles.setItems(FXCollections.observableArrayList(personajes)); //agregar aquí los personajes disponibles
+                armasDisponibles.setItems(FXCollections.observableArrayList(armas)); //agregar aquí las armas disponibles
+            }
+        });
     }
 }

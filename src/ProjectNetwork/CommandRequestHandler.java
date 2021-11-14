@@ -13,6 +13,7 @@ import ProjectNetwork.Requests.ConnectRequest;
 import ProjectNetwork.Requests.Enumerable.GameRequestTypes;
 import ProjectNetwork.Requests.SelectedWarriors;
 import ProjectNetwork.Responses.AvaliableWariorsResponse;
+import ProjectNetwork.Responses.AvaliableWeaponsResponse;
 import ProjectNetwork.Responses.ConnectResponse;
 import ProjectNetwork.Responses.MessageResponse;
 
@@ -32,9 +33,12 @@ public class CommandRequestHandler implements IHandleRequest {
                 break;
             case CONNECT:
                 int id = handler.getClientes().size();
+                System.out.println("Conectandose"+id);
                 handler.addToClients(new CommandServerSideClient(id));
+                System.out.println(Partida.getInstance().getPersonajesDisponibles()[0]);
                 handler.getResponseSender().sendResponse(new ConnectResponse(id));
                 handler.getResponseSender().sendResponse(new AvaliableWariorsResponse(Partida.getInstance().getPersonajesDisponibles()));
+                handler.getResponseSender().sendResponse(new AvaliableWeaponsResponse(Partida.getInstance().getArmasDisponibles()));
                 break;
             case SELECTEDTEAM:
                 SelectedWarriors selectedWarriorsRequest = (SelectedWarriors) request;

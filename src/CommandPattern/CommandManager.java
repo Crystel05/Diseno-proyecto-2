@@ -31,5 +31,13 @@ public class CommandManager {
 
     public static void createCommands(){
         CommandManager.registrarCommand(CommandsE.CHAT,new Chat());
+        CommandManager.registrarCommand(CommandsE.ATACK,new AttackCommand());
+        CommandManager.registrarCommand(CommandsE.ERROR,new ErrorCommand());
+        CommandManager.registrarCommand(CommandsE.GIVEUP,new GiveUp());
+        CommandManager.registrarCommand(CommandsE.MUTUALEXIT,new MutualExit());
+        CommandManager.registrarCommand(CommandsE.PASSTURN,new PassTurn());
+        CommandManager.registrarCommand(CommandsE.RECHARGEWEAPON,new RechargeWeapon());
+        CommandManager.registrarCommand(CommandsE.USEWILDCARD,new UseWildCard());
+        CommandManager.registrarCommand(CommandsE.SELECTPLAYER,new SelectPlayer());
     }
-    }
+}

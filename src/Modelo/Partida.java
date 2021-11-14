@@ -5,6 +5,8 @@ import CommandPattern.Chat;
 import CommandPattern.CommandManager;
 import CommandPattern.Enumerable.CommandsE;
 import FileManager.Logger;
+import Model.Character;
+import Model.Weapon;
 import Network.BaseServerClasses.BasicServerClient;
 import Network.Server.Server;
 import ProjectNetwork.CommandRequestHandler;
@@ -12,6 +14,8 @@ import ProjectNetwork.CommandServerSideClient;
 import ProjectNetwork.Responses.AvaliableWariorsResponse;
 import ProjectNetwork.Responses.MessageResponse;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class Partida extends Server{
 
@@ -23,14 +27,22 @@ public class Partida extends Server{
     public Equipo[] equipos = new Equipo[2];
     //Referencia al prototypeManager de la libreria de proyecto 1
     private Personaje[] personajes;//Esto es temporal mientras se implementa el proyecto1
+    private Arma[] armas;
     private int mutualExit;
     private int inTurn,notInTurn;
+    //Arreglos en los que se guarda los personajes y armas que existen
+    private ArrayList<Arma> weapons;
+    private ArrayList<Personaje> character;
 
 
     private Partida(int port,CommandRequestHandler requestHandler) throws IOException, ClassNotFoundException {
         super(port,requestHandler);
         ComodinTimer comodinTimer = new ComodinTimer();
+        crearArmas();
+        crearPersonajes();
         comodinTimer.start();
+        weapons = new ArrayList<>();
+        character = new ArrayList<>();
     }
 
     public void setGuerrerosDisponibles(Personaje[] personajes){
@@ -223,4 +235,41 @@ public class Partida extends Server{
     }
 
 
+
+    public void crearPersonajes(){
+        personajes = new Personaje[2];
+        for (int index = 0; index < 2; index++){
+            Character character = new Personaje();
+            character.setLife(100);
+            character.setHitsPerTime(10);
+            character.setFieldsInArmy(10);
+            character.setLevelRequired(1);
+            character.setName("Personaje"+index);
+            Personaje p = (Personaje) character;
+            p.setTipo(EnumTipoPersonaje.AGUA);
+            personajes[index] = p;
+        }
+
+
+
+    }
+
+    public void crearArmas(){
+        armas = new Arma[5];
+        for (int i = 0;i < 5;i++){
+            Weapon weapon = new Arma();
+            weapon.setName("Test"+i);
+            armas[i] = (Arma) weapon;
+        }
+    }
+
+    public Arma[] getArmasDisponibles() {
+        return armas;
+    }
+
+    public void cargarArmas(){}
+
+    public void cargarPersonajes(){}
+
+    //Traer armas y personajes guardados y guardarlos aca.
 }
