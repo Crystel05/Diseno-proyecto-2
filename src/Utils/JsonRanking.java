@@ -40,7 +40,7 @@ public class JsonRanking {
         public ArrayList<Usuario> usuarios = new ArrayList<>();
     }
 
-    private void readJSON() throws FileNotFoundException, IOException {
+    public void readJSON() throws FileNotFoundException, IOException {
         try {
             if(new File(this.URL).exists()){
                 InputStream is = new FileInputStream(this.URL);
@@ -58,56 +58,32 @@ public class JsonRanking {
 
 
 
-    public void updateJSON(Usuario pObject) throws IOException {
+    public void updateJSON() throws IOException {
         try {
-            InputStream is = new FileInputStream(this.URL);
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(new File(this.URL)));
+            writer.write("");
+            writer.write("{\"usuarios\":");
+            writer.write(json.toJson(getUsuarios()));
+            writer.write("}");
+            writer.close();
 
-            JsonElement element = json.fromJson(bufferedReader, JsonElement.class);
-            System.out.println("Element");
-            System.out.println(element);
-
-            JsonElement u = element.getAsJsonObject().get("usuarios");
-            System.out.println("usuarios element");
-            System.out.println(u);
-
-            JsonArray n = u.getAsJsonArray();
-            System.out.println("Array");
-            System.out.println(n);
-
-            for (int i=0; i<n.size();i++){
-                JsonElement usuario = n.get(i);
-                System.out.println("User especifico");
-                System.out.println(usuario.getAsJsonObject());
-                if (usuario.getAsJsonObject().get("nombre").getAsString().equals("name")){
-                    usuario.getAsJsonObject().addProperty("nombre", "cambio");
-                    //germanyJsonElement.getAsJsonObject().remove("Continent");
-                    System.out.println("User especifico cambio");
-                    System.out.println(usuario.getAsJsonObject());
-
-                }
-
-            }
-           // BufferedWriter writer = new BufferedWriter(new FileWriter(new File(this.URL)));
-            //writer.write(URL.toString());
-            //writeJSON(pObject);
-            bufferedReader.close();
         } catch (IOException e) {
             System.out.println(e);
         }
+
+
     }
     public void writeJSON(Usuario pObject) throws IOException {
         try {
+
             BufferedWriter writer = new BufferedWriter(new FileWriter(new File(this.URL)));
             this.data.usuarios.add(pObject);
-            //System.out.println(json.toJson(pObject.getAspect()));
             writer.write(json.toJson(this.data));
             writer.close();
         } catch (IOException e) {
             System.out.println(e);
         }
     }
-
 
     public ArrayList<Usuario> getUsuarios(){
         return this.data.usuarios;
