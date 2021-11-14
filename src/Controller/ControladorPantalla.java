@@ -23,7 +23,10 @@ public class ControladorPantalla {
 
 
     public static ControladorPantalla getInstance() {
-        return controladorPantalla==null?new ControladorPantalla():controladorPantalla;
+        if(controladorPantalla == null){
+            controladorPantalla = new ControladorPantalla();
+        }
+        return controladorPantalla;
     }
 
     //Escribe los comandos desde pantalla.
@@ -42,6 +45,7 @@ public class ControladorPantalla {
 
     public void setInicioJuego(InicioJuego inicioJuego){
         this.inicioJuego = inicioJuego;
+        System.out.println("Se liga pantalla y controlador");
     }
 
 

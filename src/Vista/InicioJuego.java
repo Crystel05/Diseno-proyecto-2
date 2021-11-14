@@ -81,10 +81,10 @@ public class InicioJuego implements Initializable {
         //for para escoger el personaje y
 //        personajeEscogiendo = personajesDisponibles.getSelectionModel().getSelectedItem();
         personajeEscogiendo = new Personaje();
-        String pathFoto = personajeEscogiendo.getAspect().get(1).get(1); //CREO preguntar después
-        InputStream stream = new FileInputStream(pathFoto);
-        Image image = new Image(stream);
-        previewPersonaje.setImage(image);
+//        String pathFoto = personajeEscogiendo.getAspect().get(1).get(1); //CREO preguntar después
+//        InputStream stream = new FileInputStream(pathFoto);
+//        Image image = new Image(stream);
+//        previewPersonaje.setImage(image);
     }
 
     @FXML
@@ -92,10 +92,10 @@ public class InicioJuego implements Initializable {
         Weapon arma = new Weapon(); //escoger una del combobox
         //recocorrer las armas que existen y
         //  Weapon arma = armasDisponibles.getSelectionModel().getSelectedItem();
-        String pathFoto = arma.getAspect().get(1).get(1); //CREO preguntar después
-        InputStream stream = new FileInputStream(pathFoto);
-        Image image = new Image(stream);
-        previewArma.setImage(image);
+//        String pathFoto = arma.getAspect().get(1).get(1); //CREO preguntar después
+//        InputStream stream = new FileInputStream(pathFoto);
+//        Image image = new Image(stream);
+//        previewArma.setImage(image);
     }
 
     @FXML
@@ -135,8 +135,8 @@ public class InicioJuego implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        controladorPantalla.setInicioJuego(this);//Esto asocia esta pantalla con el controlador
         try {
+            controladorPantalla.setInicioJuego(this);//Esto asocia esta pantalla con el controlador
             controladorPantalla.connectionRequest();
         } catch (IOException e) {
             e.printStackTrace();
