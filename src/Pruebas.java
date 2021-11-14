@@ -2,8 +2,16 @@ import Model.*;
 import Model.Character;
 import Modelo.Arma;
 import Modelo.Personaje;
+import Modelo.Usuario;
 import Utils.JsonLoader;
+import Utils.JsonRanking;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,12 +19,15 @@ import java.util.Objects;
 
 public class Pruebas {
     private static JsonLoader json;
+    private static JsonRanking jsonRanking;
     private static ICreator factory;
     private static ICreator factory2;
 
     //GeneralViewerController.getInstance().getCharacterList()
 
     public static void main(String[] args) throws IOException {
+
+        /*
         json = JsonLoader.getInstance();
         factory = new CharacterPrototypeFactory();
         factory2 = new WeaponPrototypeFactory();
@@ -37,7 +48,7 @@ public class Pruebas {
         System.out.println("-----------------Imprimiendo todo lo que está en el Json para el personaje Qiqi---------------------"+"\n");
         Personaje personaje = (Personaje) factory.getPrototypes().get("Qiqi");
         System.out.println(personaje.getLevel());
-        System.out.println("Arma prueba perfecto");
+      System.out.println("Arma prueba perfecto");
         System.out.println(personaje.getArmas().get(0).getArmaAtaca());
         System.out.println(personaje.getCurrentWeapon());
         System.out.println(personaje.getDirection());
@@ -54,6 +65,19 @@ public class Pruebas {
         System.out.println(pruebaW.getName());
         System.out.println(pruebaW.getScope());
         System.out.println(pruebaW.getArmaAtaca());
+        */
+
+        jsonRanking = JsonRanking.getInstance();  //Se lee y se guardan user en array
+        System.out.println("print despues de leer");
+        System.out.println(jsonRanking.getUsuarios());
+
+        Usuario u = jsonRanking.getUsuarios().get(0);  //Agarra el Personaje1
+        u.setNombre("PersonajeCambiado");  //Cambio objeto
+        jsonRanking.updateJSON();  //Quiero actualizar
+
+
+
+
 
     }
 
