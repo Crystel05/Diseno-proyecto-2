@@ -2,12 +2,14 @@ package Controller;
 
 import Model.Weapon;
 import Modelo.Arma;
+import Modelo.Data.EquipoDatos;
 import Modelo.Personaje;
 import ProjectNetwork.ClientTypes.CommandGameClient;
 import CommandPattern.Enumerable.CommandsE;
 import ProjectNetwork.CommandClientResponseHandler;
 import ProjectNetwork.Requests.CommandRequest;
 import ProjectNetwork.Requests.ConnectRequest;
+import ProjectNetwork.Requests.SelectedWarriors;
 import Vista.InicioJuego;
 import Vista.PantallaJugador;
 
@@ -78,6 +80,10 @@ public class ControladorPantalla {
 
     public void setInitialData() {//Esto actualiza la pantalla cuando le llega el request.
         inicioJuego.cargarDatosIniciales();
+    }
+
+    public void enviarEquipoElegido(EquipoDatos equipoDatos) throws IOException, ClassNotFoundException {
+        client.request(new SelectedWarriors(equipoDatos));
     }
 
 

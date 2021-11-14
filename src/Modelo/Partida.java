@@ -7,6 +7,8 @@ import CommandPattern.Enumerable.CommandsE;
 import FileManager.Logger;
 import Model.*;
 import Model.Character;
+import Modelo.Data.EquipoDatos;
+import Modelo.Data.GuerreroDatos;
 import Network.BaseServerClasses.BasicServerClient;
 import Network.Server.Server;
 import ProjectNetwork.CommandRequestHandler;
@@ -258,6 +260,22 @@ public class Partida extends Server{
             personajes.add((Personaje) prototype.getValue());
         }
         return personajes;
+    }
+
+    public Equipo crearEquipo(EquipoDatos equipoDatos){
+        Equipo equipoClonado = new Equipo();
+        ArrayList<Personaje> guerrerosClonados = new ArrayList<>();
+        for (GuerreroDatos datosGuerrero: equipoDatos.getDatosGuerreros()) {
+            Personaje personajeClonado = (Personaje) factory2.getPrototypeClone(datosGuerrero.getName());
+            for (String armaNombre:datosGuerrero.getNombresArmas()) {
+                Arma armaClonada = (Arma) factory1.getPrototypeClone(armaNombre);
+                personajeClonado.addWeapons(armaClonada);
+            }
+            guerrerosClonados.add(personajeClonado);
+        }
+        equipoClonado.setGuerreros(guerrerosClonados);
+        addEquipo(equipoClonado);
+        return equipoClonado;
     }
 
 }

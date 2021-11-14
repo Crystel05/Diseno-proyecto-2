@@ -45,7 +45,7 @@ public class CommandRequestHandler implements IHandleRequest {
             case SELECTEDTEAM:
                 SelectedWarriors selectedWarriorsRequest = (SelectedWarriors) request;
                 CommandServerSideClient client = (CommandServerSideClient)handler.getClientes().get(selectedWarriorsRequest.clientId);
-                client.setEquipo(selectedWarriorsRequest.equipoElegido);
+                client.setEquipo(Partida.getInstance().crearEquipo(selectedWarriorsRequest.equipoElegido));
                 break;
             default:
                 System.out.println("Not known request");
