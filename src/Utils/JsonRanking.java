@@ -93,5 +93,23 @@ public class JsonRanking {
         return this.data.usuarios;
     }
 
+    public boolean checkClient(String name){
+        for (Usuario u: getUsuarios()){
+            if (u.getNombre() == name){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Usuario getUserClient(String name){
+        for (Usuario u: getUsuarios()){
+            if (u.getNombre() == name){
+                return u;
+            }
+        }
+        return null;
+    }
+
 
 }

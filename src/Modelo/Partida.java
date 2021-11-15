@@ -16,6 +16,7 @@ import ProjectNetwork.CommandServerSideClient;
 import ProjectNetwork.Responses.AvaliableWariorsResponse;
 import ProjectNetwork.Responses.MessageResponse;
 import Utils.JsonLoader;
+import Utils.JsonRanking;
 
 import java.io.IOException;
 import java.lang.reflect.Array;
@@ -36,6 +37,7 @@ public class Partida extends Server{
     private int inTurn,notInTurn;
     //para leer json personajes
     private JsonLoader json;
+    private JsonRanking jsonRanking;
     private ICreator factory1 ;
     private ICreator factory2 ;
 
@@ -262,7 +264,7 @@ public class Partida extends Server{
         return personajes;
     }
 
-    public Equipo crearEquipo(EquipoDatos equipoDatos){
+    public Equipo crearEquipo(EquipoDatos equipoDatos) throws IOException {
         Equipo equipoClonado = new Equipo();
         ArrayList<Personaje> guerrerosClonados = new ArrayList<>();
         for (GuerreroDatos datosGuerrero: equipoDatos.getDatosGuerreros()) {
@@ -275,10 +277,16 @@ public class Partida extends Server{
         }
         equipoClonado.setGuerreros(guerrerosClonados);
 
-        //TODO:Aqui llamar un metodo que revise si el usuario existe y si exitiera asignarlo al equipo sino entonces crear uno nuevo.
-
+        if (jsonRanking.checkClient(equipoDatos.getNombre())){  //Si el usuario ya existia se lo trae
+            equipoClonado.setUsuario(jsonRanking.getUserClient(equipoDatos.getNombre()));
+        }
+        else{
+            jsonRanking.writeJSON(new Usuario(equipoDatos.getNombre()));
+        }
         addEquipo(equipoClonado);
         return equipoClonado;
     }
+
+
 
 }

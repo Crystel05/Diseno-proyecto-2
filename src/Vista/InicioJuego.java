@@ -41,7 +41,7 @@ public class InicioJuego implements Initializable {
     //PRUEBAS
     ControladorPantalla controladorPantalla = ControladorPantalla.getInstance();
 
-    private GuerreroDatos personajeEscogiendo;
+    private GuerreroDatos personajeEscogiendo ;
     private int cantPersonajes = 0;
     private int cantArmasPersonaje = 0;
 
@@ -60,44 +60,85 @@ public class InicioJuego implements Initializable {
     @FXML
     private ImageView previewPersonaje;
 
+
+    @FXML
+    void guardarPersonaje(ActionEvent event) throws FileNotFoundException {
+        String clientName = nombreUsuario.getText();
+        if (clientName != ""){
+            if (cantArmasPersonaje==5){
+                equipoDatos.setNombreUsuario(clientName);
+                equipoDatos.addDatosGuerrero(personajeEscogiendo);
+                cantArmasPersonaje = 0;  //Reiniciar el contador
+                //HACER EL REQUST DE MANDAR EL EQUIPO
+                System.out.println("Guerreo es: " + equipoDatos.getNombre());
+                System.out.println("Armas son: " + equipoDatos.getDatosGuerreros());
+                personajeEscogiendo = null; //Limpiar objeto
+                equipoDatos = new EquipoDatos(); //Limpiar el objeto
+            }
+            else{
+                System.out.println("Se deben agregar 5 armas a cada personaje");
+            }
+        }
+        else{
+            System.out.println("Nombre de cliente requerido para conectarse");
+        }
+    }
+
+
+    /**
+     * Botón del más para agregar un arma al personaje creándose actualmente
+     * @param event
+     * @throws FileNotFoundException
+     */
     @FXML
     void agregarArma(ActionEvent event) throws FileNotFoundException {
-        if (cantArmasPersonaje < 5)
-            personajeEscogiendo.addArma(armasDisponibles.getSelectionModel().getSelectedItem());
-        cantArmasPersonaje++;
-        //Aca se podria asignar las imagenes
-    }
-
-    @FXML
-    void escogerPersonaje(ActionEvent event) {//Crearlo ya con sus armas asignadas
-        if (cantArmasPersonaje==5){
-            equipoDatos.addDatosGuerrero(personajeEscogiendo);
-            cantPersonajes++;
-            cantArmasPersonaje = 0;
+        if (personajeEscogiendo != null){
+            if (cantArmasPersonaje < 5){
+                personajeEscogiendo.addArma(armasDisponibles.getSelectionModel().getSelectedItem());
+                cantArmasPersonaje = cantArmasPersonaje+1;
+                System.out.println("Arma escogida: " + armasDisponibles.getSelectionModel().getSelectedItem());
+            }
+            else{
+                System.out.println("No se pueden agregar más armas");
+            }
+        }
+        else{
+            System.out.println("Escoja un personaje");
         }
         //Aca se podria asignar las imagenes
-    }
-
-    @FXML
-    void cambioPersonaje(MouseEvent event) throws FileNotFoundException { //Escogerlo del combobox actual
-        ControladorPantalla.getInstance().setInitialData(); //TODO:ESTO ES TEMPORAL QUITAR
-        System.out.println("Me ejecuto antes de elegir");
-        personajeEscogiendo = new GuerreroDatos(personajesDisponibles.getSelectionModel().getSelectedItem());
-//        String pathFoto = personajeEscogiendo.getAspect().get(1).get(1); //CREO preguntar después
-//        InputStream stream = new FileInputStream(pathFoto);
-//        Image image = new Image(stream);
-//        previewPersonaje.setImage(image);
-    }
-
-    @FXML
-    void armaEscogida(MouseEvent event) throws FileNotFoundException {//Cuando se toca el comboBox
-        Weapon arma = new Weapon(); //escoger una del combobox
         //recocorrer las armas que existen y
         //  Weapon arma = armasDisponibles.getSelectionModel().getSelectedItem();
 //        String pathFoto = arma.getAspect().get(1).get(1); //CREO preguntar después
 //        InputStream stream = new FileInputStream(pathFoto);
 //        Image image = new Image(stream);
 //        previewArma.setImage(image);
+
+    }
+
+    /**
+     * Botón de escoger personaje, agarra al personaje seleccionado, lo crea y espera a que se le agreguen armas
+     * @param event
+     */
+    @FXML
+    void escogerPersonaje(ActionEvent event) {
+
+        personajeEscogiendo = new GuerreroDatos(personajesDisponibles.getSelectionModel().getSelectedItem());
+        System.out.println("Personaje escogido: "+ personajeEscogiendo.getName());
+        //Aca se podria asignar las imagenes
+        //String pathFoto = personajeEscogiendo.getAspect().get(1).get(1); //CREO preguntar después
+//        InputStream stream = new FileInputStream(pathFoto);
+//        Image image = new Image(stream);
+//        previewPersonaje.setImage(image);
+    }
+
+    @FXML
+    void cambioPersonaje(MouseEvent event) throws FileNotFoundException {
+        ControladorPantalla.getInstance().setInitialData(); //TODO:ESTO ES TEMPORAL QUITAR
+    }
+
+
+    @FXML
+    void armaEscogida(MouseEvent event) throws FileNotFoundException {
     }
 
     @FXML
@@ -137,6 +178,7 @@ public class InicioJuego implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         try {
             controladorPantalla.setInicioJuego(this);//Esto asocia esta pantalla con el controlador
             controladorPantalla.connectionRequest();
