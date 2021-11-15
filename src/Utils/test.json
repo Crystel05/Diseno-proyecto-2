@@ -5,62 +5,101 @@
          "hitsPerTime":4.0,
          "fieldsInArmy":4.0,
          "levelRequired":12,
-         "armas":[
-            {
-               "scope":10,
-               "damage":6.0,
-               "explotionRange":9.0,
-               "levelIncrease":true,
-               "name":"Espada Alcón de Jade",
-               "isActive":true,
-               "armaAtaca":["FUEGO","AIRE","AGUA","MAGIA_BLANCA","MAGIA_NEGRA","ELECTRICIDAD","HIELO","ACIDO","ESPIRITUALIDAD","HIERRO"],
-               "aspect":{
-                  "1":[
-                     "src\\IMAGENES\\ARMAS\\alconJade.png",
-                     "src\\IMAGENES\\ARMAS\\rompemontañas.png"
-                  ]
-               },
-               "level":9,
-               "cost":7.0
-            },
-            {
-               "scope":10,
-               "damage":6.0,
-               "explotionRange":10.0,
-               "levelIncrease":true,
-               "name":"Gouba",
-               "isActive":true,
-               "armaAtaca":["FUEGO","AIRE","AGUA","MAGIA_BLANCA","MAGIA_NEGRA","ELECTRICIDAD","HIELO","ACIDO","ESPIRITUALIDAD","HIERRO"],
-               "aspect":{
-                  "1":[
-                     "src\\IMAGENES\\ARMAS\\gouba.png"
-                  ]
-               },
-               "level":10,
-               "cost":9.0
-            }
-         ],
-         "currentWeapon":{
-            "scope":10,
-            "damage":6.0,
-            "explotionRange":10.0,
-            "levelIncrease":true,
-            "name":"Gouba",
-            "isActive":true,
-            "armaAtaca":["FUEGO","AIRE","AGUA","MAGIA_BLANCA","MAGIA_NEGRA","ELECTRICIDAD","HIELO","ACIDO","ESPIRITUALIDAD","HIERRO"],
-            "aspect":{
-               "1":[
-                  "src\\IMAGENES\\ARMAS\\gouba.png"
-               ]
-            },
-            "level":10,
-            "cost":9.0
-         },
          "direction":"WEST",
          "name":"Qiqi",
          "aspect":{
             "1":[
                "src\\IMAGENES\\ARMAS\\qiqi.png"
+            ]
+         },
+         "level":1,
+         "cost":0.0
+      },
+      {
+         "life":10,
+         "hitsPerTime":9.0,
+         "fieldsInArmy":4.0,
+         "levelRequired":1,
+         "direction":"WEST",
+         "name":"Diluc",
+         "aspect":{
+            "1":[
+               "src\\IMAGENES\\ARMAS\\diluc.png"
+            ]
+         },
+         "level":1,
+         "cost":0.0
+      },
+      {
+         "life":5,
+         "hitsPerTime":5.0,
+         "fieldsInArmy":4.0,
+         "levelRequired":2,
+         "direction":"WEST",
+         "name":"diona",
+         "aspect":{
+            "1":[
+               "src\\IMAGENES\\ARMAS\\diona.png"
+            ]
+         },
+         "level":1,
+         "cost":0.0
+      },
+      {
+         "life":5,
+         "hitsPerTime":4.0,
+         "fieldsInArmy":4.0,
+         "levelRequired":15,
+         "direction":"WEST",
+         "name":"klee",
+         "aspect":{
+            "1":[
+               "src\\IMAGENES\\ARMAS\\klee.png"
+            ]
+         },
+         "level":1,
+         "cost":0.0
+      },
+      {
+         "life":5,
+         "hitsPerTime":4.0,
+         "fieldsInArmy":5.0,
+         "levelRequired":1,
+         "direction":"WEST",
+         "name":"Noelle",
+         "aspect":{
+            "1":[
+               "src\\IMAGENES\\ARMAS\\noelle.png"
+            ]
+         },
+         "level":1,
+         "cost":0.0
+      },
+      {
+         "life":5,
+         "hitsPerTime":4.0,
+         "fieldsInArmy":4.0,
+         "levelRequired":12,
+         "direction":"WEST",
+         "name":"Xinyan",
+         "aspect":{
+            "1":[
+               "src\\IMAGENES\\ARMAS\\xinyan.png"
+            ]
+         },
+         "level":1,
+         "cost":0.0
+      },
+      {
+         "life":10,
+         "hitsPerTime":9.0,
+         "fieldsInArmy":4.0,
+         "levelRequired":12,
+         "direction":"WEST",
+         "name":"Viajero",
+         "aspect":{
+            "1":[
+               "src\\IMAGENES\\ARMAS\\viajero.png"
             ]
          },
          "level":1,
@@ -82,7 +121,7 @@
                "src\\IMAGENES\\ARMAS\\rompemontañas.png"
             ]
          },
-         "level":9,
+         "level":1,
          "cost":7.0
       },
       {
@@ -98,8 +137,89 @@
                "src\\IMAGENES\\ARMAS\\gouba.png"
             ]
          },
-         "level":10,
+         "level":1,
          "cost":9.0
+      },
+      {
+         "scope":11,
+         "damage":6.0,
+         "explotionRange":11.0,
+         "levelIncrease":false,
+         "name":"Aquila favonia",
+         "isActive":true,
+         "armaAtaca":["FUEGO","AIRE","AGUA","MAGIA_BLANCA","MAGIA_NEGRA","ELECTRICIDAD","HIELO","ACIDO","ESPIRITUALIDAD","HIERRO"],
+         "aspect":{
+            "1":[
+               "src\\IMAGENES\\ARMAS\\AquilaFavonia.png"
+            ]
+         },
+         "level":1,
+         "cost":9.0
+      },
+      {
+         "scope":13,
+         "damage":6.0,
+         "explotionRange":11.0,
+         "levelIncrease":true,
+         "name":"Sacrificio",
+         "isActive":true,
+         "armaAtaca":["FUEGO","AIRE","AGUA","MAGIA_BLANCA","MAGIA_NEGRA","ELECTRICIDAD","HIELO","ACIDO","ESPIRITUALIDAD","HIERRO"],
+         "aspect":{
+            "1":[
+               "src\\IMAGENES\\ARMAS\\sacrificio.png"
+            ]
+         },
+         "level":1,
+         "cost":9.0
+      },
+      {
+         "scope":20,
+         "damage":33.0,
+         "explotionRange":11.0,
+         "levelIncrease":true,
+         "name":"Rompemontañas",
+         "isActive":true,
+         "armaAtaca":["FUEGO","AIRE","AGUA","MAGIA_BLANCA","MAGIA_NEGRA","ELECTRICIDAD","HIELO","ACIDO","ESPIRITUALIDAD","HIERRO"],
+         "aspect":{
+            "1":[
+               "src\\IMAGENES\\ARMAS\\rompemontañas.png"
+            ]
+         },
+         "level":1,
+         "cost":50.0
+      },
+      {
+         "scope":20,
+         "damage":33.0,
+         "explotionRange":11.0,
+         "levelIncrease":true,
+         "name":"Ballesta",
+         "isActive":true,
+         "armaAtaca":["FUEGO","AIRE","AGUA","MAGIA_BLANCA","MAGIA_NEGRA","ELECTRICIDAD","HIELO","ACIDO","ESPIRITUALIDAD","HIERRO"],
+         "aspect":{
+            "1":[
+               "src\\IMAGENES\\ARMAS\\ballesta.png"
+            ]
+         },
+         "level":1,
+         "cost":50.0
+      },
+      {
+         "scope":20,
+         "damage":33.0,
+         "explotionRange":11.0,
+         "levelIncrease":true,
+         "name":"Mistsplitter Reforged",
+         "isActive":true,
+         "armaAtaca":["FUEGO","AIRE","AGUA","MAGIA_BLANCA","MAGIA_NEGRA","ELECTRICIDAD","HIELO","ACIDO","ESPIRITUALIDAD","HIERRO"],
+         "aspect":{
+            "1":[
+               "src\\IMAGENES\\ARMAS\\Mistsplitter_Reforged.png"
+            ]
+         },
+         "level":1,
+         "cost":50.0
       }
+
    ]
 }
