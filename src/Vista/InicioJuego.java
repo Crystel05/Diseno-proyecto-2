@@ -159,6 +159,7 @@ public class InicioJuego implements Initializable {
 //            stage.setResizable(false);
 //            stage.show();
 //        }
+            testFor();//QUITAR
             equipoDatos.setNombreUsuario(nombreUsuario.getText());//Se puede validar luego
             controladorPantalla.enviarEquipoElegido(equipoDatos);
             Node source = (Node) event.getSource();
@@ -170,7 +171,7 @@ public class InicioJuego implements Initializable {
             Stage stage = new Stage();
             stage.setScene(scene);
             scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("CSS/textarea.css")).toExternalForm());
-            stage.setTitle("JUEGO PELEAS 1:1");
+            stage.setTitle("JUEGO PELEAS 1V1");
             stage.getIcons().add(new Image("Vista/Imágenes/ícono.png"));
             stage.setResizable(false);
             stage.show();
@@ -189,6 +190,17 @@ public class InicioJuego implements Initializable {
         }
 
     }
+
+    public void testFor(){
+        for(int i = 0;i<5;i++){
+            personajeEscogiendo = new GuerreroDatos(controladorPantalla.getPersonajes().get(i).getName());
+            for (int j = 0;j <5;j++){
+                personajeEscogiendo.addArma(controladorPantalla.getArmas().get(j).toString());
+            }
+            equipoDatos.addDatosGuerrero(personajeEscogiendo);
+        }
+    }
+
 
     public void cargarDatosIniciales(){
         ArrayList<String> personajes = new ArrayList<>();  //Agarrarlos de

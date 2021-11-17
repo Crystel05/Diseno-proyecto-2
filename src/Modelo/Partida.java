@@ -49,8 +49,7 @@ public class Partida extends Server{
         factory1 = new WeaponPrototypeFactory();
         factory2 = new CharacterPrototypeFactory();
         cargarFactorys();
-
-
+        jsonRanking = JsonRanking.getInstance();
     }
 
     public void addEquipo(Equipo equipo) {
@@ -268,10 +267,11 @@ public class Partida extends Server{
         Equipo equipoClonado = new Equipo();
         ArrayList<Personaje> guerrerosClonados = new ArrayList<>();
         for (GuerreroDatos datosGuerrero: equipoDatos.getDatosGuerreros()) {
-            Personaje personajeClonado = (Personaje) factory2.getPrototypeClone(datosGuerrero.getName());
+            Personaje personajeClonado = (Personaje) factory2.getPrototypeDeepClone(datosGuerrero.getName());
             for (String armaNombre:datosGuerrero.getNombresArmas()) {
-                Arma armaClonada = (Arma) factory1.getPrototypeClone(armaNombre);
-                personajeClonado.addWeapons(armaClonada);
+                System.out.println(armaNombre);
+                Arma armaClonada = (Arma) factory1.getPrototypeDeepClone(armaNombre);
+                personajeClonado.addArmas(armaClonada);
             }
             guerrerosClonados.add(personajeClonado);
         }
