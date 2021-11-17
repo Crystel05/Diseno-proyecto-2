@@ -13,6 +13,7 @@ public class CommandManager {
 
     private CommandManager(){
         comandos = new HashMap<>();
+        createCommands();
     }
 
     public static CommandManager getInstance(){

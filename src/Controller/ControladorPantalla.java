@@ -23,6 +23,7 @@ public class ControladorPantalla {
     ArrayList<Personaje> personajes;
     ArrayList<Arma> armas;
     InicioJuego inicioJuego;
+    PantallaJugador pantallaJugador;
 
 
     public static ControladorPantalla getInstance() {
@@ -51,8 +52,11 @@ public class ControladorPantalla {
         System.out.println("Se liga pantalla y controlador");
     }
 
+    public void setPantallaJugador(PantallaJugador pantallaJugador) {
+        this.pantallaJugador = pantallaJugador;
+    }
 
-    public void requestCommand(String key,String[] params) throws IOException, ClassNotFoundException {
+    public void requestCommand(String key, String[] params) throws IOException, ClassNotFoundException {
         CommandsE commandKey = CommandsE.valueOf(key.toUpperCase());
         client.request(new CommandRequest(commandKey,params,client.getClientId()));
     }

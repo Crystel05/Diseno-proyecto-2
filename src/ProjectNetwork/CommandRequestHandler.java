@@ -30,7 +30,8 @@ public class CommandRequestHandler implements IHandleRequest {
             case COMMAND:
                 CommandsE commandName = ((CommandRequest) request).getCommandType();//En nuestro caso tiene un enumarable que se llama tipo
                 String[] commandArgs = ((CommandRequest) request).getParams();//Devuelve el otro resto
-                ICommand command = CommandManager.getCommand(commandName);//Con este le pide al manager
+                System.out.println(commandName);
+                ICommand command = CommandManager.getInstance().getCommand(commandName);//Con este le pide al manager
                 command.execute(commandArgs);//Aca se hace el execute y pasa al Game
                 break;
             case CONNECT:

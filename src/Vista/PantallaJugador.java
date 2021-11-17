@@ -1,5 +1,6 @@
 package Vista;
 
+import CommandPattern.Enumerable.CommandsE;
 import Controller.ControladorPantalla;
 import Model.Weapon;
 import Modelo.Personaje;
@@ -29,6 +30,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class PantallaJugador implements Initializable {
@@ -515,6 +517,8 @@ public class PantallaJugador implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        controladorPantalla = ControladorPantalla.getInstance();
+        controladorPantalla.setPantallaJugador(this);
         llenarListas();
         cargarDatosRanking();
         cargarDatosCompetidores();
@@ -604,7 +608,8 @@ public class PantallaJugador implements Initializable {
                                 comandosMostrar.getChildren().add(in);
                                 comandosMostrar.getChildren().add(t);
 
-                                if (lineaComando.equals("error")) { //una lista de errores o mensajes
+
+                                if (!buscarComando(lineaComando)) { //una lista de errores o mensajes
                                     comandosMostrar.getChildren().add(new Text("\n"));
                                     Text error = new Text("Esto es un mensaje de error"); //cambiar este error por los errores que aparezcan
                                     error.setFill(Color.RED);
@@ -620,6 +625,13 @@ public class PantallaJugador implements Initializable {
                                     inicios.add(ini);
                                     comandosMostrar.getChildren().add(ini);
                                 }else{
+                                    try {
+                                        requestCommand();
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    } catch (ClassNotFoundException e) {
+                                        e.printStackTrace();
+                                    }
                                     if (cantComandos >= 9){
                                         ObservableList<Node> textos = comandosMostrar.getChildren();
                                         for (int i = textos.size()-1; i>=0; i--){
@@ -646,17 +658,26 @@ public class PantallaJugador implements Initializable {
                             }
                         }
                     }
+
+
                 });
             }
         });
     }
 
-    public void conexionAlServidor() throws IOException, ClassNotFoundException {
-        controladorPantalla.connectionRequest();
+    private boolean buscarComando(String lineaComando) {
+        String comando = lineaComando.split(" ")[0].toUpperCase();
+        for (CommandsE commandsE:
+        CommandsE.values()) {
+            if(commandsE.toString().equals(comando))
+                return true;
+        }
+        return false;
     }
 
-    public void requestCommand(){
-        //controladorPantalla.requestCommand(datosPantalla);
+    public void requestCommand() throws IOException, ClassNotFoundException {
+        String[] params = lineaComando.split(" ");
+        controladorPantalla.requestCommand(params[0], Arrays.copyOfRange(params,1,params.length));
     }
 
     public static void main(String[] args){

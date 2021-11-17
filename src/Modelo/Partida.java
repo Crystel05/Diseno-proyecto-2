@@ -29,7 +29,7 @@ public class Partida extends Server{
     private static Partida partida;
     public int PERSONAJES_POR_JUGADOR = 5;
 
-    private EjecutorComandos ejecutarComandos;
+    private EjecutorComandos ejecutarComandos = new EjecutorComandos();
 
     public Equipo[] equipos = new Equipo[2];
     //Referencia al prototypeManager de la libreria de proyecto 1
