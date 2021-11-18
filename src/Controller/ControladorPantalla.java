@@ -103,4 +103,12 @@ public class ControladorPantalla {
         }
     }
 
+    public void setDatosUsuario(Usuario usuario){
+        pantallaJugador.setDatosUsuario(usuario);
+    }
+
+    public void setDatosUsuarioEnemigo(Usuario usuario){
+        pantallaJugador.setDatosEnemigo(usuario);
+    }
+
 }

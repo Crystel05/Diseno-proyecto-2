@@ -59,8 +59,8 @@ public class Partida extends Server{
             this.equipos[1] = equipo;
             CommandServerSideClient client1 = (CommandServerSideClient) this.getClientes().get(0);
             CommandServerSideClient client2 = (CommandServerSideClient) this.getClientes().get(1);
-            client1.setEquipoEnemigo(client2.getEquipo());
             client2.setEquipoEnemigo(client1.getEquipo());
+            client1.setEquipoEnemigo(client2.getEquipo());
             try {
                 sendToClients("Empieza el juego");
                 updateUsuarios();
@@ -282,7 +282,6 @@ public class Partida extends Server{
         for (GuerreroDatos datosGuerrero: equipoDatos.getDatosGuerreros()) {
             Personaje personajeClonado = (Personaje) factory2.getPrototypeDeepClone(datosGuerrero.getName());
             for (String armaNombre:datosGuerrero.getNombresArmas()) {
-                System.out.println(armaNombre);
                 Arma armaClonada = (Arma) factory1.getPrototypeDeepClone(armaNombre);
                 personajeClonado.addArmas(armaClonada);
             }

@@ -464,24 +464,7 @@ public class PantallaJugador implements Initializable {
     }
 
     private void cargarDatosCompetidores(){
-        Usuario actual = controladorPantalla.getUsuario(); //cambiar esto por el usuario real
-        System.out.println(actual);
-        puestoMio.setText("#"+actual.getRanking());
-        ganadasMio.setText(String.valueOf(actual.getPartidasGanadas()));
-        perdidasMio.setText(String.valueOf(actual.getAtaquesFallados()));
-        falladasMio.setText(String.valueOf(actual.getAtaquesFallados()));
-        ataquesMio.setText(String.valueOf(actual.getAtaquesExitosos()));
-        rendicionesMio.setText(String.valueOf(actual.getRendiciones()));
 
-        Usuario contrincante = controladorPantalla.getUsuarioEnemigo(); //cambiar esto por el usuario real
-        System.out.println(contrincante);
-        puestoContra.setText("#"+contrincante.getRanking());
-        nombreContrincante.setText("("+contrincante.getNombre()+")");
-        ganadasContricante.setText(String.valueOf(contrincante.getPartidasGanadas()));
-        perdidasContrincante.setText(String.valueOf(contrincante.getPartidasPerdidas()));
-        ataquesCont.setText(String.valueOf(contrincante.getAtaquesExitosos()));
-        falladasContr.setText(String.valueOf(contrincante.getAtaquesFallados()));
-        rendicionesContr.setText(String.valueOf(contrincante.getRendiciones()));
     }
 
     private void cargarDatosAtaque(){
@@ -510,7 +493,7 @@ public class PantallaJugador implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         controladorPantalla = ControladorPantalla.getInstance();
-        controladorPantalla.setPantallaJugador(this);
+        controladorPantalla.setPantallaJugador(this);//Aqui hay un error en el segundo
         llenarListas();
         cargarDatosRanking();
         colocarPorcentajes();
@@ -676,5 +659,26 @@ public class PantallaJugador implements Initializable {
             int num = (int) (Math.random() * 100 + 1);
             System.out.println(num);
         }
+    }
+
+    public void setDatosUsuario(Usuario actual){
+        System.out.println(actual);
+        puestoMio.setText("#"+actual.getRanking());
+        ganadasMio.setText(String.valueOf(actual.getPartidasGanadas()));
+        perdidasMio.setText(String.valueOf(actual.getAtaquesFallados()));
+        falladasMio.setText(String.valueOf(actual.getAtaquesFallados()));
+        ataquesMio.setText(String.valueOf(actual.getAtaquesExitosos()));
+        rendicionesMio.setText(String.valueOf(actual.getRendiciones()));
+    }
+
+    public void setDatosEnemigo(Usuario contrincante) {
+        System.out.println(contrincante);
+        puestoContra.setText("#"+contrincante.getRanking());
+        //nombreContrincante.setText("("+contrincante.getNombre()+")");
+        ganadasContricante.setText(String.valueOf(contrincante.getPartidasGanadas()));
+        perdidasContrincante.setText(String.valueOf(contrincante.getPartidasPerdidas()));
+        ataquesCont.setText(String.valueOf(contrincante.getAtaquesExitosos()));
+        falladasContr.setText(String.valueOf(contrincante.getAtaquesFallados()));
+        rendicionesContr.setText(String.valueOf(contrincante.getRendiciones()));
     }
 }
