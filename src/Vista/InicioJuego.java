@@ -73,6 +73,7 @@ public class InicioJuego implements Initializable {
                 System.out.println("Armas son: " + equipoDatos.getDatosGuerreros());
                 personajeEscogiendo = null; //Limpiar objeto
                 equipoDatos = new EquipoDatos(); //Limpiar el objeto
+                cantPersonajes++;
             }
             else{
                 System.out.println("Se deben agregar 5 armas a cada personaje");
@@ -95,6 +96,7 @@ public class InicioJuego implements Initializable {
             if (cantArmasPersonaje < 5){
                 personajeEscogiendo.addArma(armasDisponibles.getSelectionModel().getSelectedItem());
                 cantArmasPersonaje = cantArmasPersonaje+1;
+
                 System.out.println("Arma escogida: " + armasDisponibles.getSelectionModel().getSelectedItem());
             }
             else{
@@ -106,11 +108,11 @@ public class InicioJuego implements Initializable {
         }
         //Aca se podria asignar las imagenes
         //recocorrer las armas que existen y
-        //  Weapon arma = armasDisponibles.getSelectionModel().getSelectedItem();
-//        String pathFoto = arma.getAspect().get(1).get(1); //CREO preguntar después
-//        InputStream stream = new FileInputStream(pathFoto);
-//        Image image = new Image(stream);
-//        previewArma.setImage(image);
+        Arma arma = controladorPantalla.getArmas().get(armasDisponibles.getSelectionModel().getSelectedIndex());
+        String pathFoto = arma.getAspect().get(1).get(0); //CREO preguntar después
+        InputStream stream = new FileInputStream(pathFoto);
+        Image image = new Image(stream);
+        previewArma.setImage(image);
 
     }
 
@@ -119,15 +121,15 @@ public class InicioJuego implements Initializable {
      * @param event
      */
     @FXML
-    void escogerPersonaje(ActionEvent event) {
+    void escogerPersonaje(ActionEvent event) throws FileNotFoundException {
 
         personajeEscogiendo = new GuerreroDatos(personajesDisponibles.getSelectionModel().getSelectedItem());
         System.out.println("Personaje escogido: "+ personajeEscogiendo.getName());
         //Aca se podria asignar las imagenes
-        //String pathFoto = personajeEscogiendo.getAspect().get(1).get(1); //CREO preguntar después
-//        InputStream stream = new FileInputStream(pathFoto);
-//        Image image = new Image(stream);
-//        previewPersonaje.setImage(image);
+        String pathFoto = controladorPantalla.getPersonajes().get(personajesDisponibles.getSelectionModel().getSelectedIndex()).getAspect().get(1).get(0); //CREO preguntar después
+        InputStream stream = new FileInputStream(pathFoto);
+        Image image = new Image(stream);
+        previewPersonaje.setImage(image);
     }
 
     @FXML
@@ -142,38 +144,27 @@ public class InicioJuego implements Initializable {
 
     @FXML
     void jugar(ActionEvent event) throws IOException, ClassNotFoundException {
-//        if (cantArmasPersonaje == 4) {
-//            Node source = (Node) event.getSource();
-//            Stage stageActual = (Stage) source.getScene().getWindow();
-//            stageActual.close();
-//
-//            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLS/pantallaJugador.fxml"));
-//            Parent root = fxmlLoader.load();
-//            Scene scene = new Scene(root);
-//            Stage stage = new Stage();
-//            stage.setScene(scene);
-//            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("CSS/textarea.css")).toExternalForm());
-//            stage.setTitle("JUEGO PELEAS 1:1");
-//            stage.getIcons().add(new Image("Vista/Imágenes/ícono.png"));
-//            stage.setResizable(false);
-//            stage.show();
-//        }
-            testFor();//QUITAR
+        testFor();
+
+        if (cantPersonajes == 4) {
             equipoDatos.setNombreUsuario(nombreUsuario.getText());//Se puede validar luego
             controladorPantalla.enviarEquipoElegido(equipoDatos);
             Node source = (Node) event.getSource();
             Stage stageActual = (Stage) source.getScene().getWindow();
             stageActual.close();
+
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLS/pantallaJugador.fxml"));
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
             scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("CSS/textarea.css")).toExternalForm());
-            stage.setTitle("JUEGO PELEAS 1V1");
+            stage.setTitle("JUEGO PELEAS 1:1");
             stage.getIcons().add(new Image("Vista/Imágenes/ícono.png"));
             stage.setResizable(false);
             stage.show();
+        }
+
     }
 
     @Override
@@ -191,12 +182,13 @@ public class InicioJuego implements Initializable {
     }
 
     public void testFor(){
-        for(int i = 0;i<5;i++){
+        for(int i = 0;i<4;i++){
             personajeEscogiendo = new GuerreroDatos(controladorPantalla.getPersonajes().get(i).getName());
             for (int j = 0;j <5;j++){
                 personajeEscogiendo.addArma(controladorPantalla.getArmas().get(j).toString());
             }
             equipoDatos.addDatosGuerrero(personajeEscogiendo);
+            cantPersonajes++;
         }
     }
 

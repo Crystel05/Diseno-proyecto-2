@@ -407,7 +407,7 @@ public class PantallaJugador implements Initializable {
     //Falta un guerrero
 
     private void ponerNombreArma(ArrayList<Arma> armas){
-        for (int i = 0; i<4; i++){
+        for (int i = 0; i<5; i++){
             armasPersonaje.get(i).setText(armas.get(i).getName());
         }
     }
@@ -506,7 +506,7 @@ public class PantallaJugador implements Initializable {
 
     private void cargarDatosEquipo() throws FileNotFoundException {
         ArrayList<Personaje> guerreros = controladorPantalla.getEquipo().getGuerreros();
-        for (int i = 0; i < guerreros.size()-1; i++){//todo:traer el otro guerrero
+        for (int i = 0; i < guerreros.size(); i++){//todo:traer el otro guerrero
             String pathFoto = guerreros.get(i).getAspect().get(1).get(0);//Hashbrown-Arraylist!!!
             FileInputStream stream = new FileInputStream(pathFoto);
             Image image = new Image(stream);
