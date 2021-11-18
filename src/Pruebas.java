@@ -70,13 +70,13 @@ public class Pruebas {
 
 
         jsonRanking = JsonRanking.getInstance();  //Se lee y se guardan user en array
-        /*System.out.println("print despues de leer");
-        System.out.println(jsonRanking.getUsuarios());
+        //System.out.println("print despues de leer");
+        //System.out.println(jsonRanking.getUsuarios());
 
-        Usuario u = jsonRanking.getUsuarios().get(0);  //Agarra el Personaje1
-        u.setNombre("PersonajeCambiado");  //Cambio objeto
+        Usuario u = jsonRanking.getUserClient("PersonajeCambiado") ; //Agarra el Personaje1
+        u.setNombre("Jou");  //Cambio objeto
         jsonRanking.updateJSON();  //Quiero actualizar
-        */
+
 
         
 

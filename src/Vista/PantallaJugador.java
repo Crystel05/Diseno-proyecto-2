@@ -6,6 +6,7 @@ import Model.Weapon;
 import Modelo.Arma;
 import Modelo.Personaje;
 import Modelo.Usuario;
+import Utils.JsonRanking;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -56,6 +57,8 @@ public class PantallaJugador implements Initializable {
     private ArrayList<Text> arma5 = new ArrayList<>();
     private ArrayList<ArrayList<Text>> porcentajes = new ArrayList<>();
     private ArrayList<ArrayList<Integer>> porcentajesFinales = new ArrayList<>();
+
+    private JsonRanking jsonRanking = JsonRanking.getInstance();
 
     @FXML
     private Text arma1At1;
@@ -363,6 +366,9 @@ public class PantallaJugador implements Initializable {
     @FXML
     private Text nombreContrincante;
 
+    public PantallaJugador() throws IOException {
+    }
+
     @FXML
     public void seleccionadoGuerrero1(MouseEvent event) throws FileNotFoundException {
         cargarDatosEquipo();//Provisional aca
@@ -478,14 +484,11 @@ public class PantallaJugador implements Initializable {
 
     private void cargarDatosRanking(){
         ArrayList<String> nombres = new ArrayList<>(); // agregar aquí el archivo o lista real
-        nombres.add("Manchas");
-        nombres.add("Manchas");
-        nombres.add("Manchas");
-        nombres.add("Manchas");
-        nombres.add("Manchas");
-        nombres.add("Manchas");
-        nombres.add("Manchas");
-        nombres.add("Manchas");
+
+        for(Usuario u: jsonRanking.getUsuarios()){
+            nombres.add(u.getNombre());
+        }
+
         for (int i = 0; i < nombres.size()-1; i++){
             rankingNames.get(i).setText(nombres.get(i));
         }
