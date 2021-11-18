@@ -30,6 +30,7 @@ public class CommandClientResponseHandler implements IHandleResponse {
             case MESSAGE:
                 MessageResponse messageResponse = (MessageResponse) request;
                 System.out.println(messageResponse.content);
+
                 break;
             case SENDWARIORS:
                 AvaliableWariorsResponse avaliableWariorsRequest = (AvaliableWariorsResponse) request;
