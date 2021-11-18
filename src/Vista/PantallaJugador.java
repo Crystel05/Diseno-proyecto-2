@@ -7,6 +7,7 @@ import Model.Weapon;
 import Modelo.Arma;
 import Modelo.Personaje;
 import Modelo.Usuario;
+import Utils.JsonRanking;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -57,6 +58,23 @@ public class PantallaJugador implements Initializable {
     private ArrayList<Text> arma5 = new ArrayList<>();
     private ArrayList<ArrayList<Text>> porcentajes = new ArrayList<>();
     private ArrayList<ArrayList<Integer>> porcentajesFinales = new ArrayList<>();
+
+    private JsonRanking jsonRanking = JsonRanking.getInstance();
+
+    @FXML
+    private Text nombreJugador;
+
+    @FXML
+    private Text tipoG1;
+
+    @FXML
+    private Text tipoG2;
+
+    @FXML
+    private Text tipoG3;
+
+    @FXML
+    private Text tipoG4;
 
     @FXML
     private Text arma1At1;
@@ -364,10 +382,12 @@ public class PantallaJugador implements Initializable {
     @FXML
     private Text nombreContrincante;
 
+    public PantallaJugador() throws IOException {
+    }
+
     @FXML
-    public void seleccionadoGuerrero1(MouseEvent event) throws FileNotFoundException {
-        cargarDatosEquipo();//Provisional aca
-        Personaje guerrero1 = controladorPantalla.getEquipo().getGuerreros().get(0);
+    public void seleccionadoGuerrero1(MouseEvent event){
+        Personaje guerrero1 = controladorPantalla.getPersonajes().get(0);
         nombreGuerreroUsando.setText(guerrero1.getName());
         porcentajeVidaUsando.setText(String.valueOf(guerrero1.getLife())); //no estoy segura de que sea así
         ArrayList<Arma> armas = guerrero1.getArmas();
@@ -405,24 +425,11 @@ public class PantallaJugador implements Initializable {
         escribirPorcentajes(armas);
     }
 
-    //Falta un guerrero
-
     private void ponerNombreArma(ArrayList<Arma> armas){
-        for (int i = 0; i<5; i++){
+        for (int i = 0; i<4; i++){
             armasPersonaje.get(i).setText(armas.get(i).getName());
         }
     }
-
-    /*private void colocarPorcentajes(){
-        for (int i = 0; i<5; i++){
-            ArrayList<Integer> porcentajesArma = new ArrayList<>();
-            for (int j = 0; j < 10; j++){
-                String porcentaje = porcentaje();//Esto tiene que pasar a ser los porcentajes de las armas
-                porcentajesArma.add(Integer.valueOf(Integer.valueOf(porcentaje)));
-            }
-            porcentajesFinales.add(porcentajesArma);
-        }
-    }*/
 
     private void escribirPorcentajes(ArrayList<Arma> armas){
         //System.out.println(armaIndex);
@@ -479,14 +486,11 @@ public class PantallaJugador implements Initializable {
 
     private void cargarDatosRanking(){
         ArrayList<String> nombres = new ArrayList<>(); // agregar aquí el archivo o lista real
-        nombres.add("Manchas");
-        nombres.add("Manchas");
-        nombres.add("Manchas");
-        nombres.add("Manchas");
-        nombres.add("Manchas");
-        nombres.add("Manchas");
-        nombres.add("Manchas");
-        nombres.add("Manchas");
+
+        for(Usuario u: jsonRanking.getUsuarios()){
+            nombres.add(u.getNombre());
+        }
+
         for (int i = 0; i < nombres.size()-1; i++){
             rankingNames.get(i).setText(nombres.get(i));
         }
@@ -520,6 +524,49 @@ public class PantallaJugador implements Initializable {
     @FXML
     public void agregarDatos(MouseEvent event){
         cargarDatosCompetidores();
+    }
+
+    private boolean buscarComando(String lineaComando) {
+        String comando = lineaComando.split(" ")[0].toUpperCase();
+        for (CommandsE commandsE:
+        CommandsE.values()) {
+            if(commandsE.toString().equals(comando))
+                return true;
+        }
+        return false;
+    }
+
+    public void requestCommand() throws IOException, ClassNotFoundException {
+        String[] params = lineaComando.split(" ");
+        controladorPantalla.requestCommand(params[0], Arrays.copyOfRange(params,1,params.length));
+    }
+
+    public static void main(String[] args){
+        for (int i = 0; i<100; i++) {
+            int num = (int) (Math.random() * 100 + 1);
+            System.out.println(num);
+        }
+    }
+
+    public void setDatosUsuario(Usuario actual){
+        System.out.println(actual);
+        nombreJugador.setText(actual.getNombre());
+        puestoMio.setText("#"+actual.getRanking());
+        ganadasMio.setText(String.valueOf(actual.getPartidasGanadas()));
+        perdidasMio.setText(String.valueOf(actual.getAtaquesFallados()));
+        falladasMio.setText(String.valueOf(actual.getAtaquesFallados()));
+        ataquesMio.setText(String.valueOf(actual.getAtaquesExitosos()));
+        rendicionesMio.setText(String.valueOf(actual.getRendiciones()));
+    }
+
+    public void setDatosEnemigo(Usuario contrincante) {
+        System.out.println(contrincante);
+        puestoContra.setText("#"+contrincante.getRanking());
+        ganadasContricante.setText(String.valueOf(contrincante.getPartidasGanadas()));
+        perdidasContrincante.setText(String.valueOf(contrincante.getPartidasPerdidas()));
+        ataquesCont.setText(String.valueOf(contrincante.getAtaquesExitosos()));
+        falladasContr.setText(String.valueOf(contrincante.getAtaquesFallados()));
+        rendicionesContr.setText(String.valueOf(contrincante.getRendiciones()));
     }
 
     @Override
@@ -658,62 +705,4 @@ public class PantallaJugador implements Initializable {
         });
     }
 
-    private void addError(String errorString){
-        comandosMostrar.getChildren().add(new Text("\n"));
-        Text error = new Text(errorString); //cambiar este error por los errores que aparezcan
-        error.setFill(Color.RED);
-        comandosHechos.add(error);
-        error.setFont(new Font("Eras Demi ITC", 15));
-        errores.add(error);
-        comandosMostrar.getChildren().add(error);
-        comandosMostrar.getChildren().add(new Text("\n"));
-        Text ini = new Text(">>");
-        ultimo = ini;
-        ini.setFont(new Font("Eras Demi ITC", 15));
-        ini.setFill(Color.GREEN);
-        inicios.add(ini);
-        comandosMostrar.getChildren().add(ini);
-    }
-
-    private CommandsE buscarComando(String lineaComando) {
-        String comando = lineaComando.split(" ")[0].toUpperCase();
-        for (CommandsE commandsE:
-        CommandsE.values()) {
-            if(commandsE.toString().equals(comando))
-                return commandsE;
-        }
-        return null;
-    }
-
-    public void requestCommand() throws IOException, ClassNotFoundException {
-        String[] params = lineaComando.split(" ");
-        controladorPantalla.requestCommand(params[0], Arrays.copyOfRange(params,1,params.length));
-    }
-
-    public static void main(String[] args){
-        for (int i = 0; i<100; i++) {
-            int num = (int) (Math.random() * 100 + 1);
-            System.out.println(num);
-        }
-    }
-
-    public void setDatosUsuario(Usuario actual){
-        System.out.println(actual);
-        puestoMio.setText("#"+actual.getRanking());
-        ganadasMio.setText(String.valueOf(actual.getPartidasGanadas()));
-        perdidasMio.setText(String.valueOf(actual.getAtaquesFallados()));
-        falladasMio.setText(String.valueOf(actual.getAtaquesFallados()));
-        ataquesMio.setText(String.valueOf(actual.getAtaquesExitosos()));
-        rendicionesMio.setText(String.valueOf(actual.getRendiciones()));
-    }
-
-    public void setDatosEnemigo(Usuario contrincante) {
-        System.out.println(contrincante);
-        puestoContra.setText("#"+contrincante.getRanking());
-        ganadasContricante.setText(String.valueOf(contrincante.getPartidasGanadas()));
-        perdidasContrincante.setText(String.valueOf(contrincante.getPartidasPerdidas()));
-        ataquesCont.setText(String.valueOf(contrincante.getAtaquesExitosos()));
-        falladasContr.setText(String.valueOf(contrincante.getAtaquesFallados()));
-        rendicionesContr.setText(String.valueOf(contrincante.getRendiciones()));
-    }
 }

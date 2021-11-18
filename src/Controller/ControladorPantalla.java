@@ -62,7 +62,7 @@ public class ControladorPantalla {
     }
 
     public void connectionRequest() throws IOException, ClassNotFoundException {
-        client = new CommandGameClient("localhost",6000,new CommandClientResponseHandler());
+        client = new CommandGameClient("localhost",6001,new CommandClientResponseHandler());
         client.request(new ConnectRequest());//Asegurarme que el response de esta conexion me de todos los datos que necesito para la pantalla.
     }
 

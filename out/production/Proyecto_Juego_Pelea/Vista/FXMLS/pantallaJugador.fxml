@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-<?import javafx.scene.text.TextFlow?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1279.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.PantallaJugador">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1279.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.PantallaJugador">
    <children>
       <Pane layoutX="5.0" layoutY="5.0" prefHeight="186.0" prefWidth="217.0" style="-fx-background-color: BLACK;">
          <children>
@@ -69,52 +67,52 @@
                   <Font name="Berlin Sans FB Demi Bold" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="nomR1" fill="#028894" layoutX="46.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+            <Text fx:id="nomR1" fill="#028894" layoutX="46.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="nomR7" fill="#028894" layoutX="46.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+            <Text fx:id="nomR7" fill="#028894" layoutX="46.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="nomR8" fill="#028894" layoutX="46.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+            <Text fx:id="nomR8" fill="#028894" layoutX="46.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="nomR9" fill="#028894" layoutX="46.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+            <Text fx:id="nomR9" fill="#028894" layoutX="46.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="nomR10" fill="#028894" layoutX="46.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+            <Text fx:id="nomR10" fill="#028894" layoutX="46.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="nomR3" fill="#028894" layoutX="46.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+            <Text fx:id="nomR3" fill="#028894" layoutX="46.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="nomR4" fill="#028894" layoutX="46.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+            <Text fx:id="nomR4" fill="#028894" layoutX="46.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="nomR5" fill="#028894" layoutX="46.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+            <Text fx:id="nomR5" fill="#028894" layoutX="46.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="nomR6" fill="#028894" layoutX="46.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+            <Text fx:id="nomR6" fill="#028894" layoutX="46.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="nomR2" fill="#028894" layoutX="46.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+            <Text fx:id="nomR2" fill="#028894" layoutX="46.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
                </font>

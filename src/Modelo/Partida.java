@@ -44,6 +44,7 @@ public class Partida extends Server{
         factory2 = new CharacterPrototypeFactory();
         cargarFactorys();
         jsonRanking = JsonRanking.getInstance();
+
     }
 
     public void addEquipo(Equipo equipo) {
@@ -102,11 +103,13 @@ public class Partida extends Server{
         return  null;
     }
 
-
+     /**
+     * Al finalizar actualiza los cambios en el usuario
+     */
     public void endGame() throws IOException {
         ejecutarComandos.setCanExecute(false);
         sendToClients("Game is over");
-        //TODO: Guardar los tados de l usuario actualizado Actualizar los datos de los usuarios.
+        jsonRanking.updateJSON();
     }
 
 
@@ -306,10 +309,12 @@ public class Partida extends Server{
 
         if (jsonRanking.checkClient(equipoDatos.getNombre())){  //Si el usuario ya existia se lo trae
             equipoClonado.setUsuario(jsonRanking.getUserClient(equipoDatos.getNombre()));
+            System.out.println("Recuperando user...");
         }
         else{
             jsonRanking.writeJSON(new Usuario(equipoDatos.getNombre()));
             equipoClonado.setUsuario(jsonRanking.getUserClient(equipoDatos.getNombre()));
+            System.out.println("Creando nuevo user...");
         }
         addEquipo(equipoClonado);
         return equipoClonado;

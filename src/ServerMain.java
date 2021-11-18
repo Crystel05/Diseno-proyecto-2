@@ -11,9 +11,8 @@ public class ServerMain {
 
     public static void main(String[] args) {
         try {
-            Partida.createInstance(6000, new CommandRequestHandler());
+            Partida.createInstance(6001, new CommandRequestHandler());
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("WHAT");
             e.printStackTrace();
         }
     }
