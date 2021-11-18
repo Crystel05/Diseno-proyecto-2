@@ -16,6 +16,6 @@ public class RechargeWeapon extends BaseCommand{
 
     @Override
     public void execute(String[] params,int clientId) throws IOException {
-        Partida.getInstance().rechargeCommand(params[0]);
+        Partida.getInstance().rechargeCommand(params[0],clientId);
     }
 }

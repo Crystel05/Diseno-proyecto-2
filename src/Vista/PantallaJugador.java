@@ -386,8 +386,9 @@ public class PantallaJugador implements Initializable {
     }
 
     @FXML
-    public void seleccionadoGuerrero1(MouseEvent event){
-        Personaje guerrero1 = controladorPantalla.getPersonajes().get(0);
+    public void seleccionadoGuerrero1(MouseEvent event) throws FileNotFoundException {
+        cargarDatosEquipo();
+        Personaje guerrero1 = controladorPantalla.getEquipo().getGuerreros().get(0);
         nombreGuerreroUsando.setText(guerrero1.getName());
         porcentajeVidaUsando.setText(String.valueOf(guerrero1.getLife())); //no estoy segura de que sea así
         ArrayList<Arma> armas = guerrero1.getArmas();
@@ -426,7 +427,7 @@ public class PantallaJugador implements Initializable {
     }
 
     private void ponerNombreArma(ArrayList<Arma> armas){
-        for (int i = 0; i<4; i++){
+        for (int i = 0; i<5; i++){
             armasPersonaje.get(i).setText(armas.get(i).getName());
         }
     }
@@ -660,10 +661,21 @@ public class PantallaJugador implements Initializable {
                                 comandosMostrar.getChildren().add(in);
                                 comandosMostrar.getChildren().add(t);
 
-                                CommandsE comand = buscarComando(lineaComando);
-                                if (comand == null) { //una lista de errores o mensajes
-                                    addError("No existe el comando");
-                                }else {
+                                if (!buscarComando(lineaComando)) { //una lista de errores o mensajes
+                                    comandosMostrar.getChildren().add(new Text("\n"));
+                                    Text error = new Text("No existe el comando"); //cambiar este error por los errores que aparezcan
+                                    error.setFill(Color.RED);
+                                    comandosHechos.add(error);
+                                    error.setFont(new Font("Eras Demi ITC", 15));
+                                    errores.add(error);
+                                    comandosMostrar.getChildren().add(error);
+                                    comandosMostrar.getChildren().add(new Text("\n"));
+                                    Text ini = new Text(">>");
+                                    ultimo = ini;
+                                    ini.setFont(new Font("Eras Demi ITC", 15));
+                                    ini.setFill(Color.GREEN);
+                                    inicios.add(ini);
+                                    comandosMostrar.getChildren().add(ini);                                }else {
                                         try {
                                             requestCommand();
                                         } catch (IOException e) {

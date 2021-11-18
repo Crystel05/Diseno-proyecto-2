@@ -115,51 +115,94 @@ public class Partida extends Server{
 
     //Esto puede hacer la calidaciones y luego enviarlas a los metodos del ejecutor.
 
-    public void attackCommand(String guerreroString,String armaString) throws IOException {
-       /* if(){
-
-        }*/
-        Personaje guerrero = equipos[inTurn].getGuerrero(guerreroString);
-        if(guerrero != null){
-            Arma arma = guerrero.getArma(armaString);
-            ejecutarComandos.attack(guerrero,arma);
-            nextTurn();
-            updateUsuarios();
-            updateUsuarios();
+    public void attackCommand(String guerreroString,String armaString,int clientId) throws IOException {
+       if(isInTurn(clientId)){
+           Personaje guerrero = equipos[inTurn].getGuerrero(guerreroString);
+           if(guerrero != null){
+               if(guerrero.isAlive()){
+                   Arma arma = guerrero.getArma(armaString);
+                   if(arma != null){
+                       ejecutarComandos.attack(guerrero,arma);
+                       nextTurn();
+                       updateUsuarios();
+                   }
+                   else {
+                       directMessageInTurn("El arma "+ armaString +" no existe");
+                   }
+               }
+               else {
+                   directMessageInTurn("El personaje"+ guerreroString+" esta muerto");
+               }
+           }
+           else {
+               directMessageInTurn("El personaje" +guerreroString+" no existe");//Esto puede cambiar a enviar errores para que el cliente los trate diferente
+           }
         }
-        else {
-            directMessageInTurn("El personaje no existe");
-        }
-
+       else {
+           directMessageInTurn("No esta en su turno");
+       }
     }
 
+    public boolean isInTurn(int clientId){
+        return ((CommandServerSideClient)getClientes().get(clientId)).getEquipo().isInTurn();
+    }
 
-    public void doubleAttack(String guerreroName1,String armaName1,String guerreroName2,String armaName2) throws IOException {
-        if(getEquipoInTurn().isComodin()){
-            Personaje guerrero1 = equipos[inTurn].getGuerrero(guerreroName1);
-            Personaje guerrero2 = equipos[inTurn].getGuerrero(guerreroName2);
-            Arma arma1 = guerrero1.getArma(armaName1);
-            Arma arma2 = guerrero2.getArma(armaName2);
-            ejecutarComandos.doubleAttack(guerrero1,arma1,guerrero2,arma2);
-            nextTurn();
+    public void doubleAttack(String guerreroName1,String armaName1,String guerreroName2,String armaName2,int clientId) throws IOException {
+        if(isInTurn(clientId)){
+            if(getEquipoInTurn().isComodin()){
+                Personaje guerrero1 = equipos[inTurn].getGuerrero(guerreroName1);
+                Personaje guerrero2 = equipos[inTurn].getGuerrero(guerreroName2);
+                if(guerrero1 != null && guerrero2 != null){
+                    Arma arma1 = guerrero1.getArma(armaName1);
+                    Arma arma2 = guerrero2.getArma(armaName2);
+                    if(arma1 != null && arma2 != null){
+                        ejecutarComandos.doubleAttack(guerrero1,arma1,guerrero2,arma2);
+                        nextTurn();
+                    }
+                    else {
+                        directMessageInTurn("Error con nombre de armas");
+                    }
+                }
+                else {
+                    directMessageInTurn("Error con nombre de guerreros.");
+                }
+            }
+            else {
+                directMessageInTurn("No disponible el comodin");
+            }
         }
-        else {
-            sendToClients("No disponible el comodin");
-        }
+        else{
+       }
         updateUsuarios();
 
     }
 
-    public void doubleWeapon(String guerreroName,String armaName1,String armaName2) throws IOException {
-        if(getEquipoInTurn().isComodin()){
-            Personaje guerrero = equipos[inTurn].getGuerrero(guerreroName);
-            Arma arma1 = guerrero.getArma(armaName1);
-            Arma arma2 = guerrero.getArma(armaName2);
-            ejecutarComandos.doubleWeapon(guerrero,arma1,arma2);
-            nextTurn();//Pasa el turno solo
+    public void doubleWeapon(String guerreroName,String armaName1,String armaName2,int clientId) throws IOException {
+        if(isInTurn(clientId)){
+            if(getEquipoInTurn().isComodin()){
+                Personaje guerrero = equipos[inTurn].getGuerrero(guerreroName);
+                if(guerrero != null){
+                    Arma arma1 = guerrero.getArma(armaName1);
+                    Arma arma2 = guerrero.getArma(armaName2);
+                    if(arma1 != null && arma2 != null){
+                        ejecutarComandos.doubleWeapon(guerrero,arma1,arma2);
+                        nextTurn();//Pasa el turno solo
+                    }
+                    else {
+                        directMessageInTurn("Error con nombre de armas");
+                    }
+                }
+                else {
+                    directMessageInTurn("El personaje" +guerreroName+" no existe");//Esto puede cambiar a enviar errores para que el cliente los trate diferente
+                }
+            }
+            else {
+                directMessageInTurn("No disponible el comodin");
+            }
         }
         else {
-            sendToClients("No disponible el comodin");
+            directMessageInTurn("No esta en su turno");
+
         }
         updateUsuarios();
     }
@@ -175,9 +218,15 @@ public class Partida extends Server{
             ejecutarComandos.mutualExit();
         updateUsuarios();
     }
-    public void passTurnCommand() throws IOException {
-        ejecutarComandos.passTurn();
-        updateUsuarios();
+    public void passTurnCommand(int clientId) throws IOException {
+        if(isInTurn(clientId)){
+            ejecutarComandos.passTurn();
+            updateUsuarios();
+        }
+        else {
+            directMessageInTurn("No esta en su turno");
+
+        }
     }
     public void chatCommand(String message,int client) throws IOException {
         directMessage(message,client);
@@ -188,10 +237,22 @@ public class Partida extends Server{
         updateUsuarios();
     }
 
-    public void rechargeCommand(String guerreroString) throws IOException {
-        Personaje guerrero = equipos[inTurn].getGuerrero(guerreroString);//Se usa para buscar guerreros
-        ejecutarComandos.rechargeWeapon(guerrero);
-        updateUsuarios();
+    public void rechargeCommand(String guerreroString,int clientId) throws IOException {
+        if(isInTurn(clientId)){
+            Personaje guerrero = equipos[inTurn].getGuerrero(guerreroString);//Se usa para buscar guerreros
+            if(guerrero != null) {
+                ejecutarComandos.rechargeWeapon(guerrero);
+                updateUsuarios();
+            }
+            else {
+                directMessageInTurn("El personaje" +guerreroString+" no existe");//Esto puede cambiar a enviar errores para que el cliente los trate diferente
+            }
+        }
+        else {
+            directMessageInTurn("No esta en su turno");
+
+        }
+
     }
 
     public void selectPlayerCommand() throws IOException {

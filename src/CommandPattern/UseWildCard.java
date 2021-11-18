@@ -18,7 +18,7 @@ public class UseWildCard extends BaseCommand{
         if(params.length == 3){ // doble arma
             Partida.getInstance().doubleWeapon(params[0],params[1],params[2]);
         }else {
-            Partida.getInstance().doubleAttack(params[0],params[1],params[2],params[3]);
+            Partida.getInstance().doubleAttack(params[0],params[1],params[2],params[3],clientId);
         }
     }
 }
