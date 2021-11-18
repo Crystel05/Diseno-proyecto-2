@@ -61,7 +61,6 @@ public class Partida extends Server{
             CommandServerSideClient client2 = (CommandServerSideClient) this.getClientes().get(1);
             client1.setEquipoEnemigo(client2.getEquipo());
             client2.setEquipoEnemigo(client1.getEquipo());
-            //this.getClientes().get(1);
             try {
                 sendToClients("Empieza el juego");
                 updateUsuarios();
@@ -296,6 +295,7 @@ public class Partida extends Server{
         }
         else{
             jsonRanking.writeJSON(new Usuario(equipoDatos.getNombre()));
+            equipoClonado.setUsuario(jsonRanking.getUserClient(equipoDatos.getNombre()));
         }
         addEquipo(equipoClonado);
         return equipoClonado;
