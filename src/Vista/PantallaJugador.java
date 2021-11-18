@@ -3,7 +3,6 @@ package Vista;
 import CommandPattern.Enumerable.CommandsE;
 import Controller.ControladorPantalla;
 import Model.Weapon;
-import Modelo.Arma;
 import Modelo.Personaje;
 import Modelo.Usuario;
 import Utils.JsonRanking;
@@ -370,14 +369,14 @@ public class PantallaJugador implements Initializable {
     }
 
     @FXML
-    public void seleccionadoGuerrero1(MouseEvent event) throws FileNotFoundException {
-        cargarDatosEquipo();//Provisional aca
-        Personaje guerrero1 = controladorPantalla.getEquipo().getGuerreros().get(0);
-        nombreGuerreroUsando.setText(guerrero1.getName());
-        porcentajeVidaUsando.setText(String.valueOf(guerrero1.getLife())); //no estoy segura de que sea así
+    public void seleccionadoGuerrero1(MouseEvent event){
+
+        Personaje guerrero1 = controladorPantalla.getPersonajes().get(0);
+//        nombreGuerreroUsando.setText(guerrero1.getName());
+//        porcentajeVidaUsando.setText(String.valueOf(guerrero1.getLife())); //no estoy segura de que sea así
         ArrayList<Arma> armas = guerrero1.getArmas();
         ponerNombreArma(armas);
-        escribirPorcentajes(armas);
+        escribirPorcentajes(0);
     }
 
     @FXML
@@ -410,10 +409,8 @@ public class PantallaJugador implements Initializable {
         escribirPorcentajes(armas);
     }
 
-    //Falta un guerrero
-
     private void ponerNombreArma(ArrayList<Arma> armas){
-        for (int i = 0; i<5; i++){
+        for (int i = 0; i<4; i++){
             armasPersonaje.get(i).setText(armas.get(i).getName());
         }
     }
