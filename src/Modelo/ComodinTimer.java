@@ -2,7 +2,7 @@ package Modelo;
 
 public class ComodinTimer extends Thread{
 
-    final int MINUTOS = 5;
+    final int MINUTOS = 1;
     int time = 60*MINUTOS;
 
     @Override

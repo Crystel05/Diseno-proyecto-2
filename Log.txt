@@ -1,2 +1,42 @@
 
-Haciendo 2 de dano aDiluc
+Ataque Doble Arma
+Attack
+klee ataca con Gouba
+Haciendo 21 de dano aklee
+Haciendo 9 de dano aNoelle
+Haciendo 0 de dano aQiqi
+Haciendo 1 de dano aDiluc
+Attack
+klee ataca con Sacrificio
+Haciendo 3 de dano aQiqi
+Haciendo 4 de dano aDiluc
+Attack
+klee ataca con Gouba
+Haciendo 4 de dano aklee
+Haciendo 3 de dano aNoelle
+Haciendo 7 de dano aQiqi
+Haciendo 15 de dano aDiluc
+Attack
+klee ataca con Gouba
+Haciendo 9 de dano aklee
+Haciendo 15 de dano aNoelle
+Haciendo 4 de dano aQiqi
+Haciendo 18 de dano aDiluc
+Attack
+klee ataca con Gouba
+Haciendo 17 de dano aklee
+Haciendo 9 de dano aNoelle
+Haciendo 3 de dano aQiqi
+Haciendo 0 de dano aDiluc
+Attack
+klee ataca con Gouba
+Haciendo 6 de dano aklee
+Haciendo 1 de dano aNoelle
+Haciendo 24 de dano aQiqi
+Haciendo 5 de dano aDiluc
+Attack
+klee ataca con Gouba
+Haciendo 10 de dano aklee
+Haciendo 8 de dano aNoelle
+Haciendo 11 de dano aQiqi
+Haciendo 0 de dano aDiluc

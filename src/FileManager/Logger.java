@@ -29,7 +29,7 @@ public class Logger {
 
     public static  void addToLogger(String addedCommand){
         try {
-            FileWriter myWriter = new FileWriter("Log.txt");
+            FileWriter myWriter = new FileWriter("Log.txt",true);
             myWriter.write("\n"+addedCommand);
             myWriter.close();
             System.out.println("Successfully wrote to the file.");

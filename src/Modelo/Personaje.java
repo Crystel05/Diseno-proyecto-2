@@ -36,6 +36,13 @@ public class Personaje extends Character implements Serializable {
         }
     }
 
+    public void emptyWeapons() {
+        for (Arma weapon:getArmas()) {
+            Arma arma =  weapon;
+            arma.setActive(false);
+        }
+    }
+
     public Arma getArma(String armaString) {
         for (Arma arma:getArmas()){
             if(arma.getName().equals(armaString)) {

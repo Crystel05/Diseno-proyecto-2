@@ -9,6 +9,7 @@ import Network.Server.Server;
 import ProjectNetwork.CommandRequestHandler;
 import ProjectNetwork.CommandServerSideClient;
 import ProjectNetwork.Responses.AttackInfoResponse;
+import ProjectNetwork.Responses.DanoHechoResponse;
 import ProjectNetwork.Responses.MessageResponse;
 import Utils.JsonLoader;
 import Utils.JsonRanking;
@@ -112,12 +113,21 @@ public class Partida extends Server{
     //Esto puede hacer la calidaciones y luego enviarlas a los metodos del ejecutor.
 
     public void attackCommand(String guerreroString,String armaString) throws IOException {
-            Personaje guerrero = equipos[inTurn].getGuerrero(guerreroString);
+       /* if(){
+
+        }*/
+        Personaje guerrero = equipos[inTurn].getGuerrero(guerreroString);
+        if(guerrero != null){
             Arma arma = guerrero.getArma(armaString);
             ejecutarComandos.attack(guerrero,arma);
             nextTurn();
-        updateUsuarios();
-        updateUsuarios();
+            updateUsuarios();
+            updateUsuarios();
+        }
+        else {
+            directMessageInTurn("El personaje no existe");
+        }
+
     }
 
 
@@ -212,6 +222,15 @@ public class Partida extends Server{
         //No se si tiene que existir
         CommandServerSideClient client = (CommandServerSideClient)getClientes().get(0);
         MessageResponse response = new MessageResponse(string);
+        if(client.getEquipo().isInTurn())
+            client.getResponseSender().sendResponse(response);
+        else
+            getClientes().get(1).getResponseSender().sendResponse(response);
+    }
+
+    public void directMessageInTurn(int dano) throws IOException {
+        CommandServerSideClient client = (CommandServerSideClient)getClientes().get(0);
+        DanoHechoResponse response = new DanoHechoResponse(dano);
         if(client.getEquipo().isInTurn())
             client.getResponseSender().sendResponse(response);
         else

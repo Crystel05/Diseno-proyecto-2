@@ -1,5 +1,6 @@
 package Vista;
 
+import CommandPattern.CommandManager;
 import CommandPattern.Enumerable.CommandsE;
 import Controller.ControladorPantalla;
 import Model.Weapon;
@@ -497,7 +498,8 @@ public class PantallaJugador implements Initializable {
     }
 
     private void cargarDatosAtaque(){
-        
+        //Poner lo que es enviado por el comando
+        //Poner lo que llega del ataque hecho
     }
 
     private void cargarDatosAtacado(){
@@ -588,6 +590,7 @@ public class PantallaJugador implements Initializable {
                         }else{
                             borrando = false;
                             if (event.getCode() == KeyCode.ENTER) {
+
                                 cantComandos ++;
                                 String[] comandos = newValue.split("\n");
                                 lineaComando = comandos[comandos.length-1]; //este es el comando
@@ -610,52 +613,40 @@ public class PantallaJugador implements Initializable {
                                 comandosMostrar.getChildren().add(in);
                                 comandosMostrar.getChildren().add(t);
 
+                                CommandsE comand = buscarComando(lineaComando);
+                                if (comand == null) { //una lista de errores o mensajes
+                                    addError("No existe el comando");
+                                }else {
+                                        try {
+                                            requestCommand();
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        } catch (ClassNotFoundException e) {
+                                            e.printStackTrace();
+                                        }
+                                        if (cantComandos >= 9) {
+                                            ObservableList<Node> textos = comandosMostrar.getChildren();
+                                            for (int i = textos.size() - 1; i >= 0; i--) {
+                                                comandosMostrar.getChildren().remove(textos.get(i));
+                                            }
+                                            for (int i = nuevo; i < comandosHechos.size(); i++) {
+                                                Text inicio = new Text(">>");
+                                                inicio.setFill(Color.GREEN);
+                                                inicio.setFont(new Font("Eras Demi ITC", 15));
+                                                comandosMostrar.getChildren().add(new Text("\n"));
+                                                comandosMostrar.getChildren().add(inicio);
+                                                comandosMostrar.getChildren().add(comandosHechos.get(i));
+                                            }
+                                            nuevo++;
+                                        }
+                                        Text inicio = new Text(">>");
+                                        ultimo = inicio;
+                                        inicio.setFont(new Font("Eras Demi ITC", 15));
+                                        inicio.setFill(Color.GREEN);
+                                        inicios.add(inicio);
+                                        comandosMostrar.getChildren().add(new Text("\n"));
+                                        comandosMostrar.getChildren().add(inicio);
 
-                                if (!buscarComando(lineaComando)) { //una lista de errores o mensajes
-                                    comandosMostrar.getChildren().add(new Text("\n"));
-                                    Text error = new Text("Esto es un mensaje de error"); //cambiar este error por los errores que aparezcan
-                                    error.setFill(Color.RED);
-                                    comandosHechos.add(error);
-                                    error.setFont(new Font("Eras Demi ITC", 15));
-                                    errores.add(error);
-                                    comandosMostrar.getChildren().add(error);
-                                    comandosMostrar.getChildren().add(new Text("\n"));
-                                    Text ini = new Text(">>");
-                                    ultimo = ini;
-                                    ini.setFont(new Font("Eras Demi ITC", 15));
-                                    ini.setFill(Color.GREEN);
-                                    inicios.add(ini);
-                                    comandosMostrar.getChildren().add(ini);
-                                }else{
-                                    try {
-                                        requestCommand();
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    } catch (ClassNotFoundException e) {
-                                        e.printStackTrace();
-                                    }
-                                    if (cantComandos >= 9){
-                                        ObservableList<Node> textos = comandosMostrar.getChildren();
-                                        for (int i = textos.size()-1; i>=0; i--){
-                                            comandosMostrar.getChildren().remove(textos.get(i));
-                                        }
-                                        for (int i = nuevo; i<comandosHechos.size(); i++){
-                                            Text inicio = new Text(">>");
-                                            inicio.setFill(Color.GREEN);
-                                            inicio.setFont(new Font("Eras Demi ITC", 15));
-                                            comandosMostrar.getChildren().add(new Text("\n"));
-                                            comandosMostrar.getChildren().add(inicio);
-                                            comandosMostrar.getChildren().add(comandosHechos.get(i));
-                                        }
-                                        nuevo++;
-                                    }
-                                    Text inicio = new Text(">>");
-                                    ultimo = inicio;
-                                    inicio.setFont(new Font("Eras Demi ITC", 15));
-                                    inicio.setFill(Color.GREEN);
-                                    inicios.add(inicio);
-                                    comandosMostrar.getChildren().add(new Text("\n"));
-                                    comandosMostrar.getChildren().add(inicio);
                                 }
                             }
                         }
@@ -667,14 +658,31 @@ public class PantallaJugador implements Initializable {
         });
     }
 
-    private boolean buscarComando(String lineaComando) {
+    private void addError(String errorString){
+        comandosMostrar.getChildren().add(new Text("\n"));
+        Text error = new Text(errorString); //cambiar este error por los errores que aparezcan
+        error.setFill(Color.RED);
+        comandosHechos.add(error);
+        error.setFont(new Font("Eras Demi ITC", 15));
+        errores.add(error);
+        comandosMostrar.getChildren().add(error);
+        comandosMostrar.getChildren().add(new Text("\n"));
+        Text ini = new Text(">>");
+        ultimo = ini;
+        ini.setFont(new Font("Eras Demi ITC", 15));
+        ini.setFill(Color.GREEN);
+        inicios.add(ini);
+        comandosMostrar.getChildren().add(ini);
+    }
+
+    private CommandsE buscarComando(String lineaComando) {
         String comando = lineaComando.split(" ")[0].toUpperCase();
         for (CommandsE commandsE:
         CommandsE.values()) {
             if(commandsE.toString().equals(comando))
-                return true;
+                return commandsE;
         }
-        return false;
+        return null;
     }
 
     public void requestCommand() throws IOException, ClassNotFoundException {
