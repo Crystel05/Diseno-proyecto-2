@@ -23,6 +23,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class Partida extends Server{
 
@@ -300,6 +301,14 @@ public class Partida extends Server{
         return equipoClonado;
     }
 
+    public ArrayList <Integer> generateDamages(){
+        ArrayList<Integer> damages = new ArrayList<>();
+        for (int i=0; i<10; i++){
+            int numero = (int) (Math.random() * 40 + 20);
+            damages.add(numero);
+        }
+        return damages;
+    }
 
 
 }

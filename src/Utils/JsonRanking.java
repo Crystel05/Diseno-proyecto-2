@@ -95,7 +95,7 @@ public class JsonRanking {
 
     public boolean checkClient(String name){
         for (Usuario u: getUsuarios()){
-            if (u.getNombre() == name){
+            if (u.getNombre().equals(name)){
                 return true;
             }
         }
@@ -104,7 +104,7 @@ public class JsonRanking {
 
     public Usuario getUserClient(String name){
         for (Usuario u: getUsuarios()){
-            if (u.getNombre() == name){
+            if (u.getNombre().equals(name)){  //Equals para strings :)
                 return u;
             }
         }

@@ -7,6 +7,7 @@
          "levelRequired":12,
          "direction":"WEST",
          "name":"Qiqi",
+         "tipo": "HIELO",
          "aspect":{
             "1":[
                "src\\IMAGENES\\ARMAS\\qiqi.png"
@@ -22,6 +23,7 @@
          "levelRequired":1,
          "direction":"WEST",
          "name":"Diluc",
+         "tipo": "AIRE",
          "aspect":{
             "1":[
                "src\\IMAGENES\\ARMAS\\diluc.png"
@@ -37,6 +39,7 @@
          "levelRequired":2,
          "direction":"WEST",
          "name":"diona",
+         "tipo": "AGUA",
          "aspect":{
             "1":[
                "src\\IMAGENES\\ARMAS\\diona.png"
@@ -52,6 +55,7 @@
          "levelRequired":15,
          "direction":"WEST",
          "name":"klee",
+         "tipo": "MAGIA_BLANCA",
          "aspect":{
             "1":[
                "src\\IMAGENES\\ARMAS\\klee.png"
@@ -67,6 +71,7 @@
          "levelRequired":1,
          "direction":"WEST",
          "name":"Noelle",
+         "tipo": "ELECTRICIDAD",
          "aspect":{
             "1":[
                "src\\IMAGENES\\ARMAS\\noelle.png"
@@ -82,6 +87,7 @@
          "levelRequired":12,
          "direction":"WEST",
          "name":"Xinyan",
+         "tipo": "FUEGO",
          "aspect":{
             "1":[
                "src\\IMAGENES\\ARMAS\\xinyan.png"
@@ -97,6 +103,7 @@
          "levelRequired":12,
          "direction":"WEST",
          "name":"Viajero",
+         "tipo": "ESPIRITUALIDAD",
          "aspect":{
             "1":[
                "src\\IMAGENES\\ARMAS\\viajero.png"
