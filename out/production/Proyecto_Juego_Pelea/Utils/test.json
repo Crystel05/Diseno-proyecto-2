@@ -10,7 +10,7 @@
          "tipo": "HIELO",
          "aspect":{
             "1":[
-               "src\\IMAGENES\\ARMAS\\qiqi.png"
+               "src\\IMAGENES\\PERSONAJES\\qiqi.png"
             ]
          },
          "level":1,
@@ -26,7 +26,7 @@
          "tipo": "AIRE",
          "aspect":{
             "1":[
-               "src\\IMAGENES\\ARMAS\\diluc.png"
+               "src\\IMAGENES\\PERSONAJES\\diluc.png"
             ]
          },
          "level":1,
@@ -42,7 +42,7 @@
          "tipo": "AGUA",
          "aspect":{
             "1":[
-               "src\\IMAGENES\\ARMAS\\diona.png"
+               "src\\IMAGENES\\PERSONAJES\\diona.png"
             ]
          },
          "level":1,
@@ -58,7 +58,7 @@
          "tipo": "MAGIA_BLANCA",
          "aspect":{
             "1":[
-               "src\\IMAGENES\\ARMAS\\klee.png"
+               "src\\IMAGENES\\PERSONAJES\\klee.png"
             ]
          },
          "level":1,
@@ -74,7 +74,7 @@
          "tipo": "ELECTRICIDAD",
          "aspect":{
             "1":[
-               "src\\IMAGENES\\ARMAS\\noelle.png"
+               "src\\IMAGENES\\PERSONAJES\\noelle.png"
             ]
          },
          "level":1,
@@ -90,7 +90,7 @@
          "tipo": "FUEGO",
          "aspect":{
             "1":[
-               "src\\IMAGENES\\ARMAS\\xinyan.png"
+               "src\\IMAGENES\\PERSONAJES\\xinyan.png"
             ]
          },
          "level":1,
@@ -106,7 +106,7 @@
          "tipo": "ESPIRITUALIDAD",
          "aspect":{
             "1":[
-               "src\\IMAGENES\\ARMAS\\viajero.png"
+               "src\\IMAGENES\\PERSONAJES\\viajero.png"
             ]
          },
          "level":1,

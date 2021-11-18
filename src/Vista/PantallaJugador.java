@@ -365,7 +365,8 @@ public class PantallaJugador implements Initializable {
     private Text nombreContrincante;
 
     @FXML
-    public void seleccionadoGuerrero1(MouseEvent event){
+    public void seleccionadoGuerrero1(MouseEvent event) throws FileNotFoundException {
+        cargarDatosEquipo();//Provisional aca
         Personaje guerrero1 = controladorPantalla.getEquipo().getGuerreros().get(0);
         nombreGuerreroUsando.setText(guerrero1.getName());
         porcentajeVidaUsando.setText(String.valueOf(guerrero1.getLife())); //no estoy segura de que sea así
@@ -505,11 +506,12 @@ public class PantallaJugador implements Initializable {
     }
 
     private void cargarDatosEquipo() throws FileNotFoundException {
-        for (int i = 0; i < comunicador.getGuerrerosEscogidos().size()-1; i++){
-            String pathFoto = comunicador.getGuerrerosEscogidos().get(i).getAspect().get(1).get(1);
+        ArrayList<Personaje> guerreros = controladorPantalla.getEquipo().getGuerreros();
+        for (int i = 0; i < guerreros.size()-1; i++){//todo:traer el otro guerrero
+            String pathFoto = guerreros.get(i).getAspect().get(1).get(0);//Hashbrown-Arraylist!!!
             FileInputStream stream = new FileInputStream(pathFoto);
             Image image = new Image(stream);
-            guerrerosFotos.get(i).setImage(image);
+            guerrerosFotos.get(i).setImage(image);//Falta un campo para guerrero
         }
 
     }
