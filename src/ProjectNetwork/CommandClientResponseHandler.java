@@ -24,6 +24,7 @@ public class CommandClientResponseHandler implements IHandleResponse {
             case UPDATE:
                 UpdateResponse updateResponse = (UpdateResponse) request;
                 client.setEquipo(updateResponse.equipo);
+                client.setEquipoEnemigo(updateResponse.equipoEnemigo);
                 break;
             case MESSAGE:
                 MessageResponse messageResponse = (MessageResponse) request;

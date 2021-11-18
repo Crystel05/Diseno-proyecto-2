@@ -11,6 +11,7 @@ public class CommandGameClient  extends Client {
 
     //Datos del cliente
     Equipo equipo;//Cuando le seteo el equipo? El usuario viene del servidor con el equipo//Se actualiza despupes de cada command
+    Equipo equipoEnemigo;
 
     public CommandGameClient(String host, int port, IHandleResponse responseHandler) throws IOException, ClassNotFoundException {
         super(host, port, responseHandler);
@@ -27,6 +28,14 @@ public class CommandGameClient  extends Client {
 
     public Equipo getEquipo(){
         return equipo;
+    }
+
+    public void setEquipoEnemigo(Equipo equipo){
+        this.equipoEnemigo = equipo;
+    }
+
+    public Equipo getEquipoEnemigo(){
+        return equipoEnemigo;
     }
 
 }

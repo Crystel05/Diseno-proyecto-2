@@ -596,7 +596,7 @@
       </Pane>
       <Pane layoutX="5.0" layoutY="196.0" prefHeight="288.0" prefWidth="217.0" style="-fx-background-color: BLACK;">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="282.0" layoutX="2.0" layoutY="3.0" stroke="#016de8" strokeType="INSIDE" width="211.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="282.0" layoutX="2.0" layoutY="3.0" onMouseClicked="#agregarDatos" stroke="#016de8" strokeType="INSIDE" width="211.0" />
             <Text fill="#028894" layoutX="7.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CONTRINCANTE">
                <font>
                   <Font name="Bauhaus 93" size="20.0" />

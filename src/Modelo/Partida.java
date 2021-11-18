@@ -55,7 +55,21 @@ public class Partida extends Server{
     public void addEquipo(Equipo equipo) {
         if(equipos[0] == null)
             this.equipos[0] = equipo;
-        this.equipos[1] = equipo;
+        else {
+            this.equipos[1] = equipo;
+            CommandServerSideClient client1 = (CommandServerSideClient) this.getClientes().get(0);
+            CommandServerSideClient client2 = (CommandServerSideClient) this.getClientes().get(1);
+            client1.setEquipoEnemigo(client2.getEquipo());
+            client2.setEquipoEnemigo(client1.getEquipo());
+            //this.getClientes().get(1);
+            try {
+                sendToClients("Empieza el juego");
+                updateUsuarios();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 
     public Equipo[] getEquipos(){

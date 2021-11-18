@@ -464,37 +464,24 @@ public class PantallaJugador implements Initializable {
     }
 
     private void cargarDatosCompetidores(){
-
-        Usuario contrincante = new Usuario(); //cambiar esto por el usuario real
-        contrincante.setNombre("Peter");
-        contrincante.setPartidasPerdidas(12);
-        contrincante.setPartidasGanadas(5);
-        contrincante.setAtaquesExitosos(100);
-        contrincante.setAtaquesFallados(5);
-        contrincante.setRendiciones(5);
-
-        puestoContra.setText("#"+contrincante.getRanking());
-        //nombreContrincante.setText("("+contrincante.getNombre()+")");
-        ganadasContricante.setText(String.valueOf(contrincante.getPartidasGanadas()));
-        perdidasContrincante.setText(String.valueOf(contrincante.getPartidasPerdidas()));
-        ataquesCont.setText(String.valueOf(contrincante.getAtaquesExitosos()));
-        falladasContr.setText(String.valueOf(contrincante.getAtaquesFallados()));
-        rendicionesContr.setText(String.valueOf(contrincante.getRendiciones()));
-
-        Usuario actual = new Usuario(); //cambiar esto por el usuario real
-        actual.setRendiciones(10);
-        actual.setPartidasPerdidas(12);
-        actual.setPartidasGanadas(5);
-        actual.setAtaquesExitosos(100);
-        actual.setAtaquesFallados(5);
-        actual.setRendiciones(5);
-        actual.setNombre("Manchas");
+        Usuario actual = controladorPantalla.getUsuario(); //cambiar esto por el usuario real
+        System.out.println(actual);
         puestoMio.setText("#"+actual.getRanking());
         ganadasMio.setText(String.valueOf(actual.getPartidasGanadas()));
         perdidasMio.setText(String.valueOf(actual.getAtaquesFallados()));
         falladasMio.setText(String.valueOf(actual.getAtaquesFallados()));
         ataquesMio.setText(String.valueOf(actual.getAtaquesExitosos()));
         rendicionesMio.setText(String.valueOf(actual.getRendiciones()));
+
+        Usuario contrincante = controladorPantalla.getUsuarioEnemigo(); //cambiar esto por el usuario real
+        System.out.println(contrincante);
+        puestoContra.setText("#"+contrincante.getRanking());
+        nombreContrincante.setText("("+contrincante.getNombre()+")");
+        ganadasContricante.setText(String.valueOf(contrincante.getPartidasGanadas()));
+        perdidasContrincante.setText(String.valueOf(contrincante.getPartidasPerdidas()));
+        ataquesCont.setText(String.valueOf(contrincante.getAtaquesExitosos()));
+        falladasContr.setText(String.valueOf(contrincante.getAtaquesFallados()));
+        rendicionesContr.setText(String.valueOf(contrincante.getRendiciones()));
     }
 
     private void cargarDatosAtaque(){
@@ -515,13 +502,17 @@ public class PantallaJugador implements Initializable {
 
     }
 
+    @FXML
+    public void agregarDatos(MouseEvent event){
+        cargarDatosCompetidores();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         controladorPantalla = ControladorPantalla.getInstance();
         controladorPantalla.setPantallaJugador(this);
         llenarListas();
         cargarDatosRanking();
-        cargarDatosCompetidores();
         colocarPorcentajes();
         comandos.skinProperty().addListener(new ChangeListener<Skin<?>>() {
             @Override

@@ -14,6 +14,7 @@ import java.io.IOException;
 public class CommandServerSideClient extends BasicServerClient implements ISendResponse {
 
     Equipo equipo;
+    Equipo equipoEnemigo;
 
     public CommandServerSideClient(int objectId) {
         super(objectId);
@@ -21,11 +22,12 @@ public class CommandServerSideClient extends BasicServerClient implements ISendR
 
     @Override
     public void sendResponse(IResponse response) throws IOException {
+        System.out.println("Enviando respueta...");
         this.getResponseSender().sendResponse(response);
     }
 
     public void updateData(Equipo equipo) throws IOException {
-        sendResponse(new UpdateResponse(equipo));
+        sendResponse(new UpdateResponse(equipo,equipoEnemigo));
     }
 
     public void sendMessage(String string) throws IOException {
@@ -34,6 +36,10 @@ public class CommandServerSideClient extends BasicServerClient implements ISendR
 
     public void setEquipo(Equipo equipoElegido) {
         this.equipo = equipoElegido;
+    }
+
+    public void setEquipoEnemigo(Equipo equipoEnemigo){
+        this.equipoEnemigo = equipoEnemigo;
     }
 
     public Equipo getEquipo() {

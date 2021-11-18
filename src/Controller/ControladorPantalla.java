@@ -4,6 +4,7 @@ import Model.Weapon;
 import Modelo.Arma;
 import Modelo.Data.EquipoDatos;
 import Modelo.Personaje;
+import Modelo.Usuario;
 import ProjectNetwork.ClientTypes.CommandGameClient;
 import CommandPattern.Enumerable.CommandsE;
 import ProjectNetwork.CommandClientResponseHandler;
@@ -90,5 +91,16 @@ public class ControladorPantalla {
         client.request(new SelectedWarriors(equipoDatos));
     }
 
+    public Usuario getUsuario(){
+        return client.getEquipo().getUsuario();
+    }
+
+    public Usuario getUsuarioEnemigo(){
+        if (client.getEquipoEnemigo() != null)
+            return client.getEquipoEnemigo().getUsuario();
+        else{
+            return null;
+        }
+    }
 
 }
