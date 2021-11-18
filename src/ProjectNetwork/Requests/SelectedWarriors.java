@@ -10,9 +10,10 @@ public class SelectedWarriors extends BaseRequest {
     public EquipoDatos equipoElegido;
     public int clientId;
 
-    public SelectedWarriors(EquipoDatos equipo){
+    public SelectedWarriors(EquipoDatos equipo,int clientId){
         this.equipoElegido = equipo;
         this.type = GameRequestTypes.SELECTEDTEAM;
+        this.clientId = clientId;
     }
 
 }

@@ -88,7 +88,7 @@ public class ControladorPantalla {
     }
 
     public void enviarEquipoElegido(EquipoDatos equipoDatos) throws IOException, ClassNotFoundException {
-        client.request(new SelectedWarriors(equipoDatos));
+        client.request(new SelectedWarriors(equipoDatos,client.getClientId()));
     }
 
     public Usuario getUsuario(){

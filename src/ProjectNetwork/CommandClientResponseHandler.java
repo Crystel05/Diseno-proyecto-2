@@ -18,6 +18,7 @@ public class CommandClientResponseHandler implements IHandleResponse {
         switch (type){
             case CONNECT:
                 ConnectResponse commandRequest = (ConnectResponse) request;
+                System.out.println(commandRequest.clientId);
                 client.setClientId(commandRequest.clientId);
                 System.out.println("Me conecto");
                 break;
