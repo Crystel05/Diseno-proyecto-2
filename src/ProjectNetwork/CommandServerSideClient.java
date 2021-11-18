@@ -26,7 +26,7 @@ public class CommandServerSideClient extends BasicServerClient implements ISendR
         this.getResponseSender().sendResponse(response);
     }
 
-    public void updateData(Equipo equipo) throws IOException {
+    public void updateData(Equipo equipo,Equipo equipoEnemigo) throws IOException {
         sendResponse(new UpdateResponse(equipo,equipoEnemigo));
     }
 

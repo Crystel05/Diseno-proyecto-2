@@ -200,10 +200,10 @@ public class Partida extends Server{
     //Responses enviados por el servidor
 
     public void updateUsuarios() throws IOException {
-        int i = 0;
-        for (BasicServerClient client:getClientes()){
-            ((CommandServerSideClient)client).updateData(equipos[i++]);
-        }
+        CommandServerSideClient client1 = (CommandServerSideClient) getClientes().get(0);
+        CommandServerSideClient client2 = (CommandServerSideClient) getClientes().get(1);
+        client1.updateData(equipos[0],equipos[1]);
+        client2.updateData(equipos[1],equipos[0]);
     }
 
     public void sendToClients(String string) throws IOException {
