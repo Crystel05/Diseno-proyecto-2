@@ -3,6 +3,7 @@ package Vista;
 import CommandPattern.Enumerable.CommandsE;
 import Controller.ControladorPantalla;
 import Model.Weapon;
+import Modelo.Arma;
 import Modelo.Personaje;
 import Modelo.Usuario;
 import Utils.JsonRanking;
@@ -58,6 +59,21 @@ public class PantallaJugador implements Initializable {
     private ArrayList<ArrayList<Integer>> porcentajesFinales = new ArrayList<>();
 
     private JsonRanking jsonRanking = JsonRanking.getInstance();
+
+    @FXML
+    private Text nombreJugador;
+
+    @FXML
+    private Text tipoG1;
+
+    @FXML
+    private Text tipoG2;
+
+    @FXML
+    private Text tipoG3;
+
+    @FXML
+    private Text tipoG4;
 
     @FXML
     private Text arma1At1;
@@ -370,13 +386,12 @@ public class PantallaJugador implements Initializable {
 
     @FXML
     public void seleccionadoGuerrero1(MouseEvent event){
-
         Personaje guerrero1 = controladorPantalla.getPersonajes().get(0);
-//        nombreGuerreroUsando.setText(guerrero1.getName());
-//        porcentajeVidaUsando.setText(String.valueOf(guerrero1.getLife())); //no estoy segura de que sea así
+        nombreGuerreroUsando.setText(guerrero1.getName());
+        porcentajeVidaUsando.setText(String.valueOf(guerrero1.getLife())); //no estoy segura de que sea así
         ArrayList<Arma> armas = guerrero1.getArmas();
         ponerNombreArma(armas);
-        escribirPorcentajes(0);
+        escribirPorcentajes(armas);
     }
 
     @FXML
@@ -414,17 +429,6 @@ public class PantallaJugador implements Initializable {
             armasPersonaje.get(i).setText(armas.get(i).getName());
         }
     }
-
-    /*private void colocarPorcentajes(){
-        for (int i = 0; i<5; i++){
-            ArrayList<Integer> porcentajesArma = new ArrayList<>();
-            for (int j = 0; j < 10; j++){
-                String porcentaje = porcentaje();//Esto tiene que pasar a ser los porcentajes de las armas
-                porcentajesArma.add(Integer.valueOf(Integer.valueOf(porcentaje)));
-            }
-            porcentajesFinales.add(porcentajesArma);
-        }
-    }*/
 
     private void escribirPorcentajes(ArrayList<Arma> armas){
         //System.out.println(armaIndex);
@@ -518,6 +522,49 @@ public class PantallaJugador implements Initializable {
     @FXML
     public void agregarDatos(MouseEvent event){
         cargarDatosCompetidores();
+    }
+
+    private boolean buscarComando(String lineaComando) {
+        String comando = lineaComando.split(" ")[0].toUpperCase();
+        for (CommandsE commandsE:
+        CommandsE.values()) {
+            if(commandsE.toString().equals(comando))
+                return true;
+        }
+        return false;
+    }
+
+    public void requestCommand() throws IOException, ClassNotFoundException {
+        String[] params = lineaComando.split(" ");
+        controladorPantalla.requestCommand(params[0], Arrays.copyOfRange(params,1,params.length));
+    }
+
+    public static void main(String[] args){
+        for (int i = 0; i<100; i++) {
+            int num = (int) (Math.random() * 100 + 1);
+            System.out.println(num);
+        }
+    }
+
+    public void setDatosUsuario(Usuario actual){
+        System.out.println(actual);
+        nombreJugador.setText(actual.getNombre());
+        puestoMio.setText("#"+actual.getRanking());
+        ganadasMio.setText(String.valueOf(actual.getPartidasGanadas()));
+        perdidasMio.setText(String.valueOf(actual.getAtaquesFallados()));
+        falladasMio.setText(String.valueOf(actual.getAtaquesFallados()));
+        ataquesMio.setText(String.valueOf(actual.getAtaquesExitosos()));
+        rendicionesMio.setText(String.valueOf(actual.getRendiciones()));
+    }
+
+    public void setDatosEnemigo(Usuario contrincante) {
+        System.out.println(contrincante);
+        puestoContra.setText("#"+contrincante.getRanking());
+        ganadasContricante.setText(String.valueOf(contrincante.getPartidasGanadas()));
+        perdidasContrincante.setText(String.valueOf(contrincante.getPartidasPerdidas()));
+        ataquesCont.setText(String.valueOf(contrincante.getAtaquesExitosos()));
+        falladasContr.setText(String.valueOf(contrincante.getAtaquesFallados()));
+        rendicionesContr.setText(String.valueOf(contrincante.getRendiciones()));
     }
 
     @Override
@@ -665,47 +712,5 @@ public class PantallaJugador implements Initializable {
                 });
             }
         });
-    }
-
-    private boolean buscarComando(String lineaComando) {
-        String comando = lineaComando.split(" ")[0].toUpperCase();
-        for (CommandsE commandsE:
-        CommandsE.values()) {
-            if(commandsE.toString().equals(comando))
-                return true;
-        }
-        return false;
-    }
-
-    public void requestCommand() throws IOException, ClassNotFoundException {
-        String[] params = lineaComando.split(" ");
-        controladorPantalla.requestCommand(params[0], Arrays.copyOfRange(params,1,params.length));
-    }
-
-    public static void main(String[] args){
-        for (int i = 0; i<100; i++) {
-            int num = (int) (Math.random() * 100 + 1);
-            System.out.println(num);
-        }
-    }
-
-    public void setDatosUsuario(Usuario actual){
-        System.out.println(actual);
-        puestoMio.setText("#"+actual.getRanking());
-        ganadasMio.setText(String.valueOf(actual.getPartidasGanadas()));
-        perdidasMio.setText(String.valueOf(actual.getAtaquesFallados()));
-        falladasMio.setText(String.valueOf(actual.getAtaquesFallados()));
-        ataquesMio.setText(String.valueOf(actual.getAtaquesExitosos()));
-        rendicionesMio.setText(String.valueOf(actual.getRendiciones()));
-    }
-
-    public void setDatosEnemigo(Usuario contrincante) {
-        System.out.println(contrincante);
-        puestoContra.setText("#"+contrincante.getRanking());
-        ganadasContricante.setText(String.valueOf(contrincante.getPartidasGanadas()));
-        perdidasContrincante.setText(String.valueOf(contrincante.getPartidasPerdidas()));
-        ataquesCont.setText(String.valueOf(contrincante.getAtaquesExitosos()));
-        falladasContr.setText(String.valueOf(contrincante.getAtaquesFallados()));
-        rendicionesContr.setText(String.valueOf(contrincante.getRendiciones()));
     }
 }

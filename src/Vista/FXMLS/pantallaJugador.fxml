@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1279.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.PantallaJugador">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1279.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.PantallaJugador">
    <children>
       <Pane layoutX="5.0" layoutY="5.0" prefHeight="186.0" prefWidth="217.0" style="-fx-background-color: BLACK;">
          <children>
@@ -67,52 +69,52 @@
                   <Font name="Berlin Sans FB Demi Bold" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="nomR1" fill="#028894" layoutX="46.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0">
+            <Text fx:id="nomR1" fill="#028894" layoutX="46.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="nomR7" fill="#028894" layoutX="46.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0">
+            <Text fx:id="nomR7" fill="#028894" layoutX="46.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="nomR8" fill="#028894" layoutX="46.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0">
+            <Text fx:id="nomR8" fill="#028894" layoutX="46.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="nomR9" fill="#028894" layoutX="46.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0">
+            <Text fx:id="nomR9" fill="#028894" layoutX="46.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="nomR10" fill="#028894" layoutX="46.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0">
+            <Text fx:id="nomR10" fill="#028894" layoutX="46.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="nomR3" fill="#028894" layoutX="46.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0">
+            <Text fx:id="nomR3" fill="#028894" layoutX="46.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="nomR4" fill="#028894" layoutX="46.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0">
+            <Text fx:id="nomR4" fill="#028894" layoutX="46.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="nomR5" fill="#028894" layoutX="46.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0">
+            <Text fx:id="nomR5" fill="#028894" layoutX="46.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="nomR6" fill="#028894" layoutX="46.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0">
+            <Text fx:id="nomR6" fill="#028894" layoutX="46.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="nomR2" fill="#028894" layoutX="46.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0">
+            <Text fx:id="nomR2" fill="#028894" layoutX="46.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
                </font>
@@ -242,15 +244,15 @@
       <Pane layoutX="686.0" layoutY="5.0" prefHeight="670.0" prefWidth="588.0" style="-fx-background-color: BLACK;">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="666.0" layoutX="2.0" layoutY="2.0" stroke="#016de8" strokeType="INSIDE" width="584.0" />
-            <Text fill="#0037ff" layoutX="206.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TU EQUIPO">
+            <Text fx:id="nombreJugador" fill="#0037ff" layoutX="208.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TU EQUIPO">
                <font>
                   <Font name="Eras Demi ITC" size="32.0" />
                </font>
             </Text>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="288.0" layoutX="12.0" layoutY="55.0" stroke="#0c899c" strokeType="INSIDE" width="141.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="258.0" layoutX="14.0" layoutY="85.0" stroke="#0c899c" strokeType="INSIDE" width="141.0" />
             <Text fx:id="nombreGuerreroUsando" fill="WHITE" layoutX="12.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usando">
                <font>
-                  <Font name="Eras Demi ITC" size="27.0" />
+                  <Font name="Eras Demi ITC" size="28.0" />
                </font>
             </Text>
             <Text fx:id="porcentajeVidaUsando" fill="WHITE" layoutX="236.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Porcentaje">
@@ -258,336 +260,356 @@
                   <Font name="Eras Demi ITC" size="27.0" />
                </font>
             </Text>
-            <Text fx:id="arma1Nombre" fill="#24d5fc" layoutX="39.0" layoutY="444.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Arma1">
+            <Text fx:id="arma1Nombre" fill="#24d5fc" layoutX="10.0" layoutY="443.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Arma1">
                <font>
-                  <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+                  <Font name="Eras Demi ITC" size="19.0" />
                </font>
             </Text>
-            <Text fx:id="arma2Nombre" fill="#24d5fc" layoutX="39.0" layoutY="483.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Arma2">
+            <Text fx:id="arma2Nombre" fill="#24d5fc" layoutX="10.0" layoutY="494.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Arma2">
                <font>
-                  <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+                  <Font name="Eras Demi ITC" size="19.0" />
                </font>
             </Text>
-            <Text fx:id="arma3Nombre" fill="#24d5fc" layoutX="39.0" layoutY="524.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Arma3">
+            <Text fx:id="arma3Nombre" fill="#24d5fc" layoutX="10.0" layoutY="542.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Arma3">
                <font>
-                  <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+                  <Font name="Eras Demi ITC" size="19.0" />
                </font>
             </Text>
-            <Text fx:id="arma4Nombre" fill="#24d5fc" layoutX="39.0" layoutY="564.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Arma4">
+            <Text fx:id="arma4Nombre" fill="#24d5fc" layoutX="10.0" layoutY="593.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Arma4">
                <font>
-                  <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+                  <Font name="Eras Demi ITC" size="19.0" />
                </font>
             </Text>
-            <Text fx:id="arma5Nombre" fill="#24d5fc" layoutX="39.0" layoutY="606.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Arma5">
+            <Text fx:id="arma5Nombre" fill="#24d5fc" layoutX="11.0" layoutY="646.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Arma5">
                <font>
-                  <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+                  <Font name="Eras Demi ITC" size="19.0" />
                </font>
             </Text>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="114.0" layoutY="421.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="157.0" layoutY="421.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="200.0" layoutY="421.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="243.0" layoutY="421.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="286.0" layoutY="421.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="329.0" layoutY="421.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="372.0" layoutY="421.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="415.0" layoutY="421.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="501.0" layoutY="421.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="458.0" layoutY="421.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="114.0" layoutY="461.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="157.0" layoutY="461.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="200.0" layoutY="461.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="243.0" layoutY="461.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="286.0" layoutY="461.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="329.0" layoutY="461.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="372.0" layoutY="461.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="415.0" layoutY="461.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="501.0" layoutY="461.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="458.0" layoutY="461.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="114.0" layoutY="502.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="157.0" layoutY="502.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="200.0" layoutY="502.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="243.0" layoutY="502.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="286.0" layoutY="502.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="329.0" layoutY="502.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="372.0" layoutY="502.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="415.0" layoutY="502.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="501.0" layoutY="502.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="458.0" layoutY="502.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="114.0" layoutY="542.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="157.0" layoutY="542.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="200.0" layoutY="542.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="243.0" layoutY="542.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="286.0" layoutY="542.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="329.0" layoutY="542.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="372.0" layoutY="542.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="415.0" layoutY="542.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="501.0" layoutY="542.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="458.0" layoutY="542.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="114.0" layoutY="584.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="157.0" layoutY="584.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="200.0" layoutY="584.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="243.0" layoutY="584.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="286.0" layoutY="584.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="329.0" layoutY="584.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="372.0" layoutY="584.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="415.0" layoutY="584.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="501.0" layoutY="584.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="458.0" layoutY="584.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
-            <Text fx:id="arma1At1" fill="WHITE" layoutX="124.0" layoutY="441.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="114.0" layoutY="423.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="157.0" layoutY="423.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="200.0" layoutY="423.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="243.0" layoutY="423.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="286.0" layoutY="423.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="329.0" layoutY="423.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="372.0" layoutY="423.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="415.0" layoutY="423.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="501.0" layoutY="423.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="458.0" layoutY="423.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="114.0" layoutY="472.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="157.0" layoutY="472.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="200.0" layoutY="472.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="243.0" layoutY="472.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="286.0" layoutY="472.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="329.0" layoutY="472.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="372.0" layoutY="472.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="415.0" layoutY="472.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="501.0" layoutY="472.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="458.0" layoutY="472.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="114.0" layoutY="520.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="157.0" layoutY="520.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="200.0" layoutY="520.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="243.0" layoutY="520.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="286.0" layoutY="520.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="329.0" layoutY="520.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="372.0" layoutY="520.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="415.0" layoutY="520.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="501.0" layoutY="520.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="458.0" layoutY="520.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="114.0" layoutY="571.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="157.0" layoutY="571.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="200.0" layoutY="571.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="243.0" layoutY="571.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="286.0" layoutY="571.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="329.0" layoutY="571.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="372.0" layoutY="571.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="415.0" layoutY="571.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="501.0" layoutY="571.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="458.0" layoutY="571.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="114.0" layoutY="624.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="157.0" layoutY="624.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="200.0" layoutY="624.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="243.0" layoutY="624.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="286.0" layoutY="624.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="329.0" layoutY="624.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="372.0" layoutY="624.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="415.0" layoutY="624.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="501.0" layoutY="624.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="458.0" layoutY="624.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
+            <Text fx:id="arma1At1" fill="WHITE" layoutX="125.0" layoutY="442.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma1At3" fill="WHITE" layoutX="212.0" layoutY="441.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma1At3" fill="WHITE" layoutX="211.0" layoutY="443.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma1At2" fill="WHITE" layoutX="169.0" layoutY="441.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma1At2" fill="WHITE" layoutX="168.0" layoutY="442.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma1At10" fill="WHITE" layoutX="513.0" layoutY="443.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma1At10" fill="WHITE" layoutX="512.0" layoutY="442.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma1At9" fill="WHITE" layoutX="470.0" layoutY="443.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma1At9" fill="WHITE" layoutX="469.0" layoutY="442.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma1At8" fill="WHITE" layoutX="427.0" layoutY="443.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma1At8" fill="WHITE" layoutX="426.0" layoutY="442.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma1At7" fill="WHITE" layoutX="384.0" layoutY="442.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma1At7" fill="WHITE" layoutX="382.0" layoutY="442.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma1At6" fill="WHITE" layoutX="340.0" layoutY="443.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma1At6" fill="WHITE" layoutX="339.0" layoutY="443.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma1At5" fill="WHITE" layoutX="298.0" layoutY="441.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma1At5" fill="WHITE" layoutX="296.0" layoutY="442.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma1At4" fill="WHITE" layoutX="255.0" layoutY="441.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma1At4" fill="WHITE" layoutX="253.0" layoutY="442.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="288.0" layoutX="434.0" layoutY="55.0" stroke="#0c899c" strokeType="INSIDE" width="141.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="288.0" layoutX="293.0" layoutY="55.0" stroke="#0c899c" strokeType="INSIDE" width="141.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="288.0" layoutX="152.0" layoutY="55.0" stroke="#0c899c" strokeType="INSIDE" width="141.0" />
-            <ImageView fx:id="guerrero1" fitHeight="288.0" fitWidth="136.0" layoutX="14.0" layoutY="55.0" onMouseClicked="#seleccionadoGuerrero1" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="guerrero2" fitHeight="288.0" fitWidth="136.0" layoutX="155.0" layoutY="55.0" onMouseClicked="#seleccionadoGuerrero2" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="guerrero3" fitHeight="288.0" fitWidth="136.0" layoutX="296.0" layoutY="55.0" onMouseClicked="#seleccionadoGuerrero3" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="guerrero4" fitHeight="288.0" fitWidth="136.0" layoutX="437.0" layoutY="55.0" onMouseClicked="#seleccionadoGuerrero4" pickOnBounds="true" preserveRatio="true" />
-            <Text fx:id="arma2At1" fill="WHITE" layoutX="125.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="258.0" layoutX="434.0" layoutY="85.0" stroke="#0c899c" strokeType="INSIDE" width="141.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="258.0" layoutX="294.0" layoutY="85.0" stroke="#0c899c" strokeType="INSIDE" width="141.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="258.0" layoutX="154.0" layoutY="85.0" stroke="#0c899c" strokeType="INSIDE" width="141.0" />
+            <ImageView fx:id="guerrero1" fitHeight="256.0" fitWidth="136.0" layoutX="16.0" layoutY="87.0" onMouseClicked="#seleccionadoGuerrero1" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="guerrero2" fitHeight="256.0" fitWidth="136.0" layoutX="157.0" layoutY="87.0" onMouseClicked="#seleccionadoGuerrero2" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="guerrero3" fitHeight="256.0" fitWidth="136.0" layoutX="297.0" layoutY="87.0" onMouseClicked="#seleccionadoGuerrero3" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="guerrero4" fitHeight="256.0" fitWidth="136.0" layoutX="437.0" layoutY="87.0" onMouseClicked="#seleccionadoGuerrero4" pickOnBounds="true" preserveRatio="true" />
+            <Text fx:id="arma2At1" fill="WHITE" layoutX="125.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma2At3" fill="WHITE" layoutX="213.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma2At3" fill="WHITE" layoutX="211.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma2At2" fill="WHITE" layoutX="170.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma2At2" fill="WHITE" layoutX="168.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma2At10" fill="WHITE" layoutX="514.0" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma2At10" fill="WHITE" layoutX="511.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma2At9" fill="WHITE" layoutX="471.0" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma2At9" fill="WHITE" layoutX="469.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma2At8" fill="WHITE" layoutX="428.0" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma2At8" fill="WHITE" layoutX="426.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma2At7" fill="WHITE" layoutX="385.0" layoutY="481.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma2At7" fill="WHITE" layoutX="383.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma2At6" fill="WHITE" layoutX="341.0" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma2At6" fill="WHITE" layoutX="340.0" layoutY="492.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma2At5" fill="WHITE" layoutX="299.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma2At5" fill="WHITE" layoutX="296.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma2At4" fill="WHITE" layoutX="256.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma2At4" fill="WHITE" layoutX="254.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma3At1" fill="WHITE" layoutX="125.0" layoutY="521.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma3At1" fill="WHITE" layoutX="125.0" layoutY="539.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma3At3" fill="WHITE" layoutX="213.0" layoutY="521.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma3At3" fill="WHITE" layoutX="211.0" layoutY="539.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma3At2" fill="WHITE" layoutX="170.0" layoutY="521.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma3At2" fill="WHITE" layoutX="168.0" layoutY="539.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma3At10" fill="WHITE" layoutX="514.0" layoutY="523.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma3At10" fill="WHITE" layoutX="512.0" layoutY="539.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma3At9" fill="WHITE" layoutX="471.0" layoutY="523.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma3At9" fill="WHITE" layoutX="469.0" layoutY="539.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma3At8" fill="WHITE" layoutX="428.0" layoutY="523.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma3At8" fill="WHITE" layoutX="425.0" layoutY="539.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma3At7" fill="WHITE" layoutX="385.0" layoutY="522.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma3At7" fill="WHITE" layoutX="382.0" layoutY="539.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma3At6" fill="WHITE" layoutX="341.0" layoutY="523.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma3At6" fill="WHITE" layoutX="339.0" layoutY="539.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma3At5" fill="WHITE" layoutX="299.0" layoutY="521.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma3At5" fill="WHITE" layoutX="296.0" layoutY="538.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma3At4" fill="WHITE" layoutX="256.0" layoutY="521.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma3At4" fill="WHITE" layoutX="254.0" layoutY="539.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma4At1" fill="WHITE" layoutX="125.0" layoutY="560.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma4At1" fill="WHITE" layoutX="124.0" layoutY="589.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma4At3" fill="WHITE" layoutX="213.0" layoutY="560.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma4At3" fill="WHITE" layoutX="211.0" layoutY="589.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma4At2" fill="WHITE" layoutX="170.0" layoutY="560.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma4At2" fill="WHITE" layoutX="168.0" layoutY="589.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma4At10" fill="WHITE" layoutX="514.0" layoutY="562.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma4At10" fill="WHITE" layoutX="512.0" layoutY="590.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma4At9" fill="WHITE" layoutX="471.0" layoutY="562.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma4At9" fill="WHITE" layoutX="469.0" layoutY="589.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma4At8" fill="WHITE" layoutX="428.0" layoutY="562.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma4At8" fill="WHITE" layoutX="425.0" layoutY="589.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma4At7" fill="WHITE" layoutX="385.0" layoutY="561.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma4At7" fill="WHITE" layoutX="383.0" layoutY="589.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma4At6" fill="WHITE" layoutX="341.0" layoutY="562.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma4At6" fill="WHITE" layoutX="339.0" layoutY="590.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma4At5" fill="WHITE" layoutX="299.0" layoutY="560.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma4At5" fill="WHITE" layoutX="297.0" layoutY="589.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma4At4" fill="WHITE" layoutX="256.0" layoutY="560.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma4At4" fill="WHITE" layoutX="254.0" layoutY="589.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma5At1" fill="WHITE" layoutX="125.0" layoutY="602.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma5At1" fill="WHITE" layoutX="124.0" layoutY="643.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma5At3" fill="WHITE" layoutX="213.0" layoutY="602.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma5At3" fill="WHITE" layoutX="210.0" layoutY="643.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma5At2" fill="WHITE" layoutX="170.0" layoutY="602.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma5At2" fill="WHITE" layoutX="168.0" layoutY="643.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma5At10" fill="WHITE" layoutX="514.0" layoutY="604.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma5At10" fill="WHITE" layoutX="512.0" layoutY="642.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma5At9" fill="WHITE" layoutX="471.0" layoutY="604.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma5At9" fill="WHITE" layoutX="469.0" layoutY="642.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma5At8" fill="WHITE" layoutX="428.0" layoutY="604.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma5At8" fill="WHITE" layoutX="426.0" layoutY="642.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma5At7" fill="WHITE" layoutX="385.0" layoutY="603.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma5At7" fill="WHITE" layoutX="383.0" layoutY="642.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma5At6" fill="WHITE" layoutX="341.0" layoutY="604.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma5At6" fill="WHITE" layoutX="339.0" layoutY="643.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma5At5" fill="WHITE" layoutX="299.0" layoutY="602.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma5At5" fill="WHITE" layoutX="296.0" layoutY="643.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
                </font>
             </Text>
-            <Text fx:id="arma5At4" fill="WHITE" layoutX="256.0" layoutY="602.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
+            <Text fx:id="arma5At4" fill="WHITE" layoutX="254.0" layoutY="643.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
                <font>
                   <Font name="Goudy Stout" size="9.0" />
+               </font>
+            </Text>
+            <Text fx:id="tipoG1" fill="#3083e1" layoutX="64.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIPO">
+               <font>
+                  <Font name="Cooper Black" size="16.0" />
+               </font>
+            </Text>
+            <Text fx:id="tipoG3" fill="#3083e1" layoutX="342.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIPO">
+               <font>
+                  <Font name="Cooper Black" size="16.0" />
+               </font>
+            </Text>
+            <Text fx:id="tipoG4" fill="#3083e1" layoutX="486.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIPO">
+               <font>
+                  <Font name="Cooper Black" size="16.0" />
+               </font>
+            </Text>
+            <Text fx:id="tipoG2" fill="#3083e1" layoutX="205.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIPO">
+               <font>
+                  <Font name="Cooper Black" size="16.0" />
                </font>
             </Text>
          </children>
@@ -665,9 +687,9 @@
                   <Font name="Bauhaus 93" size="20.0" />
                </font>
             </Text>
-            <Text fill="#028894" layoutX="12.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ganadas">
+            <Text fill="#028894" layoutX="10.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ganadas">
                <font>
-                  <Font name="Eras Demi ITC" size="15.0" />
+                  <Font name="Eras Demi ITC" size="19.0" />
                </font>
             </Text>
             <Text fill="#028894" layoutX="12.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Perdidas">
