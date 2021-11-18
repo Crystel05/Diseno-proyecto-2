@@ -13,6 +13,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -67,17 +68,17 @@ public class Pruebas {
         System.out.println(pruebaW.getArmaAtaca());
         */
 
+
         jsonRanking = JsonRanking.getInstance();  //Se lee y se guardan user en array
-        System.out.println("print despues de leer");
+        /*System.out.println("print despues de leer");
         System.out.println(jsonRanking.getUsuarios());
 
         Usuario u = jsonRanking.getUsuarios().get(0);  //Agarra el Personaje1
         u.setNombre("PersonajeCambiado");  //Cambio objeto
         jsonRanking.updateJSON();  //Quiero actualizar
+        */
 
-
-
-
+        
 
     }
 

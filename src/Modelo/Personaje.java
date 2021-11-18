@@ -15,9 +15,10 @@ public class Personaje extends Character implements Serializable {
 
     public Personaje(int life, double hitsPerTime, double fieldsInArmy, int levelRequired, ArrayList<Weapon> weapons,
                      Weapon currentWeapon, Direction direction, String name, HashMap<Integer, ArrayList<String>> aspect,
-                     int level, double cost, ArrayList<Arma> armas) {
+                     int level, double cost, ArrayList<Arma> armas, EnumTipoPersonaje tipo) {
         super(life,hitsPerTime,fieldsInArmy, levelRequired, weapons, currentWeapon, direction, name, aspect, level, cost);
         this.armas = new ArrayList<>();
+        this.tipo = tipo;
     }
 
     public Personaje (){
@@ -80,14 +81,14 @@ public class Personaje extends Character implements Serializable {
     public Personaje clone() {
         HashMap<Integer, ArrayList<String>> aspect = this.aspect;
         return new Personaje(this.getLife(), this.getHitsPerTime(), this.getFieldsInArmy(), this.getLevelRequired(), this.getWeapons(),
-                this.getCurrentWeapon(), this.getDirection(), this.getName(), aspect, this.getLevel(), this.getCost(),this.getArmas());
+                this.getCurrentWeapon(), this.getDirection(), this.getName(), aspect, this.getLevel(), this.getCost(),this.getArmas(), this.tipo);
     }
 
     public Personaje deepClone() {
         HashMap<Integer, ArrayList<String>> aspect = this.aspect;
         ArrayList<Arma> weaponsCloned = new ArrayList();
         return new Personaje(this.getLife(), this.getHitsPerTime(), this.getFieldsInArmy(), this.getLevelRequired(), this.getWeapons(),
-                this.getCurrentWeapon(), this.getDirection(), this.getName(), aspect, this.getLevel(), this.getCost(), weaponsCloned);
+                this.getCurrentWeapon(), this.getDirection(), this.getName(), aspect, this.getLevel(), this.getCost(), weaponsCloned, this.tipo);
     }
 
     public void addArmas(Arma arma){
