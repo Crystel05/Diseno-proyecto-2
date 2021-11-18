@@ -3,6 +3,7 @@ package Controller;
 import Model.Weapon;
 import Modelo.Arma;
 import Modelo.Data.EquipoDatos;
+import Modelo.Equipo;
 import Modelo.Personaje;
 import Modelo.Usuario;
 import ProjectNetwork.ClientTypes.CommandGameClient;
@@ -16,6 +17,7 @@ import Vista.PantallaJugador;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ControladorPantalla {
     //Tiene el cliente y la pantalla
@@ -55,6 +57,7 @@ public class ControladorPantalla {
 
     public void setPantallaJugador(PantallaJugador pantallaJugador) {
         this.pantallaJugador = pantallaJugador;
+        System.out.println("Se liga pantalla de juego y controlador");
     }
 
     public void requestCommand(String key, String[] params) throws IOException, ClassNotFoundException {
@@ -111,4 +114,7 @@ public class ControladorPantalla {
         pantallaJugador.setDatosEnemigo(usuario);
     }
 
+    public Equipo getEquipo() {
+        return client.getEquipo();
+    }
 }

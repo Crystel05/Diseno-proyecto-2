@@ -3,6 +3,7 @@ package Vista;
 import CommandPattern.Enumerable.CommandsE;
 import Controller.ControladorPantalla;
 import Model.Weapon;
+import Modelo.Arma;
 import Modelo.Personaje;
 import Modelo.Usuario;
 import javafx.beans.value.ChangeListener;
@@ -35,7 +36,7 @@ import java.util.ResourceBundle;
 
 public class PantallaJugador implements Initializable {
 
-    private ControladorPantalla controladorPantalla;
+    private ControladorPantalla controladorPantalla = ControladorPantalla.getInstance();
     private Comunicador comunicador = Comunicador.getInstance();
     private Boolean borrando = false;
     private Boolean mostrandoError = false;
@@ -365,66 +366,75 @@ public class PantallaJugador implements Initializable {
 
     @FXML
     public void seleccionadoGuerrero1(MouseEvent event){
-//        Personaje guerrero1 = comunicador.getGuerrerosEscogidos().get(0);
-//        nombreGuerreroUsando.setText(guerrero1.getName());
-//        porcentajeVidaUsando.setText(String.valueOf(guerrero1.getLife())); //no estoy segura de que sea así
-//        ArrayList<Weapon> armas = guerrero1.getArmas();
-//        ponerNombreArma(armas);
-        escribirPorcentajes(0);
+        Personaje guerrero1 = controladorPantalla.getEquipo().getGuerreros().get(0);
+        nombreGuerreroUsando.setText(guerrero1.getName());
+        porcentajeVidaUsando.setText(String.valueOf(guerrero1.getLife())); //no estoy segura de que sea así
+        ArrayList<Arma> armas = guerrero1.getArmas();
+        ponerNombreArma(armas);
+        escribirPorcentajes(armas);
     }
 
     @FXML
     public void seleccionadoGuerrero2(MouseEvent event){
-//        Personaje guerrero2 = comunicador.getGuerrerosEscogidos().get(1);
-//        nombreGuerreroUsando.setText(guerrero2.getName());
-//        porcentajeVidaUsando.setText(String.valueOf(guerrero2.getLife())); //no estoy segura de que sea así
-//        ArrayList<Weapon> armas = guerrero2.getArmas();
-//        ponerNombreArma(armas);
-        escribirPorcentajes(1);
+        Personaje guerrero1 = controladorPantalla.getEquipo().getGuerreros().get(1);
+        nombreGuerreroUsando.setText(guerrero1.getName());
+        porcentajeVidaUsando.setText(String.valueOf(guerrero1.getLife())); //no estoy segura de que sea así
+        ArrayList<Arma> armas = guerrero1.getArmas();
+        ponerNombreArma(armas);
+        escribirPorcentajes(armas);
     }
 
     @FXML
     public void seleccionadoGuerrero3(MouseEvent event){
-//        Personaje guerrero3 = comunicador.getGuerrerosEscogidos().get(2);
-//        nombreGuerreroUsando.setText(guerrero3.getName());
-//        porcentajeVidaUsando.setText(String.valueOf(guerrero3.getLife())); //no estoy segura de que sea así
-//        ArrayList<Weapon> armas = guerrero3.getArmas();
-//        ponerNombreArma(armas);
-        escribirPorcentajes(2);
+        Personaje guerrero1 = controladorPantalla.getEquipo().getGuerreros().get(2);
+        nombreGuerreroUsando.setText(guerrero1.getName());
+        porcentajeVidaUsando.setText(String.valueOf(guerrero1.getLife())); //no estoy segura de que sea así
+        ArrayList<Arma> armas = guerrero1.getArmas();
+        ponerNombreArma(armas);
+        escribirPorcentajes(armas);
     }
 
     @FXML
     public void seleccionadoGuerrero4(MouseEvent event){
-//        Personaje guerrero4 = comunicador.getGuerrerosEscogidos().get(3);
-//        nombreGuerreroUsando.setText(guerrero4.getName());
-//        porcentajeVidaUsando.setText(String.valueOf(guerrero4.getLife())); //no estoy segura de que sea así
-//        ArrayList<Weapon> armas = guerrero4.getArmas();
-//        ponerNombreArma(armas);
-        escribirPorcentajes(3);
+        Personaje guerrero1 = controladorPantalla.getEquipo().getGuerreros().get(3);
+        nombreGuerreroUsando.setText(guerrero1.getName());
+        porcentajeVidaUsando.setText(String.valueOf(guerrero1.getLife())); //no estoy segura de que sea así
+        ArrayList<Arma> armas = guerrero1.getArmas();
+        ponerNombreArma(armas);
+        escribirPorcentajes(armas);
     }
 
-    private void ponerNombreArma(ArrayList<Weapon> armas){
+    //Falta un guerrero
+
+    private void ponerNombreArma(ArrayList<Arma> armas){
         for (int i = 0; i<4; i++){
             armasPersonaje.get(i).setText(armas.get(i).getName());
         }
     }
 
-    private void colocarPorcentajes(){
+    /*private void colocarPorcentajes(){
         for (int i = 0; i<5; i++){
             ArrayList<Integer> porcentajesArma = new ArrayList<>();
             for (int j = 0; j < 10; j++){
-                String porcentaje = porcentaje();
-                porcentajesArma.add(Integer.valueOf(porcentaje));
+                String porcentaje = porcentaje();//Esto tiene que pasar a ser los porcentajes de las armas
+                porcentajesArma.add(Integer.valueOf(Integer.valueOf(porcentaje)));
             }
             porcentajesFinales.add(porcentajesArma);
         }
-    }
+    }*/
 
-    private void escribirPorcentajes(int armaIndex){
-        ArrayList<Integer> arma = porcentajesFinales.get(armaIndex);
-        for (int j = 0; j<arma.size()-1; j++){
-            porcentajes.get(armaIndex).get(j).setText(String.valueOf(arma.get(j)));
+    private void escribirPorcentajes(ArrayList<Arma> armas){
+        //System.out.println(armaIndex);
+        int armaIndex = 0;
+        for (Arma arma:armas){
+            int j = 0;
+            for (Integer dano:arma.getDaños()){
+                porcentajes.get(armaIndex).get(j).setText(String.valueOf(dano));
+                j++;
+            }
+            armaIndex++;
         }
+
     }
 
     private String porcentaje(){
@@ -438,11 +448,29 @@ public class PantallaJugador implements Initializable {
 
         guerrerosFotos.add(guerrero1); guerrerosFotos.add(guerrero2); guerrerosFotos.add(guerrero3); guerrerosFotos.add(guerrero4);
 
+        //Llenando listas de armas
+
+        armasPersonaje.add(arma1Nombre);armasPersonaje.add(arma2Nombre);armasPersonaje.add(arma3Nombre);armasPersonaje.add(arma4Nombre);
+        armasPersonaje.add(arma5Nombre);
+
         arma1.add(arma1At1);arma1.add(arma1At2);arma1.add(arma1At3);arma1.add(arma1At4);arma1.add(arma1At5);
+        arma1.add(arma1At6);arma1.add(arma1At7);arma1.add(arma1At8);arma1.add(arma1At9);arma1.add(arma1At10);
+
         arma2.add(arma2At1);arma2.add(arma2At2);arma2.add(arma2At3);arma2.add(arma2At4);arma2.add(arma2At5);
+        arma2.add(arma2At6);arma2.add(arma2At7);arma2.add(arma2At8);arma2.add(arma2At9);arma2.add(arma2At10);
+
+
         arma3.add(arma3At1);arma3.add(arma3At2);arma3.add(arma3At3);arma3.add(arma3At4);arma3.add(arma3At5);
+        arma3.add(arma3At6);arma3.add(arma3At7);arma3.add(arma3At8);arma3.add(arma3At9);arma3.add(arma3At10);
+
+
         arma4.add(arma4At1);arma4.add(arma4At2);arma4.add(arma4At3);arma4.add(arma4At4);arma4.add(arma4At5);
+        arma4.add(arma4At6);arma4.add(arma4At7);arma4.add(arma4At8);arma4.add(arma4At9);arma4.add(arma4At10);
+
+
         arma5.add(arma5At1);arma5.add(arma5At2);arma5.add(arma5At3);arma5.add(arma5At4);arma5.add(arma5At5);
+        arma5.add(arma5At6);arma5.add(arma5At7);arma5.add(arma5At8);arma5.add(arma5At9);arma5.add(arma5At10);
+
 
         porcentajes.add(arma1); porcentajes.add(arma2); porcentajes.add(arma3); porcentajes.add(arma4); porcentajes.add(arma5);
 
@@ -464,7 +492,8 @@ public class PantallaJugador implements Initializable {
     }
 
     private void cargarDatosCompetidores(){
-
+        setDatosUsuario(controladorPantalla.getUsuario());
+        setDatosEnemigo(controladorPantalla.getUsuarioEnemigo());
     }
 
     private void cargarDatosAtaque(){
@@ -492,11 +521,9 @@ public class PantallaJugador implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        controladorPantalla = ControladorPantalla.getInstance();
-        controladorPantalla.setPantallaJugador(this);//Aqui hay un error en el segundo
         llenarListas();
         cargarDatosRanking();
-        colocarPorcentajes();
+        //colocarPorcentajes();
         comandos.skinProperty().addListener(new ChangeListener<Skin<?>>() {
             @Override
             public void changed(ObservableValue<? extends Skin<?>> observable, Skin<?> oldValue, Skin<?> newValue) {
@@ -674,7 +701,6 @@ public class PantallaJugador implements Initializable {
     public void setDatosEnemigo(Usuario contrincante) {
         System.out.println(contrincante);
         puestoContra.setText("#"+contrincante.getRanking());
-        //nombreContrincante.setText("("+contrincante.getNombre()+")");
         ganadasContricante.setText(String.valueOf(contrincante.getPartidasGanadas()));
         perdidasContrincante.setText(String.valueOf(contrincante.getPartidasPerdidas()));
         ataquesCont.setText(String.valueOf(contrincante.getAtaquesExitosos()));
