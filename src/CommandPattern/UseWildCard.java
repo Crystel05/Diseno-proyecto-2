@@ -14,7 +14,7 @@ public class UseWildCard extends BaseCommand{
     }
 
     @Override
-    public void execute(String[] params) throws IOException {
+    public void execute(String[] params,int clientId) throws IOException {
         if(params.length == 3){ // doble arma
             Partida.getInstance().doubleWeapon(params[0],params[1],params[2]);
         }else {

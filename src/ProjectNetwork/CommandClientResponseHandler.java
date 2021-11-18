@@ -43,6 +43,7 @@ public class CommandClientResponseHandler implements IHandleResponse {
                 break;
             case ATTACKINFO:
                 AttackInfoResponse attackInfoResponse = (AttackInfoResponse) request;
+                System.out.println(attackInfoResponse.attackInfo);
                 //Controladar.showAttackInfo(attackInfoResponse.attackInfo)
                 break;
 

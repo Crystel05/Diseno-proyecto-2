@@ -92,16 +92,14 @@ public class EjecutorComandos {
             }
         }
         if(muertos == Partida.getInstance().PERSONAJES_POR_JUGADOR){
+            System.out.println("Ya se mueren todos");
             Partida.getInstance().getEquipoInTurn().getUsuario().addVictorias();
             Partida.getInstance().equipoEnemigo().getUsuario().addDerrotas();
             Partida.getInstance().endGame();
         }
-        Partida.getInstance().sendToClients(attackInfo);
+        Partida.getInstance().directMessageNotInTurn(attackInfo);
     }
 
-    public boolean canExecute() {
-        return canExecute;
-    }
 
     public void setCanExecute(boolean canExecute) {
         this.canExecute = canExecute;

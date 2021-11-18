@@ -25,6 +25,7 @@ public class ControladorPantalla {
     static ControladorPantalla controladorPantalla;
     ArrayList<Personaje> personajes;
     ArrayList<Arma> armas;
+
     InicioJuego inicioJuego;
     PantallaJugador pantallaJugador;
 
@@ -53,11 +54,6 @@ public class ControladorPantalla {
     public void setInicioJuego(InicioJuego inicioJuego){
         this.inicioJuego = inicioJuego;
         System.out.println("Se liga pantalla y controlador");
-    }
-
-    public void setPantallaJugador(PantallaJugador pantallaJugador) {
-        this.pantallaJugador = pantallaJugador;
-        System.out.println("Se liga pantalla de juego y controlador");
     }
 
     public void requestCommand(String key, String[] params) throws IOException, ClassNotFoundException {

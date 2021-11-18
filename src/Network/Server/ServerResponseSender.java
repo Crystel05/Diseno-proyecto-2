@@ -16,6 +16,8 @@ public class ServerResponseSender implements ISendResponse {
 
     @Override
     public void sendResponse(IResponse response) throws IOException {
+        output.flush();
+        output.reset();
         output.writeObject(response);
     }
 }

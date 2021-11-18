@@ -37,7 +37,6 @@ import java.util.ResourceBundle;
 public class PantallaJugador implements Initializable {
 
     private ControladorPantalla controladorPantalla = ControladorPantalla.getInstance();
-    private Comunicador comunicador = Comunicador.getInstance();
     private Boolean borrando = false;
     private Boolean mostrandoError = false;
     private String lineaComando = "";

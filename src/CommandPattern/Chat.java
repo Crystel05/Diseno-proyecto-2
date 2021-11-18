@@ -13,7 +13,7 @@ public class Chat extends BaseCommand{
     }
 
     @Override
-    public void execute(String[] params) throws IOException {
-        Partida.getInstance().chatCommand(params[0]);
+    public void execute(String[] params,int cliendId) throws IOException {
+        Partida.getInstance().chatCommand(String.join(" ",params),cliendId);
     }
 }

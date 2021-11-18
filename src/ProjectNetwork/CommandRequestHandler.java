@@ -32,7 +32,7 @@ public class CommandRequestHandler implements IHandleRequest {
                 String[] commandArgs = ((CommandRequest) request).getParams();//Devuelve el otro resto
                 System.out.println(commandName);
                 ICommand command = CommandManager.getInstance().getCommand(commandName);//Con este le pide al manager
-                command.execute(commandArgs);//Aca se hace el execute y pasa al Game
+                command.execute(commandArgs,((CommandRequest) request).clientId);//Aca se hace el execute y pasa al Game
                 break;
             case CONNECT:
                 int id = handler.getClientes().size();

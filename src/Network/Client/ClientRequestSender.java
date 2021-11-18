@@ -17,6 +17,8 @@ public class ClientRequestSender implements ISendRequest {
 
     @Override
     public void sendRequest(IRequest request) throws IOException {
+        output.flush();
+        output.reset();
         output.writeObject(request);
     }
 }

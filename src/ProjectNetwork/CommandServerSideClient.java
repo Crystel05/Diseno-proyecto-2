@@ -13,8 +13,8 @@ import java.io.IOException;
 
 public class CommandServerSideClient extends BasicServerClient implements ISendResponse {
 
-    Equipo equipo;
-    Equipo equipoEnemigo;
+    Equipo equipoCliente;
+    Equipo equipoEnemigoCliente;
 
     public CommandServerSideClient(int objectId) {
         super(objectId);
@@ -35,15 +35,15 @@ public class CommandServerSideClient extends BasicServerClient implements ISendR
     }
 
     public void setEquipo(Equipo equipoElegido) {
-        this.equipo = equipoElegido;
+        this.equipoCliente = equipoElegido;
     }
 
     public void setEquipoEnemigo(Equipo equipoEnemigo){
-        this.equipoEnemigo = equipoEnemigo;
+        this.equipoEnemigoCliente = equipoEnemigo;
     }
 
     public Equipo getEquipo() {
-        return equipo;
+        return equipoCliente;
     }
 
     public void sendAttackInfo(AttackInfo attackInfo) throws IOException {

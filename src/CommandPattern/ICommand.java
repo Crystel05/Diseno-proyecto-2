@@ -8,5 +8,5 @@ import java.util.ArrayList;
 public interface ICommand {
 
     CommandsE getType();
-    void execute(String[] params) throws IOException; //poner parámetros
+    void execute(String[] params,int clientId) throws IOException; //poner parámetros
 }

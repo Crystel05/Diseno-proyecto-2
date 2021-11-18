@@ -19,7 +19,9 @@ public class Arma extends Weapon implements Serializable {
         super(scope, damage, explotionRange, levelIncrease, name, aspect, level, cost);  // super(name, aspect, level, cost); Esto lo hace la mamá gameEntity, en Weapon
         this.isActive = isActive;
         this.armaAtaca = armas;
-        generarDanos();
+        if(daños == null)
+            generarDanos();//Quitar si no se generar aleatoriamente.
+
     }
     public Arma(int scope, double damage, double explotionRange, boolean levelIncrease, String name, HashMap<Integer, ArrayList<String>> aspect,
                 int level, double cost, boolean isActive, ArrayList<EnumTipoPersonaje> armas, ArrayList<Integer> daños) {
@@ -28,7 +30,8 @@ public class Arma extends Weapon implements Serializable {
         this.isActive = isActive;
         this.armaAtaca = armas;
         this.daños = daños;
-        generarDanos();//Quitar si no se generar aleatoriamente.
+        if(daños == null)
+            generarDanos();//Quitar si no se generar aleatoriamente.
     }
 
     private void generarDanos() {

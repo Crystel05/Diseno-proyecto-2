@@ -1,34 +1,26 @@
 package Modelo;
 
-import CommandPattern.AttackCommand;
-import CommandPattern.Chat;
-import CommandPattern.CommandManager;
-import CommandPattern.Enumerable.CommandsE;
 import FileManager.Logger;
 import Model.*;
-import Model.Character;
 import Modelo.Data.EquipoDatos;
 import Modelo.Data.GuerreroDatos;
 import Network.BaseServerClasses.BasicServerClient;
 import Network.Server.Server;
 import ProjectNetwork.CommandRequestHandler;
 import ProjectNetwork.CommandServerSideClient;
-import ProjectNetwork.Responses.AvaliableWariorsResponse;
+import ProjectNetwork.Responses.AttackInfoResponse;
 import ProjectNetwork.Responses.MessageResponse;
 import Utils.JsonLoader;
 import Utils.JsonRanking;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 public class Partida extends Server{
 
     private static Partida partida;
-    public int PERSONAJES_POR_JUGADOR = 5;
+    public int PERSONAJES_POR_JUGADOR = 4;
 
     private EjecutorComandos ejecutarComandos = new EjecutorComandos();
 
@@ -62,6 +54,7 @@ public class Partida extends Server{
             CommandServerSideClient client2 = (CommandServerSideClient) this.getClientes().get(1);
             client2.setEquipoEnemigo(client1.getEquipo());
             client1.setEquipoEnemigo(client2.getEquipo());
+            equipos[0].setInTurn(true);
             try {
                 sendToClients("Empieza el juego");
                 updateUsuarios();
@@ -72,21 +65,19 @@ public class Partida extends Server{
         }
     }
 
-    public Equipo[] getEquipos(){
-        return  equipos;
-    }
-
-    //xd
+    //Singleton borracho
     public static Partida getInstance(){
         return partida;
     }
 
-    //Creacion del Singleton
     public static void createInstance(int port,CommandRequestHandler requestHandler) throws IOException, ClassNotFoundException {
         partida = partida == null? new Partida(port,requestHandler):partida;
     }
 
+    /////////////////////////////////
+
     public void nextTurn(){
+        System.out.println("Paso turno");
         equipos[inTurn].setInTurn(false);
         inTurn += 1;
         if(inTurn != 1)
@@ -104,7 +95,7 @@ public class Partida extends Server{
 
     public Equipo equipoEnemigo(){
         for (Equipo equipo: equipos){
-            if(equipo.isInTurn())
+            if(!equipo.isInTurn())
                 return  equipo;
         }
         return  null;
@@ -121,15 +112,11 @@ public class Partida extends Server{
     //Esto puede hacer la calidaciones y luego enviarlas a los metodos del ejecutor.
 
     public void attackCommand(String guerreroString,String armaString) throws IOException {
-        if (ejecutarComandos.canExecute()){
             Personaje guerrero = equipos[inTurn].getGuerrero(guerreroString);
             Arma arma = guerrero.getArma(armaString);
             ejecutarComandos.attack(guerrero,arma);
             nextTurn();
-        }
-        else {
-            //Ya termino el juego... YANO !!
-        }
+        updateUsuarios();
         updateUsuarios();
     }
 
@@ -179,8 +166,8 @@ public class Partida extends Server{
         ejecutarComandos.passTurn();
         updateUsuarios();
     }
-    public void chatCommand(String message) throws IOException {
-        directMessageNotInTurn(message);
+    public void chatCommand(String message,int client) throws IOException {
+        directMessage(message,client);
     }
 
     public void errorCommand(String param) throws IOException {
@@ -198,8 +185,8 @@ public class Partida extends Server{
         Logger.addToLogger("Jugador "+ inTurn +" Selecciono personaje");
         updateUsuarios();
     }
-    //Responses enviados por el servidor
 
+    //Responses enviados por el servidor
     public void updateUsuarios() throws IOException {
         CommandServerSideClient client1 = (CommandServerSideClient) getClientes().get(0);
         CommandServerSideClient client2 = (CommandServerSideClient) getClientes().get(1);
@@ -207,14 +194,22 @@ public class Partida extends Server{
         client2.updateData(equipos[1],equipos[0]);
     }
 
-    public void sendToClients(String string) throws IOException {
-        int i = 0;
+    public void sendToClients(String string) throws IOException {//Envia a todos los clientes
         for (BasicServerClient client:getClientes()){
             ((CommandServerSideClient)client).sendMessage(string);
         }
     }
 
-    public void directMessageInTurn(String string) throws  IOException{
+    private void directMessage(String message,int idClient) throws IOException {//Envia al cliente contrario
+        for(BasicServerClient client:getClientes()){
+            CommandServerSideClient clientCommand = (CommandServerSideClient) client;
+            if(clientCommand.getObjectId() != idClient)
+                clientCommand.sendMessage(message);
+        }
+    }
+
+    public void directMessageInTurn(String string) throws  IOException{//Esto solo se usa para que el servidor avise a cosas al que esta en juego
+        //No se si tiene que existir
         CommandServerSideClient client = (CommandServerSideClient)getClientes().get(0);
         MessageResponse response = new MessageResponse(string);
         if(client.getEquipo().isInTurn())
@@ -232,12 +227,13 @@ public class Partida extends Server{
             getClientes().get(1).getResponseSender().sendResponse(response);
     }
 
-
-    public void sendToClients(AttackInfo attackInfo) throws IOException {        int i = 0;
-        for (BasicServerClient client:getClientes()){
-            ((CommandServerSideClient)client).sendAttackInfo(attackInfo);
-        }
-
+    public void directMessageNotInTurn(AttackInfo attack) throws  IOException{
+        CommandServerSideClient client = (CommandServerSideClient)getClientes().get(0);
+        AttackInfoResponse attackInfo = new AttackInfoResponse(attack);
+        if(!client.getEquipo().isInTurn())
+            client.getResponseSender().sendResponse(attackInfo);
+        else
+            getClientes().get(1).getResponseSender().sendResponse(attackInfo);
     }
 
     public void comodinTimer(){
@@ -245,7 +241,6 @@ public class Partida extends Server{
             equipo.setComodin(true);
         }
     }
-
 
     //Traer armas y personajes guardados y guardarlos aca.
     public void cargarFactorys() throws IOException {
@@ -299,15 +294,6 @@ public class Partida extends Server{
         }
         addEquipo(equipoClonado);
         return equipoClonado;
-    }
-
-    public ArrayList <Integer> generateDamages(){
-        ArrayList<Integer> damages = new ArrayList<>();
-        for (int i=0; i<10; i++){
-            int numero = (int) (Math.random() * 40 + 20);
-            damages.add(numero);
-        }
-        return damages;
     }
 
 

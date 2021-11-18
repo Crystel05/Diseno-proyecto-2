@@ -10,6 +10,7 @@ public class AttackInfo implements Serializable {
     HashMap<String,Integer> damageToTeam;
 
     public AttackInfo(String characterName,String weaponName){
+        damageToTeam = new HashMap<>();
         this.characterName = characterName;
         this.weaponName = weaponName;
     }
@@ -40,5 +41,14 @@ public class AttackInfo implements Serializable {
 
     public void setDamageToTeam(HashMap<String, Integer> damageToTeam) {
         this.damageToTeam = damageToTeam;
+    }
+
+    @Override
+    public String toString() {
+        return "AttackInfo{" +
+                "characterName='" + characterName + '\'' +
+                ", weaponName='" + weaponName + '\'' +
+                ", damageToTeam=" + damageToTeam +
+                '}';
     }
 }

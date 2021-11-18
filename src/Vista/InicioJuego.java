@@ -35,7 +35,6 @@ import javafx.stage.StageStyle;
 
 public class InicioJuego implements Initializable {
 
-    private Comunicador comunicador = Comunicador.getInstance();
     private EquipoDatos equipoDatos = new EquipoDatos();
 
     //PRUEBAS

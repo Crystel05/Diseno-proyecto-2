@@ -30,16 +30,16 @@ public class Personaje extends Character implements Serializable {
     }
 
     public void reload() {
-        for (Weapon weapon:getWeapons()) {
-            Arma arma = (Arma) weapon;
+        for (Arma weapon:getArmas()) {
+            Arma arma =  weapon;
             arma.setActive(true);
         }
     }
 
     public Arma getArma(String armaString) {
-        for (Weapon arma:getWeapons()){
+        for (Arma arma:getArmas()){
             if(arma.getName().equals(armaString)) {
-                return (Arma) arma;
+                return  arma;
             }
         }
         return null;
@@ -47,6 +47,7 @@ public class Personaje extends Character implements Serializable {
 
     public void recieveDamage(int damage){
         this.setLife(getLife()-damage);
+        System.out.println(getLife());
     }
 
     public EnumTipoPersonaje getType() {
@@ -58,15 +59,15 @@ public class Personaje extends Character implements Serializable {
     }
 
     public boolean canReload() {
-        for (Weapon weapon:getWeapons()) {
-            Arma arma = (Arma) weapon;
+        for (Arma weapon:getArmas()) {
+            Arma arma =  weapon;
             if(arma.isActive())
                 return false;
         }
         return true;
     }
     public boolean isArmaValida(String armaString){
-        for (Weapon weapon:getWeapons()
+        for (Arma weapon:getArmas()
         ) {
             if(weapon.getName().equals(armaString))
                 return true;
