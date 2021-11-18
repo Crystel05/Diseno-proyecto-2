@@ -108,7 +108,7 @@ public class Partida extends Server{
     public void endGame() throws IOException {
         ejecutarComandos.setCanExecute(false);
         sendToClients("Game is over");
-       jsonRanking.updateJSON();
+        jsonRanking.updateJSON();
     }
 
 
