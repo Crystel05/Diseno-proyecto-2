@@ -56,10 +56,12 @@ public class PantallaJugador implements Initializable {
     private ArrayList<Text> arma3 = new ArrayList<>();
     private ArrayList<Text> arma4 = new ArrayList<>();
     private ArrayList<Text> arma5 = new ArrayList<>();
+    private ArrayList<Text> tipos = new ArrayList<>();
     private ArrayList<ArrayList<Text>> porcentajes = new ArrayList<>();
     private ArrayList<ArrayList<Integer>> porcentajesFinales = new ArrayList<>();
-
     private JsonRanking jsonRanking = JsonRanking.getInstance();
+    private int indiceGuerreroUsado = 1;
+    private String nombreArmaUsada = "";
 
     @FXML
     private Text nombreJugador;
@@ -387,13 +389,13 @@ public class PantallaJugador implements Initializable {
 
     @FXML
     public void seleccionadoGuerrero1(MouseEvent event) throws FileNotFoundException {
-        cargarDatosEquipo();
         Personaje guerrero1 = controladorPantalla.getEquipo().getGuerreros().get(0);
         nombreGuerreroUsando.setText(guerrero1.getName());
         porcentajeVidaUsando.setText(String.valueOf(guerrero1.getLife())); //no estoy segura de que sea así
         ArrayList<Arma> armas = guerrero1.getArmas();
         ponerNombreArma(armas);
         escribirPorcentajes(armas);
+        indiceGuerreroUsado = 1;
     }
 
     @FXML
@@ -404,6 +406,7 @@ public class PantallaJugador implements Initializable {
         ArrayList<Arma> armas = guerrero1.getArmas();
         ponerNombreArma(armas);
         escribirPorcentajes(armas);
+        indiceGuerreroUsado = 2;
     }
 
     @FXML
@@ -414,6 +417,7 @@ public class PantallaJugador implements Initializable {
         ArrayList<Arma> armas = guerrero1.getArmas();
         ponerNombreArma(armas);
         escribirPorcentajes(armas);
+        indiceGuerreroUsado = 3;
     }
 
     @FXML
@@ -424,6 +428,7 @@ public class PantallaJugador implements Initializable {
         ArrayList<Arma> armas = guerrero1.getArmas();
         ponerNombreArma(armas);
         escribirPorcentajes(armas);
+        indiceGuerreroUsado = 4;
     }
 
     private void ponerNombreArma(ArrayList<Arma> armas){
@@ -446,12 +451,9 @@ public class PantallaJugador implements Initializable {
 
     }
 
-    private String porcentaje(){
-        int porcentaje =(int) (Math.random()*100+1);
-        return String.valueOf(porcentaje);
-    }
-
     private void llenarListas(){
+        tipos.add(tipoG1); tipos.add(tipoG2); tipos.add(tipoG3); tipos.add(tipoG4);
+
         rankingNames.add(nomR1);rankingNames.add(nomR2);rankingNames.add(nomR3);rankingNames.add(nomR4);rankingNames.add(nomR5);
         rankingNames.add(nomR6);rankingNames.add(nomR7);rankingNames.add(nomR8);rankingNames.add(nomR9);rankingNames.add(nomR10);
 
@@ -486,7 +488,7 @@ public class PantallaJugador implements Initializable {
     }
 
     private void cargarDatosRanking(){
-        ArrayList<String> nombres = new ArrayList<>(); // agregar aquí el archivo o lista real
+        ArrayList<String> nombres = new ArrayList<>();
 
         for(Usuario u: jsonRanking.getUsuarios()){
             nombres.add(u.getNombre());
@@ -503,8 +505,9 @@ public class PantallaJugador implements Initializable {
     }
 
     private void cargarDatosAtaque(){
-        //Poner lo que es enviado por el comando
-        //Poner lo que llega del ataque hecho
+        guerreroQueAtaca.setText(nombreGuerreroUsando.getText());
+        tipoGuerreroAtaca.setText(tipos.get(indiceGuerreroUsado).getText());
+
     }
 
     private void cargarDatosAtacado(){
@@ -513,18 +516,14 @@ public class PantallaJugador implements Initializable {
 
     private void cargarDatosEquipo() throws FileNotFoundException {
         ArrayList<Personaje> guerreros = controladorPantalla.getEquipo().getGuerreros();
-        for (int i = 0; i < guerreros.size(); i++){//todo:traer el otro guerrero
+        for (int i = 0; i < guerreros.size(); i++){
+            tipos.get(i).setText(guerreros.get(i).getType().name());
             String pathFoto = guerreros.get(i).getAspect().get(1).get(0);//Hashbrown-Arraylist!!!
             FileInputStream stream = new FileInputStream(pathFoto);
             Image image = new Image(stream);
             guerrerosFotos.get(i).setImage(image);//Falta un campo para guerrero
         }
 
-    }
-
-    @FXML
-    public void agregarDatos(MouseEvent event){
-        cargarDatosCompetidores();
     }
 
     private boolean buscarComando(String lineaComando) {
@@ -540,13 +539,6 @@ public class PantallaJugador implements Initializable {
     public void requestCommand() throws IOException, ClassNotFoundException {
         String[] params = lineaComando.split(" ");
         controladorPantalla.requestCommand(params[0], Arrays.copyOfRange(params,1,params.length));
-    }
-
-    public static void main(String[] args){
-        for (int i = 0; i<100; i++) {
-            int num = (int) (Math.random() * 100 + 1);
-            System.out.println(num);
-        }
     }
 
     public void setDatosUsuario(Usuario actual){
@@ -573,8 +565,17 @@ public class PantallaJugador implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         llenarListas();
+        cargarDatosCompetidores();
+        try {
+            cargarDatosEquipo();
+            Personaje guerrero1 = controladorPantalla.getEquipo().getGuerreros().get(0);
+            ArrayList<Arma> armas = guerrero1.getArmas();
+            ponerNombreArma(armas);
+            escribirPorcentajes(armas);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         cargarDatosRanking();
-        //colocarPorcentajes();
         comandos.skinProperty().addListener(new ChangeListener<Skin<?>>() {
             @Override
             public void changed(ObservableValue<? extends Skin<?>> observable, Skin<?> oldValue, Skin<?> newValue) {
@@ -675,7 +676,8 @@ public class PantallaJugador implements Initializable {
                                     ini.setFont(new Font("Eras Demi ITC", 15));
                                     ini.setFill(Color.GREEN);
                                     inicios.add(ini);
-                                    comandosMostrar.getChildren().add(ini);                                }else {
+                                    comandosMostrar.getChildren().add(ini);
+                                }else {
                                         try {
                                             requestCommand();
                                         } catch (IOException e) {
