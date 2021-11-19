@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -10,7 +11,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1279.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.PantallaJugador">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="681.0" prefWidth="1459.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.PantallaJugador">
    <children>
       <Pane layoutX="5.0" layoutY="5.0" prefHeight="186.0" prefWidth="217.0" style="-fx-background-color: BLACK;">
          <children>
@@ -122,10 +123,10 @@
             </Text>
          </children>
       </Pane>
-      <Pane layoutX="5.0" layoutY="489.0" prefHeight="186.0" prefWidth="675.0" style="-fx-background-color: BLACK;">
+      <Pane layoutX="5.0" layoutY="489.0" prefHeight="186.0" prefWidth="554.0" style="-fx-background-color: BLACK;">
          <children>
-            <TextFlow fx:id="comandosMostrar" layoutX="2.0" layoutY="2.0" prefHeight="182.0" prefWidth="669.0" />
-            <TextArea fx:id="comandos" layoutX="22.0" layoutY="2.0" prefHeight="182.0" prefWidth="649.0">
+            <TextFlow fx:id="comandosMostrar" layoutX="2.0" layoutY="2.0" prefHeight="182.0" prefWidth="550.0" />
+            <TextArea fx:id="comandos" layoutX="22.0" layoutY="2.0" prefHeight="182.0" prefWidth="527.0">
                <font>
                   <Font name="Eras Demi ITC" size="15.0" />
                </font>
@@ -135,10 +136,10 @@
             </TextArea>
          </children>
       </Pane>
-      <Pane layoutX="227.0" layoutY="5.0" prefHeight="237.0" prefWidth="454.0" style="-fx-background-color: BLACK;">
+      <Pane layoutX="227.0" layoutY="5.0" prefHeight="237.0" prefWidth="329.0" style="-fx-background-color: BLACK;">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="232.0" layoutX="3.0" layoutY="2.0" stroke="#016de8" strokeType="INSIDE" width="448.0" />
-            <ImageView fx:id="guerreroAtacó" fitHeight="237.0" fitWidth="454.0" pickOnBounds="true" preserveRatio="true" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="232.0" layoutX="3.0" layoutY="2.0" stroke="#016de8" strokeType="INSIDE" width="322.0" />
+            <ImageView fx:id="guerreroAtacó" fitHeight="226.0" fitWidth="315.0" layoutX="7.0" layoutY="6.0" pickOnBounds="true" />
             <Text fill="WHITE" layoutX="14.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Atacado por">
                <font>
                   <Font name="Cooper Black" size="25.0" />
@@ -159,52 +160,52 @@
                   <Font name="Cooper Black" size="23.0" />
                </font>
             </Text>
-            <Text fx:id="nomG1" fill="WHITE" layoutX="99.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="G1">
+            <Text fx:id="nomG1" fill="WHITE" layoutX="14.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="G1" textAlignment="CENTER" wrappingWidth="125.53083801269531">
                <font>
                   <Font name="Colonna MT" size="36.0" />
                </font>
             </Text>
-            <Text fx:id="nomG4" fill="WHITE" layoutX="99.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="G4">
+            <Text fx:id="nomG4" fill="WHITE" layoutX="14.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="G4" textAlignment="CENTER" wrappingWidth="125.5308380126952">
                <font>
                   <Font name="Colonna MT" size="36.0" />
                </font>
             </Text>
-            <Text fx:id="nomG2" fill="WHITE" layoutX="99.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="G2">
+            <Text fx:id="nomG2" fill="WHITE" layoutX="14.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="G2" textAlignment="CENTER" wrappingWidth="125.5308380126952">
                <font>
                   <Font name="Colonna MT" size="36.0" />
                </font>
             </Text>
-            <Text fx:id="nomG3" fill="WHITE" layoutX="99.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="G3">
+            <Text fx:id="nomG3" fill="WHITE" layoutX="14.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="G3" textAlignment="CENTER" wrappingWidth="125.5308380126952">
                <font>
                   <Font name="Colonna MT" size="36.0" />
                </font>
             </Text>
-            <Text fx:id="danoG1" fill="WHITE" layoutX="206.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10">
+            <Text fx:id="danoG1" fill="WHITE" layoutX="206.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="86.03759765624989">
                <font>
                   <Font name="Colonna MT" size="36.0" />
                </font>
             </Text>
-            <Text fx:id="danoG2" fill="WHITE" layoutX="206.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10">
+            <Text fx:id="danoG2" fill="WHITE" layoutX="206.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="86.03759765624989">
                <font>
                   <Font name="Colonna MT" size="36.0" />
                </font>
             </Text>
-            <Text fx:id="danoG3" fill="WHITE" layoutX="206.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10">
+            <Text fx:id="danoG3" fill="WHITE" layoutX="206.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="86.03759765624989">
                <font>
                   <Font name="Colonna MT" size="36.0" />
                </font>
             </Text>
-            <Text fx:id="danoG4" fill="WHITE" layoutX="206.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10">
+            <Text fx:id="danoG4" fill="WHITE" layoutX="206.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="86.03759765624989">
                <font>
                   <Font name="Colonna MT" size="36.0" />
                </font>
             </Text>
          </children>
       </Pane>
-      <Pane layoutX="227.0" layoutY="247.0" prefHeight="237.0" prefWidth="454.0" style="-fx-background-color: BLACK;">
+      <Pane layoutX="227.0" layoutY="247.0" prefHeight="237.0" prefWidth="329.0" style="-fx-background-color: BLACK;">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="232.0" layoutX="3.0" layoutY="3.0" stroke="#016de8" strokeType="INSIDE" width="448.0" />
-            <ImageView fx:id="guerroQueAtaca" fitHeight="237.0" fitWidth="454.0" pickOnBounds="true" preserveRatio="true" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="232.0" layoutX="3.0" layoutY="3.0" stroke="#016de8" strokeType="INSIDE" width="323.0" />
+            <ImageView fx:id="guerroQueAtaca" fitHeight="227.0" fitWidth="317.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" />
             <Text fill="WHITE" layoutX="14.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Atacaste con">
                <font>
                   <Font name="Cooper Black" size="25.0" />
@@ -235,14 +236,14 @@
                   <Font name="Cooper Black" size="23.0" />
                </font>
             </Text>
-            <Text fx:id="porcentajeDanoInfringido" fill="WHITE" layoutX="86.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10">
+            <Text fx:id="porcentajeDanoInfringido" fill="WHITE" layoutX="20.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="296.53326416015614">
                <font>
                   <Font name="Colonna MT" size="96.0" />
                </font>
             </Text>
          </children>
       </Pane>
-      <Pane layoutX="686.0" layoutY="5.0" prefHeight="670.0" prefWidth="588.0" style="-fx-background-color: BLACK;">
+      <Pane layoutX="564.0" layoutY="5.0" prefHeight="670.0" prefWidth="588.0" style="-fx-background-color: BLACK;">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="666.0" layoutX="2.0" layoutY="2.0" stroke="#016de8" strokeType="INSIDE" width="584.0" />
             <Text fx:id="nombreJugador" fill="#0037ff" layoutX="5.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TU EQUIPO" textAlignment="CENTER" wrappingWidth="584.0">
@@ -750,6 +751,17 @@
                   <Font name="Eras Demi ITC" size="15.0" />
                </font>
             </Text>
+         </children>
+      </Pane>
+      <Pane layoutX="1156.0" layoutY="5.0" prefHeight="670.0" prefWidth="297.0" style="-fx-background-color: BLACK;">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="667.0" layoutX="2.0" layoutY="2.0" stroke="#016de8" strokeType="INSIDE" width="292.0" />
+            <Text fx:id="nombreJugador1" fill="#0037ff" layoutX="2.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOTIFICACIONES" textAlignment="CENTER" wrappingWidth="293.866455078125">
+               <font>
+                  <Font name="Eras Demi ITC" size="23.0" />
+               </font>
+            </Text>
+            <ListView fx:id="notificaciones" layoutX="7.0" layoutY="37.0" prefHeight="626.0" prefWidth="284.0" />
          </children>
       </Pane>
    </children>

@@ -1,12 +1,12 @@
 package Vista;
 
-import CommandPattern.CommandManager;
 import CommandPattern.Enumerable.CommandsE;
 import Controller.ControladorPantalla;
-import Model.Weapon;
 import Modelo.Arma;
+import Modelo.AttackInfo;
 import Modelo.Personaje;
 import Modelo.Usuario;
+import ProjectNetwork.Responses.DanoHechoResponse;
 import Utils.JsonRanking;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -34,6 +34,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class PantallaJugador implements Initializable {
@@ -62,6 +63,19 @@ public class PantallaJugador implements Initializable {
     private JsonRanking jsonRanking = JsonRanking.getInstance();
     private int indiceGuerreroUsado = 1;
     private String nombreArmaUsada = "";
+    private AttackInfo ataque;
+    private DanoHechoResponse danoHecho;
+    private ArrayList<Text> nombresGuerreros = new ArrayList<>();
+    private ArrayList<Text> danoGuerreros = new ArrayList<>();
+    private ArrayList<String> mensajesNots = new ArrayList<>();
+
+    public void setAtaques(AttackInfo ataque) {
+        this.ataque = ataque;
+    }
+
+    public void setDanoHecho(DanoHechoResponse danoHecho) {
+        this.danoHecho = danoHecho;
+    }
 
     @FXML
     private Text nombreJugador;
@@ -382,9 +396,12 @@ public class PantallaJugador implements Initializable {
     private Text tipoGuerreroAtaca;
 
     @FXML
-    private Text nombreContrincante;
+    private ListView<String> notificaciones;
 
-    public PantallaJugador() throws IOException {
+    public PantallaJugador() throws IOException {}
+
+    public ListView<String> getNotificaciones() {
+        return notificaciones;
     }
 
     @FXML
@@ -454,6 +471,9 @@ public class PantallaJugador implements Initializable {
     private void llenarListas(){
         tipos.add(tipoG1); tipos.add(tipoG2); tipos.add(tipoG3); tipos.add(tipoG4);
 
+        nombresGuerreros.add(nomG1); nombresGuerreros.add(nomG2); nombresGuerreros.add(nomG3); nombresGuerreros.add(nomG4);
+        danoGuerreros.add(danoG1); danoGuerreros.add(danoG2); danoGuerreros.add(danoG3); danoGuerreros.add(danoG4);
+
         rankingNames.add(nomR1);rankingNames.add(nomR2);rankingNames.add(nomR3);rankingNames.add(nomR4);rankingNames.add(nomR5);
         rankingNames.add(nomR6);rankingNames.add(nomR7);rankingNames.add(nomR8);rankingNames.add(nomR9);rankingNames.add(nomR10);
 
@@ -505,13 +525,25 @@ public class PantallaJugador implements Initializable {
     }
 
     private void cargarDatosAtaque(){
-        guerreroQueAtaca.setText(nombreGuerreroUsando.getText());
-        tipoGuerreroAtaca.setText(tipos.get(indiceGuerreroUsado).getText());
+        if (danoHecho != null) {
+            guerreroQueAtaca.setText(danoHecho.personaje.getName());
+            tipoGuerreroAtaca.setText(danoHecho.personaje.getType().name());
+            porcentajeDanoInfringido.setText(String.valueOf(danoHecho.danoHecho));
+        }
 
     }
 
     private void cargarDatosAtacado(){
-
+        if (ataque != null) {
+            nombreGuerreroAtacante.setText(ataque.getCharacterName());
+            armaAtacante.setText(ataque.getWeaponName());
+            int indice = 0;
+            for (Map.Entry<String, Integer> entry : ataque.getDamageToTeam().entrySet()) {
+                nombresGuerreros.get(indice).setText(entry.getKey());
+                danoGuerreros.get(indice).setText(entry.getValue().toString());
+                indice++;
+            }
+        }
     }
 
     private void cargarDatosEquipo() throws FileNotFoundException {
@@ -564,6 +596,7 @@ public class PantallaJugador implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        ControladorPantalla.getInstance().setPantallaJugador(this);
         llenarListas();
         cargarDatosCompetidores();
         try {
@@ -639,7 +672,6 @@ public class PantallaJugador implements Initializable {
                         }else{
                             borrando = false;
                             if (event.getCode() == KeyCode.ENTER) {
-
                                 cantComandos ++;
                                 String[] comandos = newValue.split("\n");
                                 lineaComando = comandos[comandos.length-1]; //este es el comando
@@ -662,9 +694,9 @@ public class PantallaJugador implements Initializable {
                                 comandosMostrar.getChildren().add(in);
                                 comandosMostrar.getChildren().add(t);
 
-                                if (!buscarComando(lineaComando)) { //una lista de errores o mensajes
+                                if (!buscarComando(lineaComando)) {
                                     comandosMostrar.getChildren().add(new Text("\n"));
-                                    Text error = new Text("No existe el comando"); //cambiar este error por los errores que aparezcan
+                                    Text error = new Text("No existe el comando");
                                     error.setFill(Color.RED);
                                     comandosHechos.add(error);
                                     error.setFont(new Font("Eras Demi ITC", 15));
@@ -707,7 +739,6 @@ public class PantallaJugador implements Initializable {
                                         inicios.add(inicio);
                                         comandosMostrar.getChildren().add(new Text("\n"));
                                         comandosMostrar.getChildren().add(inicio);
-
                                 }
                             }
                         }
