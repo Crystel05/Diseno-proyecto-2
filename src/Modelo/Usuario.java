@@ -101,5 +101,18 @@ public class Usuario implements Serializable {
     public void addRendiciones() {
         rendiciones+=1;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "nombre='" + nombre + '\'' +
+                ", ranking=" + ranking +
+                ", partidasGanadas=" + partidasGanadas +
+                ", partidasPerdidas=" + partidasPerdidas +
+                ", ataquesExitosos=" + ataquesExitosos +
+                ", ataquesFallados=" + ataquesFallados +
+                ", rendiciones=" + rendiciones +
+                '}';
+    }
 }
 

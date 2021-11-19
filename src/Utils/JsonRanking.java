@@ -26,6 +26,7 @@ public class JsonRanking {
         this.json = new Gson();
         data = new ObjFormat();
         this.readJSON();
+        this.bubbleSortArrayList();
     }
 
     public static JsonRanking getInstance() throws IOException{
@@ -91,6 +92,33 @@ public class JsonRanking {
 
     public ArrayList<Usuario> getUsuarios(){
         return this.data.usuarios;
+    }
+
+    public void bubbleSortArrayList() {
+
+        int size = this.data.usuarios.size();
+        int prom1;
+        int prom2;
+        // loop to access each array element
+        for (int i = 0; i < size - 1; i++)
+            // loop to compare array elements
+            for (int j = 0; j < size - i - 1; j++) {
+                // compare two adjacent elements
+                // change > to < to sort in descending order
+                 prom1 = this.data.usuarios.get(j).getPartidasGanadas()/(this.data.usuarios.get(j).getPartidasGanadas()
+                                +this.data.usuarios.get(j).getPartidasPerdidas());
+                 prom2 = this.data.usuarios.get(j + 1).getPartidasGanadas()/(this.data.usuarios.get(j + 1).getPartidasGanadas()
+                                +this.data.usuarios.get(j + 1).getPartidasPerdidas());
+                if (this.data.usuarios.get(j).getPartidasGanadas() < this.data.usuarios.get(j+1).getPartidasGanadas()) {
+                    // swapping occurs if elements
+                    // are not in the intended order
+                    Usuario temp = this.data.usuarios.get(j);
+                    this.data.usuarios.set(j, this.data.usuarios.get(j + 1));
+                    this.data.usuarios.set(j + 1, temp);
+
+                }
+
+            }
     }
 
     public boolean checkClient(String name){

@@ -1,1 +1,32 @@
-{"usuarios":[{"nombre":"Jou","ranking":4,"partidasGanadas":18,"partidasPerdidas":1,"ataquesExitosos":6,"ataquesFallados":8,"rendiciones":10},{"nombre":"A","ranking":0,"partidasGanadas":0,"partidasPerdidas":0,"ataquesExitosos":0,"ataquesFallados":0,"rendiciones":0},{"nombre":"B","ranking":0,"partidasGanadas":0,"partidasPerdidas":0,"ataquesExitosos":0,"ataquesFallados":0,"rendiciones":0},{"nombre":"","ranking":0,"partidasGanadas":0,"partidasPerdidas":0,"ataquesExitosos":0,"ataquesFallados":0,"rendiciones":0},{"nombre":"Manchas","ranking":0,"partidasGanadas":0,"partidasPerdidas":0,"ataquesExitosos":0,"ataquesFallados":0,"rendiciones":0},{"nombre":"Max","ranking":0,"partidasGanadas":0,"partidasPerdidas":0,"ataquesExitosos":0,"ataquesFallados":0,"rendiciones":0},{"nombre":"Peter","ranking":0,"partidasGanadas":0,"partidasPerdidas":0,"ataquesExitosos":0,"ataquesFallados":0,"rendiciones":0},{"nombre":"Fiera","ranking":0,"partidasGanadas":0,"partidasPerdidas":0,"ataquesExitosos":0,"ataquesFallados":0,"rendiciones":0},{"nombre":"Puma","ranking":0,"partidasGanadas":0,"partidasPerdidas":0,"ataquesExitosos":0,"ataquesFallados":0,"rendiciones":0},{"nombre":"Rayas","ranking":0,"partidasGanadas":0,"partidasPerdidas":0,"ataquesExitosos":0,"ataquesFallados":0,"rendiciones":0},{"nombre":"Manchas 2","ranking":0,"partidasGanadas":0,"partidasPerdidas":0,"ataquesExitosos":0,"ataquesFallados":0,"rendiciones":0}]}
+{
+   "usuarios":[
+      {
+         "nombre":"Jo",
+         "ranking":12,
+         "partidasGanadas":20,
+         "partidasPerdidas":3,
+         "ataquesExitosos":6,
+         "ataquesFallados":8,
+         "rendiciones":10
+      },
+      {
+         "nombre":"Alex",
+         "ranking":7,
+         "partidasGanadas":2,
+         "partidasPerdidas":5,
+         "ataquesExitosos":0,
+         "ataquesFallados":0,
+         "rendiciones":0
+      },
+      {
+         "nombre":"Cristina",
+         "ranking":30,
+         "partidasGanadas":78,
+         "partidasPerdidas":4,
+         "ataquesExitosos":0,
+         "ataquesFallados":0,
+         "rendiciones":0
+      }
+   ]
+}
+

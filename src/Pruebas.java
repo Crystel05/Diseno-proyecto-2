@@ -24,8 +24,6 @@ public class Pruebas {
     private static ICreator factory;
     private static ICreator factory2;
 
-    //GeneralViewerController.getInstance().getCharacterList()
-
     public static void main(String[] args) throws IOException {
 
         /*
@@ -74,12 +72,22 @@ public class Pruebas {
         //System.out.println(jsonRanking.getUsuarios());
 
         Usuario u = jsonRanking.getUserClient("PersonajeCambiado") ; //Agarra el Personaje1
-        u.setNombre("Jou");  //Cambio objeto
-        jsonRanking.updateJSON();  //Quiero actualizar
+        //u.setNombre("Jou");  //Cambio objeto
+        //jsonRanking.updateJSON();  //Quiero actualizar
 
 
+        //ArrayList<Usuario> users = jsonRanking.getUsuarios();
         
+        for (int i=0;i<jsonRanking.getUsuarios().size();i++){
+            System.out.println(jsonRanking.getUsuarios().get(i).toString());
+        }
+
+
 
     }
 
-}
+        }
+
+
+
+
