@@ -77,7 +77,7 @@ public class Pruebas {
 
 
         //ArrayList<Usuario> users = jsonRanking.getUsuarios();
-        
+
         for (int i=0;i<jsonRanking.getUsuarios().size();i++){
             System.out.println(jsonRanking.getUsuarios().get(i).toString());
         }

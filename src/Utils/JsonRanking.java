@@ -97,18 +97,31 @@ public class JsonRanking {
     public void bubbleSortArrayList() {
 
         int size = this.data.usuarios.size();
-        int prom1;
-        int prom2;
+        int prom1 = 0;
+        int prom2 = 0;
         // loop to access each array element
         for (int i = 0; i < size - 1; i++)
             // loop to compare array elements
             for (int j = 0; j < size - i - 1; j++) {
                 // compare two adjacent elements
                 // change > to < to sort in descending order
-                 prom1 = this.data.usuarios.get(j).getPartidasGanadas()/(this.data.usuarios.get(j).getPartidasGanadas()
-                                +this.data.usuarios.get(j).getPartidasPerdidas());
-                 prom2 = this.data.usuarios.get(j + 1).getPartidasGanadas()/(this.data.usuarios.get(j + 1).getPartidasGanadas()
-                                +this.data.usuarios.get(j + 1).getPartidasPerdidas());
+                try {
+                    prom1 = this.data.usuarios.get(j).getPartidasGanadas() / (this.data.usuarios.get(j).getPartidasGanadas()
+                            + this.data.usuarios.get(j).getPartidasPerdidas());
+                }
+                catch (ArithmeticException e) {
+                    System.out.println("Zero cannot divide any number");
+                }
+
+                try {
+                    prom2 = this.data.usuarios.get(j + 1).getPartidasGanadas()/(this.data.usuarios.get(j + 1).getPartidasGanadas()
+                            +this.data.usuarios.get(j + 1).getPartidasPerdidas());
+                }
+                catch (ArithmeticException e) {
+                    System.out.println("Zero cannot divide any number");
+                }
+
+
                 if (this.data.usuarios.get(j).getPartidasGanadas() < this.data.usuarios.get(j+1).getPartidasGanadas()) {
                     // swapping occurs if elements
                     // are not in the intended order
