@@ -46,7 +46,9 @@ public class CommandClientResponseHandler implements IHandleResponse {
                 System.out.println(attackInfoResponse.attackInfo);
                 //Controladar.showAttackInfo(attackInfoResponse.attackInfo)
                 break;
-
+            case DEALEADDAMAGE:
+                DanoHechoResponse danoHechoResponse = (DanoHechoResponse) request;
+                System.out.println(danoHechoResponse.personaje.getName());
             default:
                 break;
         }

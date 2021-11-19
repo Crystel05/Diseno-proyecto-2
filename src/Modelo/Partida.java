@@ -292,9 +292,9 @@ public class Partida extends Server{
             getClientes().get(1).getResponseSender().sendResponse(response);
     }
 
-    public void directMessageInTurn(int dano) throws IOException {
+    public void directMessageInTurn(int dano,Personaje personaje, Arma arma) throws IOException {
         CommandServerSideClient client = (CommandServerSideClient)getClientes().get(0);
-        DanoHechoResponse response = new DanoHechoResponse(dano);
+        DanoHechoResponse response = new DanoHechoResponse(dano,personaje,arma);
         if(client.getEquipo().isInTurn())
             client.getResponseSender().sendResponse(response);
         else

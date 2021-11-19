@@ -100,7 +100,7 @@ public class EjecutorComandos {
             Partida.getInstance().endGame();
         }
         Partida.getInstance().directMessageNotInTurn(attackInfo);
-        Partida.getInstance().directMessageInTurn(sumaDano);
+        Partida.getInstance().directMessageInTurn(sumaDano,guerrero,arma);
     }
 
 
