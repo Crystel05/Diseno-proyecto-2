@@ -1,6 +1,7 @@
 package ProjectNetwork;
 
 import Controller.ControladorPantalla;
+import Modelo.AttackInfo;
 import Network.Client.ClientResponseHandler;
 import Network.Response.IHandleResponse;
 import Network.Response.IResponse;
@@ -9,6 +10,7 @@ import ProjectNetwork.Responses.*;
 import ProjectNetwork.Responses.Enumerable.GameResponsesType;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class CommandClientResponseHandler implements IHandleResponse {
     @Override
@@ -30,6 +32,7 @@ public class CommandClientResponseHandler implements IHandleResponse {
             case MESSAGE:
                 MessageResponse messageResponse = (MessageResponse) request;
                 System.out.println(messageResponse.content);
+                ControladorPantalla.getInstance().getPantallaJugador().getNotificaciones().getItems().add(messageResponse.content);
                 break;
             case SENDWARIORS:
                 AvaliableWariorsResponse avaliableWariorsRequest = (AvaliableWariorsResponse) request;
@@ -41,14 +44,15 @@ public class CommandClientResponseHandler implements IHandleResponse {
                 System.out.println("Me llegan armas");
                 ControladorPantalla.getInstance().setAvaliableWeapons(avaliableWeaponsResponse.armasDisponibles);
                 break;
-            case ATTACKINFO:
+            case ATTACKINFO:  //para el atacado
                 AttackInfoResponse attackInfoResponse = (AttackInfoResponse) request;
-                System.out.println(attackInfoResponse.attackInfo);
-                //Controladar.showAttackInfo(attackInfoResponse.attackInfo)
+                AttackInfo atack = attackInfoResponse.attackInfo;
+                ControladorPantalla.getInstance().getPantallaJugador().setAtaques(atack);
                 break;
-            case DEALEADDAMAGE:
+            case DEALEADDAMAGE: //para el que ataca
                 DanoHechoResponse danoHechoResponse = (DanoHechoResponse) request;
-                System.out.println(danoHechoResponse.personaje.getName());
+                //System.out.println(danoHechoResponse.personaje.getName());
+                ControladorPantalla.getInstance().getPantallaJugador().setDanoHecho(danoHechoResponse);
             default:
                 break;
         }

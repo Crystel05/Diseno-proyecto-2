@@ -40,3 +40,9 @@ Haciendo 10 de dano aklee
 Haciendo 8 de dano aNoelle
 Haciendo 11 de dano aQiqi
 Haciendo 0 de dano aDiluc
+Attack
+klee ataca con Gouba
+Haciendo 22 de dano aklee
+Haciendo 10 de dano aNoelle
+Haciendo 12 de dano aQiqi
+Haciendo 4 de dano aDiluc

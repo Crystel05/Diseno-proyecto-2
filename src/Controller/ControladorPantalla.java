@@ -37,6 +37,9 @@ public class ControladorPantalla {
         return controladorPantalla;
     }
 
+    public PantallaJugador getPantallaJugador(){
+        return this.pantallaJugador;
+    }
     //Escribe los comandos desde pantalla.
     //Los comandos strings.
     //Llegan al controlador
@@ -108,6 +111,10 @@ public class ControladorPantalla {
 
     public void setDatosUsuarioEnemigo(Usuario usuario){
         pantallaJugador.setDatosEnemigo(usuario);
+    }
+
+    public void setPantallaJugador(PantallaJugador pantallaJugador){
+        this.pantallaJugador = pantallaJugador;
     }
 
     public Equipo getEquipo() {
