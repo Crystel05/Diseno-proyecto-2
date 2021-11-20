@@ -131,15 +131,15 @@ public class Partida extends Server{
                    }
                }
                else {
-                   directMessageInTurn("El personaje"+ guerreroString+" esta muerto");
+                   directMessageInTurn("El personaje "+ guerreroString+" esta muerto");
                }
            }
            else {
-               directMessageInTurn("El personaje" +guerreroString+" no existe");//Esto puede cambiar a enviar errores para que el cliente los trate diferente
+               directMessageInTurn("El personaje " +guerreroString+" no existe");//Esto puede cambiar a enviar errores para que el cliente los trate diferente
            }
         }
        else {
-           directMessageInTurn("No esta en su turno");
+           directMessageNotInTurn("No esta en su turno");
        }
     }
 
@@ -164,7 +164,7 @@ public class Partida extends Server{
                     }
                 }
                 else {
-                    directMessageInTurn("Error con nombre de guerreros.");
+                    directMessageInTurn("Error con nombre de guerreros");
                 }
             }
             else {
@@ -172,6 +172,7 @@ public class Partida extends Server{
             }
         }
         else{
+            directMessageNotInTurn("No está en su turno");
        }
         updateUsuarios();
 
@@ -193,7 +194,7 @@ public class Partida extends Server{
                     }
                 }
                 else {
-                    directMessageInTurn("El personaje" +guerreroName+" no existe");//Esto puede cambiar a enviar errores para que el cliente los trate diferente
+                    directMessageInTurn("El personaje " +guerreroName+" no existe");//Esto puede cambiar a enviar errores para que el cliente los trate diferente
                 }
             }
             else {
@@ -201,7 +202,7 @@ public class Partida extends Server{
             }
         }
         else {
-            directMessageInTurn("No esta en su turno");
+            directMessageNotInTurn("No esta en su turno");
 
         }
         updateUsuarios();
@@ -245,12 +246,11 @@ public class Partida extends Server{
                 updateUsuarios();
             }
             else {
-                directMessageInTurn("El personaje" +guerreroString+" no existe");//Esto puede cambiar a enviar errores para que el cliente los trate diferente
+                directMessageInTurn("El personaje " + guerreroString +" no existe");//Esto puede cambiar a enviar errores para que el cliente los trate diferente
             }
         }
         else {
-            directMessageInTurn("No esta en su turno");
-
+            directMessageNotInTurn("No esta en su turno");
         }
 
     }

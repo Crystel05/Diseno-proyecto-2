@@ -8,6 +8,7 @@ import Modelo.Personaje;
 import Modelo.Usuario;
 import ProjectNetwork.Responses.DanoHechoResponse;
 import Utils.JsonRanking;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -32,10 +33,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class PantallaJugador implements Initializable {
 
@@ -526,23 +524,34 @@ public class PantallaJugador implements Initializable {
 
     private void cargarDatosAtaque(){
         if (danoHecho != null) {
-            guerreroQueAtaca.setText(danoHecho.personaje.getName());
-            tipoGuerreroAtaca.setText(danoHecho.personaje.getType().name());
-            porcentajeDanoInfringido.setText(String.valueOf(danoHecho.danoHecho));
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    guerreroQueAtaca.setText(danoHecho.personaje.getName().toLowerCase(Locale.ROOT));
+                    tipoGuerreroAtaca.setText(danoHecho.personaje.getType().name().toLowerCase(Locale.ROOT));
+                    porcentajeDanoInfringido.setText(String.valueOf(danoHecho.danoHecho));
+                    armaAtaca.setText(danoHecho.arma.getName().toLowerCase(Locale.ROOT));
+                }
+            });
         }
 
     }
 
     private void cargarDatosAtacado(){
         if (ataque != null) {
-            nombreGuerreroAtacante.setText(ataque.getCharacterName());
-            armaAtacante.setText(ataque.getWeaponName());
-            int indice = 0;
-            for (Map.Entry<String, Integer> entry : ataque.getDamageToTeam().entrySet()) {
-                nombresGuerreros.get(indice).setText(entry.getKey());
-                danoGuerreros.get(indice).setText(entry.getValue().toString());
-                indice++;
-            }
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    nombreGuerreroAtacante.setText(ataque.getCharacterName().toLowerCase(Locale.ROOT));
+                    armaAtacante.setText(ataque.getWeaponName().toLowerCase(Locale.ROOT));
+                    int indice = 0;
+                    for (Map.Entry<String, Integer> entry : ataque.getDamageToTeam().entrySet()) {
+                        nombresGuerreros.get(indice).setText(entry.getKey().toLowerCase(Locale.ROOT));
+                        danoGuerreros.get(indice).setText(entry.getValue().toString());
+                        indice++;
+                    }
+                }
+            });
         }
     }
 
@@ -594,15 +603,29 @@ public class PantallaJugador implements Initializable {
         rendicionesContr.setText(String.valueOf(contrincante.getRendiciones()));
     }
 
+    @FXML
+    public void mostrar(){
+        ControladorPantalla.getInstance().setPantallaJugador(this);
+        comandos.setDisable(false);
+    }
+
+    @FXML
+    public void cargarDatos(MouseEvent event){
+        cargarDatosAtacado();
+        cargarDatosAtaque();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ControladorPantalla.getInstance().setPantallaJugador(this);
+        notificaciones.getItems().add("");
         llenarListas();
         cargarDatosCompetidores();
         try {
             cargarDatosEquipo();
             Personaje guerrero1 = controladorPantalla.getEquipo().getGuerreros().get(0);
             ArrayList<Arma> armas = guerrero1.getArmas();
+            nombreGuerreroUsando.setText(guerrero1.getName());
+            porcentajeVidaUsando.setText(String.valueOf(guerrero1.getLife())); //no estoy segura de que sea así
             ponerNombreArma(armas);
             escribirPorcentajes(armas);
         } catch (FileNotFoundException e) {
@@ -672,15 +695,15 @@ public class PantallaJugador implements Initializable {
                         }else{
                             borrando = false;
                             if (event.getCode() == KeyCode.ENTER) {
-                                cantComandos ++;
+                                cantComandos++;
                                 String[] comandos = newValue.split("\n");
-                                lineaComando = comandos[comandos.length-1]; //este es el comando
+                                lineaComando = comandos[comandos.length - 1]; //este es el comando
                                 Text t = new Text(lineaComando);
                                 t.setFill(Color.GREEN);
                                 t.setFont(new Font("Eras Demi ITC", 15));
                                 comandosHechos.add(t);
                                 ObservableList<Node> textosA = comandosMostrar.getChildren();
-                                for (int i = textosA.size()-1; i>=0; i--){
+                                for (int i = textosA.size() - 1; i >= 0; i--) {
                                     if (textosA.get(i).equals(ultimo)) {
                                         comandosMostrar.getChildren().remove(textosA.get(i));
                                         break;
@@ -709,38 +732,39 @@ public class PantallaJugador implements Initializable {
                                     ini.setFill(Color.GREEN);
                                     inicios.add(ini);
                                     comandosMostrar.getChildren().add(ini);
-                                }else {
-                                        try {
-                                            requestCommand();
-                                        } catch (IOException e) {
-                                            e.printStackTrace();
-                                        } catch (ClassNotFoundException e) {
-                                            e.printStackTrace();
+                                } else {
+                                    try {
+                                        requestCommand();
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    } catch (ClassNotFoundException e) {
+                                        e.printStackTrace();
+                                    }
+                                    if (cantComandos >= 9) {
+                                        ObservableList<Node> textos = comandosMostrar.getChildren();
+                                        for (int i = textos.size() - 1; i >= 0; i--) {
+                                            comandosMostrar.getChildren().remove(textos.get(i));
                                         }
-                                        if (cantComandos >= 9) {
-                                            ObservableList<Node> textos = comandosMostrar.getChildren();
-                                            for (int i = textos.size() - 1; i >= 0; i--) {
-                                                comandosMostrar.getChildren().remove(textos.get(i));
-                                            }
-                                            for (int i = nuevo; i < comandosHechos.size(); i++) {
-                                                Text inicio = new Text(">>");
-                                                inicio.setFill(Color.GREEN);
-                                                inicio.setFont(new Font("Eras Demi ITC", 15));
-                                                comandosMostrar.getChildren().add(new Text("\n"));
-                                                comandosMostrar.getChildren().add(inicio);
-                                                comandosMostrar.getChildren().add(comandosHechos.get(i));
-                                            }
-                                            nuevo++;
+                                        for (int i = nuevo; i < comandosHechos.size(); i++) {
+                                            Text inicio = new Text(">>");
+                                            inicio.setFill(Color.GREEN);
+                                            inicio.setFont(new Font("Eras Demi ITC", 15));
+                                            comandosMostrar.getChildren().add(new Text("\n"));
+                                            comandosMostrar.getChildren().add(inicio);
+                                            comandosMostrar.getChildren().add(comandosHechos.get(i));
                                         }
-                                        Text inicio = new Text(">>");
-                                        ultimo = inicio;
-                                        inicio.setFont(new Font("Eras Demi ITC", 15));
-                                        inicio.setFill(Color.GREEN);
-                                        inicios.add(inicio);
-                                        comandosMostrar.getChildren().add(new Text("\n"));
-                                        comandosMostrar.getChildren().add(inicio);
+                                        nuevo++;
+                                    }
+                                    Text inicio = new Text(">>");
+                                    ultimo = inicio;
+                                    inicio.setFont(new Font("Eras Demi ITC", 15));
+                                    inicio.setFill(Color.GREEN);
+                                    inicios.add(inicio);
+                                    comandosMostrar.getChildren().add(new Text("\n"));
+                                    comandosMostrar.getChildren().add(inicio);
                                 }
                             }
+
                         }
                     }
 

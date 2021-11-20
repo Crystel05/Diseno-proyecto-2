@@ -46,3 +46,81 @@ Haciendo 22 de dano aklee
 Haciendo 10 de dano aNoelle
 Haciendo 12 de dano aQiqi
 Haciendo 4 de dano aDiluc
+Attack
+klee ataca con Gouba
+Haciendo 22 de dano aklee
+Haciendo 14 de dano aNoelle
+Haciendo 23 de dano aQiqi
+Haciendo 0 de dano aDiluc
+Attack
+klee ataca con Gouba
+Haciendo 10 de dano aklee
+Haciendo 10 de dano aNoelle
+Haciendo 0 de dano aQiqi
+Haciendo 1 de dano aDiluc
+Attack
+klee ataca con Gouba
+Haciendo 18 de dano aklee
+Haciendo 6 de dano aNoelle
+Haciendo 10 de dano aQiqi
+Haciendo 7 de dano aDiluc
+Attack
+klee ataca con Gouba
+Haciendo 13 de dano aklee
+Haciendo 24 de dano aNoelle
+Haciendo 3 de dano aQiqi
+Haciendo 11 de dano aDiluc
+Attack
+klee ataca con Gouba
+Haciendo 23 de dano aklee
+Haciendo 17 de dano aNoelle
+Haciendo 19 de dano aQiqi
+Haciendo 19 de dano aDiluc
+Attack
+klee ataca con Gouba
+Haciendo 2 de dano aklee
+Haciendo 0 de dano aNoelle
+Haciendo 24 de dano aQiqi
+Haciendo 12 de dano aDiluc
+Attack
+klee ataca con Sacrificio
+Haciendo 4 de dano aklee
+Haciendo 2 de dano aNoelle
+Haciendo 2 de dano aQiqi
+Haciendo 12 de dano aDiluc
+Attack
+klee ataca con Sacrificio
+Haciendo 16 de dano aklee
+Haciendo 0 de dano aNoelle
+Haciendo 3 de dano aQiqi
+Haciendo 4 de dano aDiluc
+Attack
+klee ataca con Sacrificio
+Haciendo 19 de dano aklee
+Haciendo 23 de dano aNoelle
+Haciendo 9 de dano aQiqi
+Haciendo 6 de dano aDiluc
+Attack
+klee ataca con Sacrificio
+Haciendo 22 de dano aklee
+Haciendo 14 de dano aNoelle
+Haciendo 18 de dano aQiqi
+Haciendo 22 de dano aDiluc
+Attack
+klee ataca con Sacrificio
+Haciendo 7 de dano aklee
+Haciendo 11 de dano aNoelle
+Haciendo 10 de dano aQiqi
+Haciendo 6 de dano aDiluc
+Attack
+klee ataca con Gouba
+Haciendo 2 de dano aklee
+Haciendo 12 de dano aNoelle
+Haciendo 16 de dano aQiqi
+Haciendo 2 de dano aDiluc
+Attack
+klee ataca con Rompemontañas
+Haciendo 15 de dano aklee
+Haciendo 4 de dano aNoelle
+Haciendo 12 de dano aQiqi
+Haciendo 10 de dano aDiluc

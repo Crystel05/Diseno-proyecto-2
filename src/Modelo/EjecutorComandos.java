@@ -92,7 +92,7 @@ public class EjecutorComandos {
             }
         }
         arma.setActive(false);
-        guerrero.emptyWeapons();//QUITAR ESTA LINEA
+        //guerrero.emptyWeapons();//QUITAR ESTA LINEA
         if(muertos == Partida.getInstance().PERSONAJES_POR_JUGADOR){
             System.out.println("Ya se mueren todos");
             Partida.getInstance().getEquipoInTurn().getUsuario().addVictorias();

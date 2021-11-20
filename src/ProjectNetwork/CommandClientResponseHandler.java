@@ -8,6 +8,7 @@ import Network.Response.IResponse;
 import ProjectNetwork.ClientTypes.CommandGameClient;
 import ProjectNetwork.Responses.*;
 import ProjectNetwork.Responses.Enumerable.GameResponsesType;
+import javafx.application.Platform;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,7 +33,16 @@ public class CommandClientResponseHandler implements IHandleResponse {
             case MESSAGE:
                 MessageResponse messageResponse = (MessageResponse) request;
                 System.out.println(messageResponse.content);
-                ControladorPantalla.getInstance().getPantallaJugador().getNotificaciones().getItems().add(messageResponse.content);
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (ControladorPantalla.getInstance().getPantallaJugador() != null)
+                            ControladorPantalla.getInstance().getPantallaJugador().getNotificaciones().getItems().add(messageResponse.content);
+                        else{
+                            System.out.println("ES NULL");
+                        }
+                    }
+                });
                 break;
             case SENDWARIORS:
                 AvaliableWariorsResponse avaliableWariorsRequest = (AvaliableWariorsResponse) request;

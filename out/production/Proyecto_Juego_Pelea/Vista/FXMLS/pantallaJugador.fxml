@@ -4,6 +4,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
@@ -71,52 +72,52 @@
                   <Font name="Berlin Sans FB Demi Bold" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="nomR1" fill="#028894" layoutX="46.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+            <Text fx:id="nomR1" fill="#028894" layoutX="46.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="nomR7" fill="#028894" layoutX="46.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+            <Text fx:id="nomR7" fill="#028894" layoutX="46.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="nomR8" fill="#028894" layoutX="46.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+            <Text fx:id="nomR8" fill="#028894" layoutX="46.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="nomR9" fill="#028894" layoutX="46.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+            <Text fx:id="nomR9" fill="#028894" layoutX="46.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="nomR10" fill="#028894" layoutX="46.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+            <Text fx:id="nomR10" fill="#028894" layoutX="46.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="nomR3" fill="#028894" layoutX="46.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+            <Text fx:id="nomR3" fill="#028894" layoutX="46.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="nomR4" fill="#028894" layoutX="46.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+            <Text fx:id="nomR4" fill="#028894" layoutX="46.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="nomR5" fill="#028894" layoutX="46.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+            <Text fx:id="nomR5" fill="#028894" layoutX="46.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="nomR6" fill="#028894" layoutX="46.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+            <Text fx:id="nomR6" fill="#028894" layoutX="46.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="nomR2" fill="#028894" layoutX="46.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+            <Text fx:id="nomR2" fill="#028894" layoutX="46.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font name="Eras Demi ITC" size="12.0" />
                </font>
@@ -126,7 +127,7 @@
       <Pane layoutX="5.0" layoutY="489.0" prefHeight="186.0" prefWidth="554.0" style="-fx-background-color: BLACK;">
          <children>
             <TextFlow fx:id="comandosMostrar" layoutX="2.0" layoutY="2.0" prefHeight="182.0" prefWidth="550.0" />
-            <TextArea fx:id="comandos" layoutX="22.0" layoutY="2.0" prefHeight="182.0" prefWidth="527.0">
+            <TextArea fx:id="comandos" disable="true" layoutX="22.0" layoutY="2.0" prefHeight="182.0" prefWidth="527.0">
                <font>
                   <Font name="Eras Demi ITC" size="15.0" />
                </font>
@@ -139,15 +140,18 @@
       <Pane layoutX="227.0" layoutY="5.0" prefHeight="237.0" prefWidth="329.0" style="-fx-background-color: BLACK;">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="232.0" layoutX="3.0" layoutY="2.0" stroke="#016de8" strokeType="INSIDE" width="322.0" />
-            <ImageView fx:id="guerreroAtacó" fitHeight="226.0" fitWidth="315.0" layoutX="7.0" layoutY="6.0" pickOnBounds="true" />
+            <ImageView fx:id="guerreroAtacó" fitHeight="226.0" fitWidth="315.0" layoutX="7.0" layoutY="6.0" onMouseClicked="#cargarDatos" opacity="0.5" pickOnBounds="true">
+               <image>
+                  <Image url="@../Imágenes/atacado.jpg" />
+               </image></ImageView>
             <Text fill="WHITE" layoutX="14.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Atacado por">
                <font>
                   <Font name="Cooper Black" size="25.0" />
                </font>
             </Text>
-            <Text fx:id="nombreGuerreroAtacante" fill="#358fef" layoutX="186.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+            <Text fx:id="nombreGuerreroAtacante" fill="#358fef" layoutX="195.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="98.72499847412098">
                <font>
-                  <Font name="Cooper Black" size="23.0" />
+                  <Font name="Cooper Black" size="16.0" />
                </font>
             </Text>
             <Text fill="WHITE" layoutX="14.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Arma">
@@ -155,49 +159,49 @@
                   <Font name="Cooper Black" size="25.0" />
                </font>
             </Text>
-            <Text fx:id="armaAtacante" fill="#358fef" layoutX="186.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+            <Text fx:id="armaAtacante" fill="#358fef" layoutX="196.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="131.63333129882812">
                <font>
-                  <Font name="Cooper Black" size="23.0" />
+                  <Font name="Cooper Black" size="16.0" />
                </font>
             </Text>
-            <Text fx:id="nomG1" fill="WHITE" layoutX="14.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="G1" textAlignment="CENTER" wrappingWidth="125.53083801269531">
+            <Text fx:id="nomG1" fill="WHITE" layoutX="14.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="125.53083801269531">
                <font>
-                  <Font name="Colonna MT" size="36.0" />
+                  <Font name="Colonna MT" size="25.0" />
                </font>
             </Text>
-            <Text fx:id="nomG4" fill="WHITE" layoutX="14.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="G4" textAlignment="CENTER" wrappingWidth="125.5308380126952">
+            <Text fx:id="nomG4" fill="WHITE" layoutX="14.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="125.5308380126952">
                <font>
-                  <Font name="Colonna MT" size="36.0" />
+                  <Font name="Colonna MT" size="25.0" />
                </font>
             </Text>
-            <Text fx:id="nomG2" fill="WHITE" layoutX="14.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="G2" textAlignment="CENTER" wrappingWidth="125.5308380126952">
+            <Text fx:id="nomG2" fill="WHITE" layoutX="14.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="125.5308380126952">
                <font>
-                  <Font name="Colonna MT" size="36.0" />
+                  <Font name="Colonna MT" size="25.0" />
                </font>
             </Text>
-            <Text fx:id="nomG3" fill="WHITE" layoutX="14.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="G3" textAlignment="CENTER" wrappingWidth="125.5308380126952">
+            <Text fx:id="nomG3" fill="WHITE" layoutX="14.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="125.5308380126952">
                <font>
-                  <Font name="Colonna MT" size="36.0" />
+                  <Font name="Colonna MT" size="25.0" />
                </font>
             </Text>
-            <Text fx:id="danoG1" fill="WHITE" layoutX="206.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="86.03759765624989">
+            <Text fx:id="danoG1" fill="WHITE" layoutX="206.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="86.03759765624989">
                <font>
-                  <Font name="Colonna MT" size="36.0" />
+                  <Font name="Colonna MT" size="25.0" />
                </font>
             </Text>
-            <Text fx:id="danoG2" fill="WHITE" layoutX="206.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="86.03759765624989">
+            <Text fx:id="danoG2" fill="WHITE" layoutX="206.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="86.03759765624989">
                <font>
-                  <Font name="Colonna MT" size="36.0" />
+                  <Font name="Colonna MT" size="25.0" />
                </font>
             </Text>
-            <Text fx:id="danoG3" fill="WHITE" layoutX="206.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="86.03759765624989">
+            <Text fx:id="danoG3" fill="WHITE" layoutX="206.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="86.03759765624989">
                <font>
-                  <Font name="Colonna MT" size="36.0" />
+                  <Font name="Colonna MT" size="25.0" />
                </font>
             </Text>
-            <Text fx:id="danoG4" fill="WHITE" layoutX="206.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="86.03759765624989">
+            <Text fx:id="danoG4" fill="WHITE" layoutX="206.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="86.03759765624989">
                <font>
-                  <Font name="Colonna MT" size="36.0" />
+                  <Font name="Colonna MT" size="25.0" />
                </font>
             </Text>
          </children>
@@ -205,15 +209,18 @@
       <Pane layoutX="227.0" layoutY="247.0" prefHeight="237.0" prefWidth="329.0" style="-fx-background-color: BLACK;">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="232.0" layoutX="3.0" layoutY="3.0" stroke="#016de8" strokeType="INSIDE" width="323.0" />
-            <ImageView fx:id="guerroQueAtaca" fitHeight="227.0" fitWidth="317.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" />
+            <ImageView fx:id="guerroQueAtaca" fitHeight="227.0" fitWidth="317.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#cargarDatos" opacity="0.57" pickOnBounds="true">
+               <image>
+                  <Image url="@../Imágenes/atacando.jpg" />
+               </image></ImageView>
             <Text fill="WHITE" layoutX="14.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Atacaste con">
                <font>
                   <Font name="Cooper Black" size="25.0" />
                </font>
             </Text>
-            <Text fx:id="guerreroQueAtaca" fill="#358fef" layoutX="186.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+            <Text fx:id="guerreroQueAtaca" fill="#358fef" layoutX="195.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="131.97915649414062">
                <font>
-                  <Font name="Cooper Black" size="23.0" />
+                  <Font name="Cooper Black" size="14.0" />
                </font>
             </Text>
             <Text fill="WHITE" layoutX="14.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo">
@@ -221,9 +228,9 @@
                   <Font name="Cooper Black" size="25.0" />
                </font>
             </Text>
-            <Text fx:id="tipoGuerreroAtaca" fill="#358fef" layoutX="186.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+            <Text fx:id="tipoGuerreroAtaca" fill="#358fef" layoutX="196.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="105.74999999999977">
                <font>
-                  <Font name="Cooper Black" size="23.0" />
+                  <Font name="Cooper Black" size="14.0" />
                </font>
             </Text>
             <Text fill="WHITE" layoutX="14.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Arma">
@@ -231,14 +238,14 @@
                   <Font name="Cooper Black" size="25.0" />
                </font>
             </Text>
-            <Text fx:id="armaAtaca" fill="#358fef" layoutX="186.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+            <Text fx:id="armaAtaca" fill="#358fef" layoutX="196.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="98.98436737060547">
                <font>
-                  <Font name="Cooper Black" size="23.0" />
+                  <Font name="Cooper Black" size="14.0" />
                </font>
             </Text>
-            <Text fx:id="porcentajeDanoInfringido" fill="WHITE" layoutX="20.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" wrappingWidth="296.53326416015614">
+            <Text fx:id="porcentajeDanoInfringido" fill="WHITE" layoutX="20.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="296.53326416015614">
                <font>
-                  <Font name="Colonna MT" size="96.0" />
+                  <Font name="Colonna MT" size="34.0" />
                </font>
             </Text>
          </children>
@@ -264,27 +271,27 @@
             </Text>
             <Text fx:id="arma1Nombre" fill="#24d5fc" layoutX="10.0" layoutY="443.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Arma1">
                <font>
-                  <Font name="Eras Demi ITC" size="19.0" />
+                  <Font name="Eras Demi ITC" size="15.0" />
                </font>
             </Text>
             <Text fx:id="arma2Nombre" fill="#24d5fc" layoutX="10.0" layoutY="494.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Arma2">
                <font>
-                  <Font name="Eras Demi ITC" size="19.0" />
+                  <Font name="Eras Demi ITC" size="15.0" />
                </font>
             </Text>
             <Text fx:id="arma3Nombre" fill="#24d5fc" layoutX="10.0" layoutY="542.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Arma3">
                <font>
-                  <Font name="Eras Demi ITC" size="19.0" />
+                  <Font name="Eras Demi ITC" size="15.0" />
                </font>
             </Text>
             <Text fx:id="arma4Nombre" fill="#24d5fc" layoutX="10.0" layoutY="593.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Arma4">
                <font>
-                  <Font name="Eras Demi ITC" size="19.0" />
+                  <Font name="Eras Demi ITC" size="15.0" />
                </font>
             </Text>
             <Text fx:id="arma5Nombre" fill="#24d5fc" layoutX="11.0" layoutY="646.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Arma5">
                <font>
-                  <Font name="Eras Demi ITC" size="19.0" />
+                  <Font name="Eras Demi ITC" size="15.0" />
                </font>
             </Text>
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="114.0" layoutY="423.0" stroke="#0c899c" strokeType="INSIDE" width="43.0" />
@@ -761,7 +768,7 @@
                   <Font name="Eras Demi ITC" size="23.0" />
                </font>
             </Text>
-            <ListView fx:id="notificaciones" layoutX="7.0" layoutY="37.0" prefHeight="626.0" prefWidth="284.0" />
+            <ListView fx:id="notificaciones" layoutX="7.0" layoutY="37.0" onMouseClicked="#mostrar" prefHeight="626.0" prefWidth="284.0" stylesheets="@../CSS/textarea.css" />
          </children>
       </Pane>
    </children>
